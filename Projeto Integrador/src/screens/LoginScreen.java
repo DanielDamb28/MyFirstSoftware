@@ -16,7 +16,7 @@ public class LoginScreen extends JFrame implements ActionListener{
 	public LoginScreen() {
 		
 		setTitle("Login");
-		setSize(800,450);
+		setSize(1280,720);
 		setLocationRelativeTo(null);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setVisible(true);
@@ -24,9 +24,9 @@ public class LoginScreen extends JFrame implements ActionListener{
 		Container c = getContentPane();
 		
 		JLabel label = new JLabel();
-		label.setIcon(new ImageIcon("C:\\Users\\danie\\OneDrive\\Área de Trabalho\\Estudos\\Faculdade\\Projeto Integrador\\Projeto Integrador\\src\\screens\\background800.jpg"));
+		label.setIcon(new ImageIcon(".\\src\\screens\\background.png"));
 		Dimension size = label.getPreferredSize();
-		label.setBounds(800, 450, size.width, size.height);
+		label.setBounds(1920, 1080, size.width, size.height);
 	
 		c.add(label);
 		

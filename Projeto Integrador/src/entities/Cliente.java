@@ -14,10 +14,13 @@ public class Cliente {
 	private String telefone;
 	private LocalDate dataNascimento;
 	private LocalDate dataCadastro;
+	private String cep;
+	private char sexo;
 	
 	public Cliente() {}
 	
-	public Cliente(String cpf, String nome, String endereco, String telefone, LocalDate nascimento, LocalDate dataCadastro) 
+	public Cliente(String cpf, String nome, String endereco, String telefone, LocalDate nascimento,
+						LocalDate dataCadastro, String cep, String sexo) 
 					throws CpfNotNull, NameNotNull{
 		
 		setCpf(cpf);
@@ -26,6 +29,8 @@ public class Cliente {
 		setTelefone(telefone);
 		setDataNascimento(dataNascimento);
 		setDataCadastro(dataCadastro);
+		setCep(cep);
+		setSexo(sexo);
 	}
 	
 	public String getCpf() {
@@ -83,6 +88,21 @@ public class Cliente {
 		this.dataCadastro = dataCadastro;
 	}
 	
+	public String getCep() {
+		return this.cep;
+	}
+	
+	public void setCep(String cep) {
+		this.cep = cep;
+	}
+	
+	public char getSexo() {
+		return this.sexo;
+	}
+	
+	public void setSexo(String sexo) {
+		this.sexo = sexo.charAt(0);
+	}
 	
 	
 	
