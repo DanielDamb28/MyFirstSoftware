@@ -1,0 +1,21 @@
+package conexaopostgree;
+
+import java.sql.Connection;
+
+public class ConexaoLogin {
+	
+	private static Conexao conectar = null;
+	
+	private static void buscaDados() {
+		try {
+		conectar = new Conexao();
+		
+		System.out.println("Usuario da Conexao: " + conectar.getConexao().getMetaData().getUserName());
+		System.out.println("URL da Conexao: " + conectar.getConexao().getMetaData().getURL());
+		
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		}
+		Connection con = conectar.getConexao();
+	}
+}

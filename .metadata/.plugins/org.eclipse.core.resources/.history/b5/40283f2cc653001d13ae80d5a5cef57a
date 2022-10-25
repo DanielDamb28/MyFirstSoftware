@@ -1,0 +1,33 @@
+package entities;
+
+public class Produto {
+	
+	private String modelo;
+	private String categoria;
+	private String marca;
+	private String setor;
+	private String cor;
+	private String tamanho;
+	private Float preco;
+	private	Integer unidadesEstoque;
+	private String id;
+	private Fornecedor fornecedor;
+	
+	
+	public Produto(String modelo, String categoria, String marca, String setor, String cor, String tamanho, Float preco,
+			Integer unidadesEstoque, String id, Fornecedor fornecedor) {
+		this.modelo = modelo;
+		this.categoria = categoria;
+		this.marca = marca;
+		this.setor = setor;
+		this.cor = cor;
+		this.tamanho = tamanho;
+		this.preco = preco;
+		this.unidadesEstoque = unidadesEstoque;
+		this.id = id;
+		this.fornecedor = fornecedor;
+	}
+	
+	
+
+}

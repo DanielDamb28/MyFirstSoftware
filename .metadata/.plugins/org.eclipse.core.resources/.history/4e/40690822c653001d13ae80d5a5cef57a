@@ -1,0 +1,18 @@
+package entities;
+
+public class Produto {
+	
+	private String modelo;
+	private String categoria;
+	private String marca;
+	private String setor;
+	private String cor;
+	private String tamanho;
+	private Float preco;
+	private	Integer unidadesEstoque;
+	private String id;
+	private Fornecedor fornecedor;
+	
+	
+
+}

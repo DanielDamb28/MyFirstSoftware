@@ -1,0 +1,9 @@
+package entities;
+
+public class ItensVendidos {
+	
+	private Produto produto;
+	private Venda venda;
+	private Integer numProdutos;
+	private Float precoNaData;
+}
