@@ -5,18 +5,26 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import org.postgresql.util.PSQLException;
+
+import entities.Usuario;
+import exceptions.IdOrPasswordIncorrect;
+import factorys.FactoryException;
+
 public class ConexaoLogin {
 	
 	private static Conexao conectar = null;
 	
-	public void fazerLogin(String id, String senha) {
+	@SuppressWarnings("finally")
+	public Usuario fazerLogin(String id, String senha) {
+		Usuario usuario = null;
 		try {
 			conectar = new Conexao();
 			
 			System.out.println("Usuario da Conexao: " + conectar.getConexao().getMetaData().getUserName());
 			System.out.println("URL da Conexao: " + conectar.getConexao().getMetaData().getURL());
 			
-			buscaDados(id, senha);
+			usuario = buscaDados(id, senha);
 			
 			} catch (Exception ex) {
 				ex.printStackTrace();
@@ -24,33 +32,31 @@ public class ConexaoLogin {
 			finally{
 				if(conectar != null)
 					conectar.fecharConexao();
+					return usuario;
 			}
 	}
 	
-	private static void buscaDados(String id, String senha) {
+	private static Usuario buscaDados(String id, String senha) throws SQLException, IdOrPasswordIncorrect {
 		
 		Connection con = conectar.getConexao();
-		
 		String comandoBuscaIdESenha = "SELECT pk_id, senha, tipo_de_acesso FROM public.usuario WHERE pk_id = ? AND senha = ?;";
+		ResultSet resultado = null;
 		
 		try {
-			ResultSet resultado = null;
 			
 			PreparedStatement stmBuscaIdESenha = con.prepareStatement(comandoBuscaIdESenha);
-			
 			stmBuscaIdESenha.setString(1, id);
 			stmBuscaIdESenha.setString(2, senha);
-			System.out.println(stmBuscaIdESenha.toString());
 			resultado = stmBuscaIdESenha.executeQuery();
-			
 			resultado.next();
-			System.out.println("Id do Usuario: " + resultado.getString(1) + ", senha: " + resultado.getString(2) + ", tipo de acesso: " + resultado.getString(3));
+			
+			
 		}catch (SQLException e) {
-			e.printStackTrace();
+			
 			if(con != null){
 				try{
-					System.err.print("Falha transacao em Rollback!!!!");
 					con.rollback();
+					return null;
 				}catch(SQLException sqlE){
 					sqlE.printStackTrace();
 				}
@@ -61,13 +67,15 @@ public class ConexaoLogin {
 				try {
 					con.setAutoCommit(true);
 					con.close();
+					return new Usuario(resultado.getString(1), resultado.getString(2), resultado.getString(3));
 				} catch (SQLException e) {
-					e.printStackTrace();
+					FactoryException.callIdOrPasswordIncorrect();
 				}
 				
 
 			}
 
 		}
+		return null;
 	}
 }
