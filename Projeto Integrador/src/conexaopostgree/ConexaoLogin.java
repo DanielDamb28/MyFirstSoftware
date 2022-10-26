@@ -8,7 +8,6 @@ import java.sql.SQLException;
 import org.postgresql.util.PSQLException;
 
 import entities.Usuario;
-import exceptions.IdOrPasswordIncorrect;
 import factorys.FactoryException;
 
 public class ConexaoLogin {
@@ -16,7 +15,7 @@ public class ConexaoLogin {
 	private static Conexao conectar = null;
 	
 	@SuppressWarnings("finally")
-	public Usuario fazerLogin(String id, String senha) {
+	public Usuario fazerLogin(String id) {
 		Usuario usuario = null;
 		try {
 			conectar = new Conexao();
@@ -24,10 +23,10 @@ public class ConexaoLogin {
 			System.out.println("Usuario da Conexao: " + conectar.getConexao().getMetaData().getUserName());
 			System.out.println("URL da Conexao: " + conectar.getConexao().getMetaData().getURL());
 			
-			usuario = buscaDados(id, senha);
+			usuario = buscaDados(id);
 			
 			} catch (Exception ex) {
-				ex.printStackTrace();
+				return null;
 			}
 			finally{
 				if(conectar != null)
@@ -36,17 +35,16 @@ public class ConexaoLogin {
 			}
 	}
 	
-	private static Usuario buscaDados(String id, String senha) throws SQLException, IdOrPasswordIncorrect {
+	private static Usuario buscaDados(String id) throws SQLException {
 		
 		Connection con = conectar.getConexao();
-		String comandoBuscaIdESenha = "SELECT pk_id, senha, tipo_de_acesso FROM public.usuario WHERE pk_id = ? AND senha = ?;";
+		String comandoBuscaIdESenha = "SELECT pk_id, senha, tipo_de_acesso FROM public.usuario WHERE pk_id = ?;";
 		ResultSet resultado = null;
 		
 		try {
 			
 			PreparedStatement stmBuscaIdESenha = con.prepareStatement(comandoBuscaIdESenha);
 			stmBuscaIdESenha.setString(1, id);
-			stmBuscaIdESenha.setString(2, senha);
 			resultado = stmBuscaIdESenha.executeQuery();
 			resultado.next();
 			
@@ -69,7 +67,7 @@ public class ConexaoLogin {
 					con.close();
 					return new Usuario(resultado.getString(1), resultado.getString(2), resultado.getString(3));
 				} catch (SQLException e) {
-					FactoryException.callIdOrPasswordIncorrect();
+					e.getStackTrace();
 				}
 				
 

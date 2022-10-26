@@ -7,7 +7,6 @@ public class Usuario {
 	private String tipoAcesso;
 	
 	public Usuario(String id, String senha, String tipoAcesso) {
-		super();
 		setId(id);
 		setSenha(senha);
 		setTipoAcesso(tipoAcesso);
