@@ -1,8 +1,19 @@
-package telaLogin;
+package screens;
 
-import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JCheckBox;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPasswordField;
+import javax.swing.JTextField;
+
+import conexaopostgree.ConexaoLogin;
+import entities.Usuario;
 
 public class MyFrame extends JFrame implements ActionListener {
 
@@ -15,9 +26,9 @@ public class MyFrame extends JFrame implements ActionListener {
 
 
 
-    MyFrame() {
+    public MyFrame() {
 
-        imgFundoTela = new ImageIcon("C:\\Users\\joser\\OneDrive\\IFG\\POO\\Login_Scren\\src\\telaLogin\\bg_login.png");
+        imgFundoTela = new ImageIcon(".\\src\\screens\\bg_login.png");
         JLabel lblFundoTela = new JLabel();
         lblFundoTela.setIcon(imgFundoTela);
         lblFundoTela.setBounds(0 , 0, 1000, 750 );
@@ -44,7 +55,7 @@ public class MyFrame extends JFrame implements ActionListener {
         chkMostrarSenha.setBounds(600,570,100,40);
         chkMostrarSenha.addActionListener(this);
 
-        lblMensagem = new JLabel("Mensagem");
+        lblMensagem = new JLabel("");
         lblMensagem.setBounds(400,570,300,40);
 
         btnEntrar = new JButton("Entrar");
@@ -66,23 +77,24 @@ public class MyFrame extends JFrame implements ActionListener {
     public void actionPerformed (ActionEvent evt) {
 
         if (evt.getSource() == btnEntrar) {
-            String strLogin = txtLogin.getText();
-            String strSenha = new String(pswSenha.getPassword());
-
-            if (strLogin.equalsIgnoreCase("Login") && strSenha.equalsIgnoreCase("Senha")) {
-                //lblMensagem.setText("Login efetuado com sucesso!");
-                JOptionPane.showMessageDialog(this, "Loggin efetuado com Sucesso!!");
-            } else {
-                //lblMensagem.setText("Acesso negado, tente novamente!");
-                JOptionPane.showMessageDialog(this, "Usuario nao encontrado!");
-                txtLogin.setText("");
+        	
+        	ConexaoLogin login = new ConexaoLogin();
+    		String id = txtLogin.getText();;
+    		String senha = new String(pswSenha.getPassword());
+    		
+    		Usuario usuario = login.fazerLogin(id);
+    		if(usuario == null) {
+    			JOptionPane.showMessageDialog(this, "Usuario não encontrado");
+    			txtLogin.setText("");
                 pswSenha.setText("");
-            }
-
-            /*
-            para obter o login do usuario: txtLogin.getText();
-            para obter a senha do usuario: new String(pswSenha.getPassword();
-             */
+    		}
+    		else if(!senha.equals(usuario.getSenha())) {
+    			JOptionPane.showMessageDialog(this ,"Senha inválida!");
+    			pswSenha.setText("");
+    		} else {
+    			System.out.println("Id: " + usuario.getId() + ", Senha: " + usuario.getSenha() + ", Tipo de Acesso: "+  usuario.getTipoAcesso());
+    			lblMensagem.setText("Login Efetuado");
+    		}
         }
 
         if(evt.getSource() == chkMostrarSenha) {

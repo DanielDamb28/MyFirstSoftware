@@ -1,11 +1,11 @@
 package application;
 
-import screens.LoginScreen;
+import screens.MyFrame;
 
 public class Program {
 	
 	public static void main(String[] args) {
-		new LoginScreen();
+		new MyFrame();
 	}
 
 }
