@@ -8,7 +8,7 @@ import factorys.FactoryException;
 
 public class Cliente {
 	
-	private String cpf;
+	private String cpfCnpj;
 	private String nome;
 	private String endereco;
 	private String telefone;
@@ -19,26 +19,26 @@ public class Cliente {
 	
 	public Cliente() {}
 	
-	public Cliente(String cpf, String nome, String endereco, String telefone, LocalDate nascimento,
+	public Cliente(String cpfCnpj, String nome, String endereco, String telefone, LocalDate nascimento,
 						LocalDate dataCadastro, String cep, String sexo) 
 					throws CpfNotNull, NameNotNull{
 		
-		setCpf(cpf);
+		setCpfCnpj(cpfCnpj);
 		setNome(nome);
 		setEndereco(endereco);
 		setTelefone(telefone);
-		setDataNascimento(dataNascimento);
+		setDataNascimento(nascimento);
 		setDataCadastro(dataCadastro);
 		setCep(cep);
 		setSexo(sexo);
 	}
 	
-	public String getCpf() {
-		return cpf;
+	public String getCpfCnpj() {
+		return cpfCnpj;
 	}
-	public void setCpf(String cpf) throws CpfNotNull{
+	public void setCpfCnpj(String cpf) throws CpfNotNull{
 		if(!cpf.isEmpty()) {
-			this.cpf = cpf;
+			this.cpfCnpj = cpf;
 		} else {
 			FactoryException.callCpfNotNull();
 		}

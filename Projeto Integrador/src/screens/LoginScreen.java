@@ -15,7 +15,7 @@ import javax.swing.JTextField;
 import conexaopostgree.ConexaoLogin;
 import entities.Usuario;
 
-public class MyFrame extends JFrame implements ActionListener {
+public class LoginScreen extends JFrame implements ActionListener {
 
     JPasswordField pswSenha;
     JTextField txtLogin;
@@ -26,7 +26,7 @@ public class MyFrame extends JFrame implements ActionListener {
 
 
 
-    public MyFrame() {
+    public LoginScreen() {
 
         imgFundoTela = new ImageIcon(".\\src\\screens\\bg_login.png");
         JLabel lblFundoTela = new JLabel();
