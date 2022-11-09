@@ -7,7 +7,7 @@ public class TesteExcluiCliente {
 	public static void main(String[] args) {
 		ConexaoCliente connect = new ConexaoCliente();
 		
-		String cpfCnpj = "70415979110";
+		String cpfCnpj = "70415979118";
 		
 		String resposta = connect.removeClienteDoBancoDeDados(cpfCnpj);
 		

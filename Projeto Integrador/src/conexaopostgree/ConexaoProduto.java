@@ -20,8 +20,7 @@ public class ConexaoProduto {
 			System.out.println("Usuario da Conexao: " + conexao.getConexao().getMetaData().getUserName());
 			System.out.println("URL da Conexao: " + conexao.getConexao().getMetaData().getURL());
 			
-			result = enviaDados(product);
-			registraAtualizacao();
+			result = enviaDados(product); 
 			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block

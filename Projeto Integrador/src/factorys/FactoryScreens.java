@@ -1,5 +1,6 @@
 package factorys;
 
+import screens.LoginScreen;
 import screens.MenuClientesAdm;
 import screens.MenuDeUsuarioAdm;
 import screens.MenuDoAplicativoAdm;
@@ -9,6 +10,9 @@ import screens.MenuVendasAdm;
 
 public class FactoryScreens {
 	
+	public void chamaTelaLogin() {
+		new LoginScreen();
+	}
 	public void chamaTelaMenuAdmin() {
 		new MenuDoAplicativoAdm();
 	}

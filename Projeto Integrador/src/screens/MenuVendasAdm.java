@@ -1,12 +1,15 @@
 package screens;
 
 import javax.swing.*;
+
+import factorys.FactoryScreens;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class MenuVendasAdm extends JFrame implements ActionListener {
 
-    JButton btnLancarVenda, btnAcessarHistorico;
+    JButton btnLancarVenda, btnAcessarHistorico, btnVoltarMenu;
     ImageIcon imgFundoTela;
     JLabel lblFundoTela;
 
@@ -25,29 +28,39 @@ public class MenuVendasAdm extends JFrame implements ActionListener {
         this.setLayout(null);
         setResizable(false);
 
-        btnLancarVenda = new JButton("Lancar vanda");
+        btnLancarVenda = new JButton("Lançar venda");
         btnLancarVenda.setBounds(290,350,200,50);
         btnLancarVenda.addActionListener(this);
 
         btnAcessarHistorico = new JButton("Acessar historico");
         btnAcessarHistorico.setBounds(510, 350, 200,50);
         btnAcessarHistorico.addActionListener(this);
+        
+        btnVoltarMenu = new JButton("Voltar");
+        btnVoltarMenu.setBounds(50,620 ,100,50);
+        btnVoltarMenu.addActionListener(this);
 
         this.add(btnLancarVenda);
         this.add(btnAcessarHistorico);
+        this.add(btnVoltarMenu);
         this.setVisible(true);
     }
 
 
     @Override
     public void actionPerformed (ActionEvent evt) {
-
+    	
+    	FactoryScreens chamaTela = new FactoryScreens();
         if (evt.getSource() == btnLancarVenda) {
             JOptionPane.showMessageDialog(this, "Trocar tela para tela lancar venda");
         }
 
         if (evt.getSource() == btnAcessarHistorico) {
             JOptionPane.showMessageDialog(this, "Trocar tela para tela de historico de vendas");
+        }
+        if (evt.getSource() == btnVoltarMenu) {
+        	chamaTela.chamaTelaMenuAdmin();
+        	this.dispose();
         }
 
     }

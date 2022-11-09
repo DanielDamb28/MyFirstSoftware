@@ -1,12 +1,15 @@
 package screens;
 
 import javax.swing.*;
+
+import factorys.FactoryScreens;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class MenuProdutosAdm extends  JFrame implements ActionListener{
 
-    JButton btnCadastrarProduto, btnExcluirProduto, btnEditarProduto, btnBuscarProduto;
+    JButton btnCadastrarProduto, btnExcluirProduto, btnEditarProduto, btnBuscarProduto, btnVoltarMenu;
     ImageIcon imgFundoTela;
     JLabel lblFundoTela;
 
@@ -40,18 +43,24 @@ public class MenuProdutosAdm extends  JFrame implements ActionListener{
         btnBuscarProduto = new JButton("Buscar produto");
         btnBuscarProduto.setBounds(725,350 ,200,50);
         btnBuscarProduto.addActionListener(this);
+        
+        btnVoltarMenu = new JButton("Voltar");
+        btnVoltarMenu.setBounds(50,620 ,100,50);
+        btnVoltarMenu.addActionListener(this);
 
         this.add(btnCadastrarProduto);
         this.add(btnEditarProduto);
         this.add(btnExcluirProduto);
         this.add(btnBuscarProduto);
+        this.add(btnVoltarMenu);
         this.setVisible(true);
     }
 
 
     @Override
     public void actionPerformed (ActionEvent evt) {
-
+    	
+    	FactoryScreens chamaTela = new FactoryScreens();
         if (evt.getSource() == btnCadastrarProduto) {
             JOptionPane.showMessageDialog(this, "Trocar tela para tela de cadastro de produto");
         }
@@ -66,6 +75,10 @@ public class MenuProdutosAdm extends  JFrame implements ActionListener{
 
         if(evt.getSource() == btnBuscarProduto) {
             JOptionPane.showMessageDialog(this, "Trocar tela para busca de produto");
+        }
+        if (evt.getSource() == btnVoltarMenu) {
+        	chamaTela.chamaTelaMenuAdmin();
+        	this.dispose();
         }
     }
 }

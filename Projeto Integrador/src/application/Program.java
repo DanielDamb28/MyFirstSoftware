@@ -1,11 +1,13 @@
 package application;
 
-import screens.LoginScreen;
+import factorys.FactoryScreens;
 
 public class Program {
 	
 	public static void main(String[] args) {
-		new LoginScreen();
+		FactoryScreens chamaTela = new FactoryScreens();
+		
+		chamaTela.chamaTelaLogin();
 	}
 
 }
