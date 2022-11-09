@@ -1,4 +1,4 @@
-package menuDeOperacoesAdm;
+package screens;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -11,7 +11,7 @@ public class MenuFornecedoresAdm extends JFrame implements ActionListener {
 
     public MenuFornecedoresAdm() {
 
-        imgFundoTela = new ImageIcon("C:\\Users\\joser\\OneDrive\\IFG\\POO\\Login_Scren\\src\\menuDeOperacoes\\fundo_menu.png");
+    	imgFundoTela = new ImageIcon(".\\src\\screens\\fundo_menu.png");
         lblFundoTela = new JLabel();
         lblFundoTela.setIcon(imgFundoTela);
         lblFundoTela.setBounds(0 , 0, 1000, 750 );

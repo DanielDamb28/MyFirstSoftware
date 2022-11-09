@@ -1,8 +1,15 @@
-package menuDeOperacoesAdm;
+package screens;
 
-import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
+import factorys.FactoryScreens;
 
 public class MenuDoAplicativoAdm extends  JFrame implements ActionListener{
 
@@ -19,30 +26,30 @@ public class MenuDoAplicativoAdm extends  JFrame implements ActionListener{
         this.setLayout(null);
         setResizable(false);
 
-        imgFundoTela = new ImageIcon("C:\\Users\\joser\\OneDrive\\IFG\\POO\\Login_Scren\\src\\menuDeOperacoes\\fundo_menu.png");
+        imgFundoTela = new ImageIcon(".\\src\\screens\\fundo_menu.png");
         lblFundoTela = new JLabel();
         lblFundoTela.setIcon(imgFundoTela);
         lblFundoTela.setBounds(0 , 0, 1000, 750 );
         this.setContentPane(lblFundoTela);
 
         btnAdmUsuarios = new JButton("Adminstrar usuarios");
-        btnAdmUsuarios.setBounds(50,350,150,50);
+        btnAdmUsuarios.setBounds(50,350,170,50);
         btnAdmUsuarios.addActionListener(this);
 
         btnProduto = new JButton("Produtos");
-        btnProduto.setBounds(225, 350, 150,50);
+        btnProduto.setBounds(245, 350, 150,50);
         btnProduto.addActionListener(this);
 
         btnCliente = new JButton("Clientes");
-        btnCliente.setBounds(400,350 ,150,50);
+        btnCliente.setBounds(420,350 ,150,50);
         btnCliente.addActionListener(this);
 
         btnFornecedor = new JButton("Fornecedores");
-        btnFornecedor.setBounds(575 ,350 ,150,50);
+        btnFornecedor.setBounds(595 ,350 ,150,50);
         btnFornecedor.addActionListener(this);
 
         btnVenda = new JButton("Vendas");
-        btnVenda.setBounds(750 ,350 ,150,50);
+        btnVenda.setBounds(770 ,350 ,150,50);
         btnVenda.addActionListener(this);
 
         this.add(btnProduto);
@@ -56,25 +63,31 @@ public class MenuDoAplicativoAdm extends  JFrame implements ActionListener{
 
     @Override
     public void actionPerformed (ActionEvent evt) {
-
+    	FactoryScreens chamaTela = new FactoryScreens();
+    	
         if (evt.getSource() == btnAdmUsuarios) {
-            JOptionPane.showMessageDialog(this, "Trocar tela para administracao de usuarios");
+            chamaTela.chamaTelaDeMenuDeUsuarios();
+            this.dispose();
         }
 
         if (evt.getSource() == btnCliente) {
-            JOptionPane.showMessageDialog(this, "Trocar tela para modificacao de clientes");
+            chamaTela.chamaTelaDeMenuClientes();
+            this.dispose();
         }
 
         if (evt.getSource() == btnProduto) {
-            JOptionPane.showMessageDialog(this, "Trocar tela para acesso dos produtos");
+            chamaTela.chamaTelaDeMenuDeProduto();
+            this.dispose();
         }
 
         if (evt.getSource() == btnVenda) {
-            JOptionPane.showMessageDialog(this, "Trocar tela para acesso de vendas");
+            chamaTela.chamaTelaDeMenuDeVendas();
+            this.dispose();
         }
 
         if (evt.getSource() == btnFornecedor) {
-            JOptionPane.showMessageDialog(this, "Trocar tela para modificacao de fornecedor");
+            chamaTela.chamaTelaDeMenuDeFornecedor();
+            this.dispose();
         }
 
     }

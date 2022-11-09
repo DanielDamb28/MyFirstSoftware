@@ -14,6 +14,7 @@ import javax.swing.JTextField;
 
 import conexaopostgree.ConexaoLogin;
 import entities.Usuario;
+import factorys.FactoryScreens;
 
 public class LoginScreen extends JFrame implements ActionListener {
 
@@ -93,7 +94,11 @@ public class LoginScreen extends JFrame implements ActionListener {
     			pswSenha.setText("");
     		} else {
     			System.out.println("Id: " + usuario.getId() + ", Senha: " + usuario.getSenha() + ", Tipo de Acesso: "+  usuario.getTipoAcesso());
-    			lblMensagem.setText("Login Efetuado");
+    			if(usuario.getTipoAcesso().equals("gerente")) {
+    				FactoryScreens chamaTela = new FactoryScreens();
+    				chamaTela.chamaTelaMenuAdmin();
+    				this.dispose();
+    			}
     		}
         }
 

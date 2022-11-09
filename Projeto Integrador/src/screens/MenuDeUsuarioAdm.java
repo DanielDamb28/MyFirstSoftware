@@ -1,18 +1,18 @@
-package menuDeOperacoesAdm;
+package screens;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class MenuAdmUsuariosAdm extends  JFrame implements ActionListener{
+public class MenuDeUsuarioAdm extends  JFrame implements ActionListener{
 
     JButton btnCadastrarUsuario, btnExcluirUsuario, btnBuscarUsuario, btnEditarUsuario;
     ImageIcon imgFundoTela;
     JLabel lblFundoTela;
 
-    public MenuAdmUsuariosAdm() {
+    public MenuDeUsuarioAdm() {
 
-        imgFundoTela = new ImageIcon("C:\\Users\\joser\\OneDrive\\IFG\\POO\\Login_Scren\\src\\menuDeOperacoes\\fundo_menu.png");
+    	imgFundoTela = new ImageIcon(".\\src\\screens\\fundo_menu.png");
         lblFundoTela = new JLabel();
         lblFundoTela.setIcon(imgFundoTela);
         lblFundoTela.setBounds(0 , 0, 1000, 750 );
