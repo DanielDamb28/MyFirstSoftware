@@ -24,7 +24,7 @@ public class TesteCadastroCliente {
 		ZoneId zone = ZoneId.of("America/Edmonton");
 		LocalDate cadastro = LocalDate.ofInstant(dataCadastro, zone);
 		
-		Cliente cliente = FactoryEntities.createCliente("70415979110", "Daniel", "Rua s-10", "62994991023", LocalDate.parse("28-06-2003", fmt), cadastro, "75120750", "M");
+		Cliente cliente = FactoryEntities.createCliente("70418979110", "Daniel", "Rua s-10", "62994991023", LocalDate.parse("28-06-2003", fmt), cadastro, "75120750", "M");
 		
 		String result = connect.adicionaClienteNoBancoDeDados(cliente);
 		

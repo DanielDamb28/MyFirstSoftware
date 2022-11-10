@@ -1,15 +1,16 @@
 package application;
 
-import factorys.FactoryScreens;
-import screens.MenuClientesFunc;
+import testes.TesteTabela;
 
 public class Program {
 	
 	public static void main(String[] args) {
 		
-		FactoryScreens chamaTela = new FactoryScreens();
+		//FactoryScreens chamaTela = new FactoryScreens();
 		
-		chamaTela.chamaTelaLogin();
+		//chamaTela.chamaTelaLogin();
+		
+		new TesteTabela();
 	}
 
 }

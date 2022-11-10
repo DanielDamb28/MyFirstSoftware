@@ -3,11 +3,18 @@ package conexaopostgree;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.Instant;
+import java.time.LocalDate;
+import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.List;
 
 import entities.Cliente;
-import entities.Usuario;
+import exceptions.CpfNotNull;
+import exceptions.NameNotNull;
 
 public class ConexaoCliente {
 	
@@ -147,4 +154,67 @@ public class ConexaoCliente {
 		}
 	}
 	
+	
+	public List<Cliente> retornaClientes() throws CpfNotNull, NameNotNull {
+		List<Cliente> clientes = new ArrayList<Cliente>();
+		try {
+			conexao = new Conexao();
+			
+			System.out.println("Usuario da Conexao: " + conexao.getConexao().getMetaData().getUserName());
+			System.out.println("URL da Conexao: " + conexao.getConexao().getMetaData().getURL());
+			
+			clientes = getClientes();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return clientes;
+		
+		
+	}
+	
+	public List<Cliente> getClientes() throws CpfNotNull, NameNotNull{
+		Connection con = conexao.getConexao();
+		String comandoInsereClienteNoBancoDeDados = "SELECT * FROM cliente;";
+		ResultSet rs = null;
+		
+		ArrayList<Cliente> clientes = new ArrayList<Cliente>();
+		
+		try {
+			PreparedStatement stmInsereClienteNoBancoDeDados = con.prepareStatement(comandoInsereClienteNoBancoDeDados);
+			
+			System.out.println(stmInsereClienteNoBancoDeDados);
+			
+			rs = stmInsereClienteNoBancoDeDados.executeQuery();
+			while(rs.next()) {
+				Cliente cliente = new Cliente();
+
+				cliente.setDataCadastro(rs.getDate("data_cadastro").toLocalDate());
+				cliente.setNome(rs.getString("nome"));
+				cliente.setEndereco(rs.getString("endereco"));
+				cliente.setCpfCnpj(rs.getString("pk_cpf_cnpj"));
+				cliente.setDataNascimento(rs.getDate("data_nascimento").toLocalDate());
+				cliente.setTelefone(rs.getString("telefone"));
+				cliente.setCep(rs.getString("cep"));
+				cliente.setSexo(rs.getString("sexo"));
+				
+				clientes.add(cliente);
+			}
+			
+		}catch (SQLException e) {
+			e.printStackTrace();
+		}finally{
+			if(con != null){
+				try {
+					con.setAutoCommit(true);
+					con.close();
+				} catch (SQLException e) {
+					e.getStackTrace();
+				}
+			}
+		}
+		return clientes;
+		
+	}
 }
