@@ -79,6 +79,8 @@ public class LoginScreen extends JFrame implements ActionListener {
 
         if (evt.getSource() == btnEntrar) {
         	
+        	FactoryScreens chamaTela = new FactoryScreens();
+        	
         	ConexaoLogin login = new ConexaoLogin();
     		String id = txtLogin.getText();;
     		String senha = new String(pswSenha.getPassword());
@@ -95,8 +97,11 @@ public class LoginScreen extends JFrame implements ActionListener {
     		} else {
     			System.out.println("Id: " + usuario.getId() + ", Senha: " + usuario.getSenha() + ", Tipo de Acesso: "+  usuario.getTipoAcesso());
     			if(usuario.getTipoAcesso().equals("gerente")) {
-    				FactoryScreens chamaTela = new FactoryScreens();
     				chamaTela.chamaTelaMenuAdmin();
+    				this.dispose();
+    			}
+    			else if(usuario.getTipoAcesso().equals("usuario")) {
+    				chamaTela.chamaTelaMenuFunc();
     				this.dispose();
     			}
     		}
