@@ -1,88 +1,111 @@
 package screens;
 
+import java.awt.BorderLayout;
+import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.swing.ImageIcon;
-import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
 
-import factorys.FactoryScreens;
+import conexaopostgree.ConexaoCliente;
+import entities.Cliente;
 
-public class MenuClientesAdm extends  JFrame implements ActionListener{
+public class MenuClientesAdm extends JFrame implements ActionListener{
 
-    JButton btnCadastrarCliente, btnExcluirClinte, btnEditarCliente, btnBuscarCliente, btnVoltarMenu;
-    ImageIcon imgFundoTela;
+	ImageIcon imgFundoTela;
     JLabel lblFundoTela;
+    JTable table;
+    List<Cliente> clientes = new ArrayList<Cliente>();
+    String[] columnNames = {"Nome", "Cpf-Cnpj", "Endereço", "Telefone", "Cep", "Sexo", "Data_Nascimento", "Data_Cadastro"};
 
     public MenuClientesAdm() {
-
+    	
     	imgFundoTela = new ImageIcon(".\\src\\screens\\fundo_menu.png");
         lblFundoTela = new JLabel();
         lblFundoTela.setIcon(imgFundoTela);
         lblFundoTela.setBounds(0 , 0, 1000, 750 );
         this.setContentPane(lblFundoTela);
-
+        
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setSize(1000, 750);
         this.setTitle("Menu para a edicao dos clientes");
         this.setLocationRelativeTo(null);
         this.setLayout(null);
         setResizable(false);
+    	DefaultTableModel model = new DefaultTableModel(){
 
-        btnCadastrarCliente = new JButton("Cadastrar novo cliente");
-        btnCadastrarCliente.setBounds(50,350,200,50);
-        btnCadastrarCliente.addActionListener(this);
-
-        btnEditarCliente = new JButton("Editar cliente");
-        btnEditarCliente.setBounds(275, 350, 200,50);
-        btnEditarCliente.addActionListener(this);
-
-        btnExcluirClinte = new JButton("Excluir cliente");
-        btnExcluirClinte.setBounds(500,350 ,200,50);
-        btnExcluirClinte.addActionListener(this);
-
-        btnBuscarCliente = new JButton("Bucar cliente");
-        btnBuscarCliente.setBounds(725,350 ,200,50);
-        btnBuscarCliente.addActionListener(this);
+    	    @Override
+    	    public boolean isCellEditable(int row, int column) {
+    	       //all cells false
+    	       return false;
+    	    }
+    	};;
+        model.setColumnIdentifiers(columnNames);
+        table = new JTable();
+        table.setModel(model);
+        table.setFillsViewportHeight(true);
+        table.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);	
+        table.getColumnModel().getColumn(0).setPreferredWidth(120);
+        table.getColumnModel().getColumn(1).setPreferredWidth(100);
+        table.getColumnModel().getColumn(2).setPreferredWidth(200);
+        table.getColumnModel().getColumn(3).setPreferredWidth(110);
+        table.getColumnModel().getColumn(4).setPreferredWidth(90);
+        table.getColumnModel().getColumn(5).setPreferredWidth(60);
+        table.getColumnModel().getColumn(6).setPreferredWidth(140);
+        table.getColumnModel().getColumn(7).setPreferredWidth(140);
+        JScrollPane scroll = new JScrollPane(table);
+        scroll.setHorizontalScrollBarPolicy(
+                JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+        scroll.setVerticalScrollBarPolicy(
+                JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
+        scroll.setPreferredSize(new Dimension(480, 500));
+        try {
+        	ConexaoCliente conexao = new ConexaoCliente();
+        	
+        	clientes = conexao.retornaClientes();
+        	
+        	String nome = "";
+        	String cpfCnpj = "";
+        	String endereco = "";
+        	String telefone = "";
+        	String cep = "";
+        	char sexo;
+        	LocalDate dataNascimento;
+        	LocalDate dataCadastro;
+        	
+        	for(Cliente c: clientes) {
+                nome = c.getNome();
+                cpfCnpj = c.getCpfCnpj();
+                endereco = c.getEndereco();
+                telefone = c.getTelefone();
+                cep = c.getCep();
+                sexo = c.getSexo();
+                dataNascimento = c.getDataNascimento();
+                dataCadastro = c.getDataCadastro();
+                model.addRow(new Object[]{nome, cpfCnpj, endereco, telefone, cep, 
+                		sexo, dataNascimento, dataCadastro});
+        	}
+        }catch(Exception e) {
+        	e.printStackTrace();
+        }
         
-        btnVoltarMenu = new JButton("Voltar");
-        btnVoltarMenu.setBounds(50,620 ,100,50);
-        btnVoltarMenu.addActionListener(this);
-
-        this.add(btnCadastrarCliente);
-        this.add(btnEditarCliente);
-        this.add(btnExcluirClinte);
-        this.add(btnBuscarCliente);
-        this.add(btnVoltarMenu);
-        this.setVisible(true);
+        setLayout(new BorderLayout());
+        add(scroll, BorderLayout.SOUTH);
+        scroll.setBounds(200, 200, 600, 400);
+        setVisible(true);
     }
-
-
-    @Override
-    public void actionPerformed (ActionEvent evt) {
-    	
-    	FactoryScreens chamaTela = new FactoryScreens();
-        if (evt.getSource() == btnCadastrarCliente) {
-            JOptionPane.showMessageDialog(this, "Trocar tela para tela de cadastro de cliente");
-        }
-
-        if (evt.getSource() == btnEditarCliente) {
-            JOptionPane.showMessageDialog(this, "Trocar tela para tela de edicao de clientes");
-        }
-
-        if (evt.getSource() == btnExcluirClinte) {
-            JOptionPane.showMessageDialog(this, "Trocar tela para exclusao de cliente");
-        }
-
-        if (evt.getSource() == btnBuscarCliente) {
-            JOptionPane.showMessageDialog(this, "Trocar tela para busca de cliente");
-        }
-        if (evt.getSource() == btnVoltarMenu) {
-        	chamaTela.chamaTelaMenuAdmin();
-        	this.dispose();
-        }
-    }
+    
+	public void actionPerformed(ActionEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+	
 }

@@ -1,6 +1,7 @@
 package testes;
 
 import java.awt.BorderLayout;
+import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.time.LocalDate;
@@ -23,9 +24,8 @@ public class TesteTabela extends JFrame implements ActionListener{
     JLabel lblFundoTela;
     JTable table;
     List<Cliente> clientes = new ArrayList<Cliente>();
-    String[] columnNames = {"teste1", "teste2", "teste3"};
-    
-	
+    String[] columnNames = {"Nome", "Cpf-Cnpj", "Endereço", "Telefone", "Cep", "Sexo", "Data_Nascimento", "Data_Cadastro"};
+
     public TesteTabela() {
     	
     	imgFundoTela = new ImageIcon(".\\src\\screens\\fundo_menu.png");
@@ -40,17 +40,33 @@ public class TesteTabela extends JFrame implements ActionListener{
         this.setLocationRelativeTo(null);
         this.setLayout(null);
         setResizable(false);
-    	DefaultTableModel model = new DefaultTableModel();
+    	DefaultTableModel model = new DefaultTableModel(){
+
+    	    @Override
+    	    public boolean isCellEditable(int row, int column) {
+    	       //all cells false
+    	       return false;
+    	    }
+    	};;
         model.setColumnIdentifiers(columnNames);
         table = new JTable();
         table.setModel(model);
         table.setFillsViewportHeight(true);
+        table.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);	
+        table.getColumnModel().getColumn(0).setPreferredWidth(120);
+        table.getColumnModel().getColumn(1).setPreferredWidth(100);
+        table.getColumnModel().getColumn(2).setPreferredWidth(200);
+        table.getColumnModel().getColumn(3).setPreferredWidth(110);
+        table.getColumnModel().getColumn(4).setPreferredWidth(90);
+        table.getColumnModel().getColumn(5).setPreferredWidth(60);
+        table.getColumnModel().getColumn(6).setPreferredWidth(140);
+        table.getColumnModel().getColumn(7).setPreferredWidth(140);
         JScrollPane scroll = new JScrollPane(table);
         scroll.setHorizontalScrollBarPolicy(
                 JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
         scroll.setVerticalScrollBarPolicy(
                 JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
-        
+        scroll.setPreferredSize(new Dimension(480, 500));
         try {
         	ConexaoCliente conexao = new ConexaoCliente();
         	
@@ -83,9 +99,10 @@ public class TesteTabela extends JFrame implements ActionListener{
         
         setLayout(new BorderLayout());
         add(scroll, BorderLayout.SOUTH);
+        scroll.setBounds(200, 200, 600, 400);
         setVisible(true);
     }
-	
+    
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
 		
