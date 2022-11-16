@@ -28,53 +28,83 @@ public class TelaLogin extends JFrame implements ActionListener {
 
 
     public TelaLogin() {
+    	
+    	setBackgroundImage();
+    	setDefaultScreenSettings();
+    	
+    	setLoginTextField();
+    	setPasswordTextField();
+    	
+    	setShowPasswordCheckBox();
+    	setWarningMessage();
+    	
+    	setMakeLoginButton();
+    	
+    	addComponentsToScreen();
 
-        imgFundoTela = new ImageIcon(".\\src\\screens\\bg_login.png");
+        this.setVisible(true);
+    }
+    
+    private void setBackgroundImage() {
+    	imgFundoTela = new ImageIcon(".\\src\\imagens\\bg_login.png");
         JLabel lblFundoTela = new JLabel();
         lblFundoTela.setIcon(imgFundoTela);
         lblFundoTela.setBounds(0 , 0, 1000, 750 );
         setResizable(false);
         this.setContentPane(lblFundoTela);
-
-        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    }
+    
+    private void setDefaultScreenSettings() {
+    	this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setSize(1000, 750);
         this.setTitle("Login");
         this.setLocationRelativeTo(null);
         this.setLayout(null);
 
-        lblLogin = new JLabel("Login");
+    }
+    
+    private void setLoginTextField(){
+    	lblLogin = new JLabel("Login");
         lblLogin.setBounds(275,425,100,50);
         txtLogin = new JTextField();
         txtLogin.setBounds(335,425,370,50);
-
-        lblSenha = new JLabel("Senha");
+    }
+    
+    private void setPasswordTextField() {
+    	lblSenha = new JLabel("Senha");
         lblSenha.setBounds(275, 500, 100,50);
         pswSenha = new JPasswordField();
         pswSenha.setBounds(335, 500, 370,50);
-
-        chkMostrarSenha = new JCheckBox("Exibir senha");
-        chkMostrarSenha.setBounds(600,570,100,40);
-        chkMostrarSenha.addActionListener(this);
-
-        lblMensagem = new JLabel("");
+    }
+    
+    private void setShowPasswordCheckBox() {
+    	 chkMostrarSenha = new JCheckBox("Exibir senha");
+         chkMostrarSenha.setBounds(600,570,100,40);
+         chkMostrarSenha.addActionListener(this);
+    }
+    
+    private void setWarningMessage() {
+    	lblMensagem = new JLabel("");
         lblMensagem.setBounds(400,570,300,40);
-
+    };
+    
+    private void setMakeLoginButton() {
         btnEntrar = new JButton("Entrar");
         btnEntrar.setBounds(275,570,100,40);
         btnEntrar.addActionListener(this);
 
-        this.add(lblLogin);
+    }
+    
+    private void addComponentsToScreen() {
+    	this.add(lblLogin);
         this.add(txtLogin);
         this.add(lblSenha);
         this.add(pswSenha);
         this.add(btnEntrar);
         this.add(chkMostrarSenha);
         this.add(lblMensagem);
-
-        this.setVisible(true);
     }
-
-    @Override
+    
     public void actionPerformed (ActionEvent evt) {
 
         if (evt.getSource() == btnEntrar) {

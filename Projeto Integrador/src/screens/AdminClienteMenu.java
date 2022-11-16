@@ -49,14 +49,14 @@ public class AdminClienteMenu extends JFrame implements ActionListener{
         
         fillTableWithDataBaseInformation();
         
-        createButton("Adicionar Cliente", 50, 80, 170, 50);
+        btnAdd = createButton("Adicionar Cliente", 50, 80, 170, 50);
         
         setTableLayout(scroll);
         setVisible(true);
     }
     
     public void setImageBackground() {
-    	imgFundoTela = new ImageIcon(".\\src\\screens\\fundo_menu.png");
+    	imgFundoTela = new ImageIcon(".\\src\\imagens\\fundo_menu.png");
         lblFundoTela = new JLabel();
         lblFundoTela.setIcon(imgFundoTela);
         lblFundoTela.setBounds(0 , 0, 1000, 750 );
@@ -138,11 +138,12 @@ public class AdminClienteMenu extends JFrame implements ActionListener{
     }
     
     
-    public void createButton(String text, int xPosition, int yPosition, int width, int height) {
-        btnAdd = new JButton(text);
-        btnAdd.setBounds(xPosition,yPosition,width,height);
-        btnAdd.addActionListener(this);
-        this.add(btnAdd);
+    public JButton createButton(String text, int xPosition, int yPosition, int width, int height) {
+        JButton btn = new JButton(text);
+        btn.setBounds(xPosition,yPosition,width,height);
+        btn.addActionListener(this);
+        this.add(btn);
+        return btn;
     }
     
 	public void actionPerformed(ActionEvent e) {

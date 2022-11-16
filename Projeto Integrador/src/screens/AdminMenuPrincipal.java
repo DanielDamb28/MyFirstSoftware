@@ -19,53 +19,45 @@ public class AdminMenuPrincipal extends  JFrame implements ActionListener{
 
     public AdminMenuPrincipal() {
 
-        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setScreenDefaultSettings();
+
+        setBackgroundImage();
+        
+        btnAdmUsuarios = createButton("Administrar usuarios", 50, 350, 170, 50);
+        btnProduto = createButton("Produtos", 245, 350, 150, 50);
+        btnCliente = createButton("Clientes", 420, 350, 150, 50);
+        btnFornecedor = createButton("Fornecedores", 595, 350, 150, 50);
+        btnVenda = createButton("Vendas", 770, 350, 150, 50);
+        btnDeslogar = createButton("Deslogar", 50, 620, 100, 50);
+        
+        this.setVisible(true);
+    }
+    
+    private void setScreenDefaultSettings() {
+    	this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setSize(1000, 750);
         this.setTitle("Menu");
         this.setLocationRelativeTo(null);
         this.setLayout(null);
         setResizable(false);
-
-        imgFundoTela = new ImageIcon(".\\src\\screens\\fundo_menu.png");
+    }
+    
+    private void setBackgroundImage() {
+    	imgFundoTela = new ImageIcon(".\\src\\imagens\\fundo_menu.png");
         lblFundoTela = new JLabel();
         lblFundoTela.setIcon(imgFundoTela);
         lblFundoTela.setBounds(0 , 0, 1000, 750 );
         this.setContentPane(lblFundoTela);
-
-        btnAdmUsuarios = new JButton("Adminstrar usuarios");
-        btnAdmUsuarios.setBounds(50,350,170,50);
-        btnAdmUsuarios.addActionListener(this);
-
-        btnProduto = new JButton("Produtos");
-        btnProduto.setBounds(245, 350, 150,50);
-        btnProduto.addActionListener(this);
-
-        btnCliente = new JButton("Clientes");
-        btnCliente.setBounds(420,350 ,150,50);
-        btnCliente.addActionListener(this);
-
-        btnFornecedor = new JButton("Fornecedores");
-        btnFornecedor.setBounds(595 ,350 ,150,50);
-        btnFornecedor.addActionListener(this);
-
-        btnVenda = new JButton("Vendas");
-        btnVenda.setBounds(770 ,350 ,150,50);
-        btnVenda.addActionListener(this);
-        
-        btnDeslogar = new JButton("Deslogar");
-        btnDeslogar.setBounds(50,620 ,100,50);
-        btnDeslogar.addActionListener(this);
-
-        this.add(btnProduto);
-        this.add(btnAdmUsuarios);
-        this.add(btnCliente);
-        this.add(btnVenda);
-        this.add(btnFornecedor);
-        this.add(btnDeslogar);
-        this.setVisible(true);
     }
-
-
+    
+    private JButton createButton(String message, int xPosition, int yPosition, int width, int height) {
+    	JButton btn = new JButton(message);
+        btn.setBounds(xPosition,yPosition,width,height);
+        btn.addActionListener(this);
+        this.add(btn);
+        return btn;
+    }
+    
     @Override
     public void actionPerformed (ActionEvent evt) {
     	FactoryScreens chamaTela = new FactoryScreens();
