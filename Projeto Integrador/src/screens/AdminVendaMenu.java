@@ -7,13 +7,13 @@ import factorys.FactoryScreens;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class MenuVendasAdm extends JFrame implements ActionListener {
+public class AdminVendaMenu extends JFrame implements ActionListener {
 
     JButton btnLancarVenda, btnAcessarHistorico, btnVoltarMenu;
     ImageIcon imgFundoTela;
     JLabel lblFundoTela;
 
-    public MenuVendasAdm() {
+    public AdminVendaMenu() {
 
     	imgFundoTela = new ImageIcon(".\\src\\screens\\fundo_menu.png");
         lblFundoTela = new JLabel();

@@ -11,13 +11,13 @@ import javax.swing.JOptionPane;
 
 import factorys.FactoryScreens;
 
-public class MenuDoAplicativoFunc extends  JFrame implements ActionListener{
+public class FuncionarioMenuPrincipal extends  JFrame implements ActionListener{
 
     JButton btnProduto, btnCliente, btnFornecedor, btnVenda, btnDeslogar;
     ImageIcon imgFundoTela;
     JLabel lblFundoTela;
 
-    public MenuDoAplicativoFunc() {
+    public FuncionarioMenuPrincipal() {
 
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setSize(1000, 750);

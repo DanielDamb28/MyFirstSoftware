@@ -1,58 +1,58 @@
 package factorys;
 
-import screens.LoginScreen;
-import screens.MenuClientesAdm;
-import screens.MenuDeUsuarioAdm;
-import screens.MenuDoAplicativoAdm;
-import screens.MenuFornecedoresAdm;
-import screens.MenuProdutosAdm;
-import screens.MenuVendasAdm;
-import screens.MenuClientesFunc;
-import screens.MenuDoAplicativoFunc;
-import screens.MenuProdutosFunc;
-import screens.MenuFornecedoresFunc;
-import screens.MenuVendasFunc;
+import screens.TelaLogin;
+import screens.AdminClienteMenu;
+import screens.AdminUsuarioMenu;
+import screens.AdminMenuPrincipal;
+import screens.AdminFornecedorMenu;
+import screens.AdminProdutoMenu;
+import screens.AdminVendaMenu;
+import screens.FuncionarioClienteMenu;
+import screens.FuncionarioMenuPrincipal;
+import screens.FuncionarioProdutoMenu;
+import screens.FuncionarioFornecedorMenu;
+import screens.FuncionarioVendaMenu;
 
 public class FactoryScreens {
 	
 	public void chamaTelaLogin() {
-		new LoginScreen();
+		new TelaLogin();
 	}
 	public void chamaTelaMenuAdmin() {
-		new MenuDoAplicativoAdm();
+		new AdminMenuPrincipal();
 	}
-	public void chamaTelaDeMenuClientes() {
-		new MenuClientesAdm();
+	public void chamaAdminMenuCliente() {
+		new AdminClienteMenu();
 	}
 	public void chamaTelaDeMenuDeUsuarios() {
-		new MenuDeUsuarioAdm();
+		new AdminUsuarioMenu();
 	}
 	public void chamaTelaDeMenuDeFornecedor() {
-		new MenuFornecedoresAdm();
+		new AdminFornecedorMenu();
 	}
 	public void chamaTelaDeMenuDeProduto() {
-		new MenuProdutosAdm();
+		new AdminProdutoMenu();
 	}
 	public void chamaTelaDeMenuDeVendas() {
-		new MenuVendasAdm();
+		new AdminVendaMenu();
 	}
 	
 	/*-----------------------------------*/
 	
 	public void chamaTelaMenuFunc() {
-		new MenuDoAplicativoFunc();
+		new FuncionarioMenuPrincipal();
 	}
 	public void chamaTelaDeMenuClientesFunc() {
-		new MenuClientesFunc();
+		new FuncionarioClienteMenu();
 	}
 	public void chamaTelaDeMenuProdutosFunc() {
-		new MenuProdutosFunc();
+		new FuncionarioProdutoMenu();
 	}
 	public void chamaTelaDeMenuVendasFunc() {
-		new MenuVendasFunc();
+		new FuncionarioVendaMenu();
 	}
 	public void chamaTelaDeMenuFornecedoresFunc() {
-		new MenuFornecedoresFunc();
+		new FuncionarioFornecedorMenu();
 	}
 	
 }

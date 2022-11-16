@@ -11,13 +11,13 @@ import javax.swing.JOptionPane;
 
 import factorys.FactoryScreens;
 
-public class MenuDeUsuarioAdm extends  JFrame implements ActionListener{
+public class AdminUsuarioMenu extends  JFrame implements ActionListener{
 
     JButton btnCadastrarUsuario, btnExcluirUsuario, btnBuscarUsuario, btnEditarUsuario, btnVoltarMenu;
     ImageIcon imgFundoTela;
     JLabel lblFundoTela;
 
-    public MenuDeUsuarioAdm() {
+    public AdminUsuarioMenu() {
 
     	imgFundoTela = new ImageIcon(".\\src\\screens\\fundo_menu.png");
         lblFundoTela = new JLabel();

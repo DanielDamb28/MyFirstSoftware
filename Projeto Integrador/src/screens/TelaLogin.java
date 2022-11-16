@@ -16,7 +16,7 @@ import conexaopostgree.ConexaoLogin;
 import entities.Usuario;
 import factorys.FactoryScreens;
 
-public class LoginScreen extends JFrame implements ActionListener {
+public class TelaLogin extends JFrame implements ActionListener {
 
     JPasswordField pswSenha;
     JTextField txtLogin;
@@ -27,7 +27,7 @@ public class LoginScreen extends JFrame implements ActionListener {
 
 
 
-    public LoginScreen() {
+    public TelaLogin() {
 
         imgFundoTela = new ImageIcon(".\\src\\screens\\bg_login.png");
         JLabel lblFundoTela = new JLabel();

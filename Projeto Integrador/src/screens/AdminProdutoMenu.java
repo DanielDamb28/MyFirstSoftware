@@ -7,13 +7,13 @@ import factorys.FactoryScreens;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class MenuProdutosFunc extends  JFrame implements ActionListener{
+public class AdminProdutoMenu extends  JFrame implements ActionListener{
 
-    JButton btnCadastrarProduto, btnEditarProduto, btnBuscarProduto, btnVoltarMenu;
+    JButton btnCadastrarProduto, btnExcluirProduto, btnEditarProduto, btnBuscarProduto, btnVoltarMenu;
     ImageIcon imgFundoTela;
     JLabel lblFundoTela;
 
-    public MenuProdutosFunc() {
+    public AdminProdutoMenu() {
 
     	imgFundoTela = new ImageIcon(".\\src\\screens\\fundo_menu.png");
         lblFundoTela = new JLabel();
@@ -29,15 +29,19 @@ public class MenuProdutosFunc extends  JFrame implements ActionListener{
         setResizable(false);
 
         btnCadastrarProduto = new JButton("Cadastrar novo produto");
-        btnCadastrarProduto.setBounds(175,350,200,50);
+        btnCadastrarProduto.setBounds(50,350,200,50);
         btnCadastrarProduto.addActionListener(this);
 
         btnEditarProduto = new JButton("Editar produto");
-        btnEditarProduto.setBounds(400, 350, 200,50);
+        btnEditarProduto.setBounds(275, 350, 200,50);
         btnEditarProduto.addActionListener(this);
+        
+        btnExcluirProduto = new JButton("Excluir produto");
+        btnExcluirProduto.setBounds(500, 350, 200,50);
+        btnExcluirProduto.addActionListener(this); 
 
         btnBuscarProduto = new JButton("Buscar produto");
-        btnBuscarProduto.setBounds(625 ,350 ,200,50);
+        btnBuscarProduto.setBounds(725,350 ,200,50);
         btnBuscarProduto.addActionListener(this);
         
         btnVoltarMenu = new JButton("Voltar");
@@ -47,6 +51,7 @@ public class MenuProdutosFunc extends  JFrame implements ActionListener{
         this.add(btnCadastrarProduto);
         this.add(btnEditarProduto);
         this.add(btnBuscarProduto);
+        this.add(btnExcluirProduto);
         this.add(btnVoltarMenu);
         this.setVisible(true);
     }
@@ -64,14 +69,16 @@ public class MenuProdutosFunc extends  JFrame implements ActionListener{
             JOptionPane.showMessageDialog(this, "Trocar tela para tela de edicao de produto");
         }
 
+        if (evt.getSource() == btnExcluirProduto) {
+            JOptionPane.showMessageDialog(this, "Trocar tela para tela de exclusao de produto");
+        }
+
         if(evt.getSource() == btnBuscarProduto) {
             JOptionPane.showMessageDialog(this, "Trocar tela para busca de produto");
         }
-        
         if (evt.getSource() == btnVoltarMenu) {
         	chamaTela.chamaTelaMenuFunc();
         	this.dispose();
         }
     }
 }
-

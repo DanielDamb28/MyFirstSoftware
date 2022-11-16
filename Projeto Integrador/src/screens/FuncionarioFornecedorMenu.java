@@ -11,12 +11,12 @@ import javax.swing.JOptionPane;
 
 import factorys.FactoryScreens;
 
-public class MenuFornecedoresAdm extends JFrame implements ActionListener {
+public class FuncionarioFornecedorMenu extends JFrame implements ActionListener {
     JButton btnCadastrarFornecedor, btnExcluirFornecedor, btnEditarFornecedor, btnBuscarFornedor, btnVoltarMenu;
     ImageIcon imgFundoTela;
     JLabel lblFundoTela;
 
-    public MenuFornecedoresAdm() {
+    public FuncionarioFornecedorMenu() {
 
     	imgFundoTela = new ImageIcon(".\\src\\screens\\fundo_menu.png");
         lblFundoTela = new JLabel();
@@ -79,10 +79,12 @@ public class MenuFornecedoresAdm extends JFrame implements ActionListener {
         if (evt.getSource() == btnBuscarFornedor) {
             JOptionPane.showMessageDialog(this, "Trocar tela para busca de fornecedor");
         }
+        
         if (evt.getSource() == btnVoltarMenu) {
-        	chamaTela.chamaTelaMenuAdmin();
+        	chamaTela.chamaTelaMenuFunc();
         	this.dispose();
         }
     }
 }
+
 

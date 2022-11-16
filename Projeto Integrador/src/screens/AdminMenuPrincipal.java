@@ -11,13 +11,13 @@ import javax.swing.JOptionPane;
 
 import factorys.FactoryScreens;
 
-public class MenuDoAplicativoAdm extends  JFrame implements ActionListener{
+public class AdminMenuPrincipal extends  JFrame implements ActionListener{
 
     JButton btnProduto, btnCliente, btnFornecedor, btnAdmUsuarios, btnVenda, btnDeslogar;
     ImageIcon imgFundoTela;
     JLabel lblFundoTela;
 
-    public MenuDoAplicativoAdm() {
+    public AdminMenuPrincipal() {
 
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setSize(1000, 750);
@@ -76,7 +76,7 @@ public class MenuDoAplicativoAdm extends  JFrame implements ActionListener{
         }
 
         if (evt.getSource() == btnCliente) {
-            chamaTela.chamaTelaDeMenuClientes();
+            chamaTela.chamaAdminMenuCliente();
             this.dispose();
         }
 

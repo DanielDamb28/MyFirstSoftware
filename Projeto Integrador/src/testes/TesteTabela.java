@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JScrollPane;
@@ -25,7 +26,8 @@ public class TesteTabela extends JFrame implements ActionListener{
     JTable table;
     List<Cliente> clientes = new ArrayList<Cliente>();
     String[] columnNames = {"Nome", "Cpf-Cnpj", "Endereço", "Telefone", "Cep", "Sexo", "Data_Nascimento", "Data_Cadastro"};
-
+    JButton btnAdd;
+    
     public TesteTabela() {
     	
     	imgFundoTela = new ImageIcon(".\\src\\screens\\fundo_menu.png");
@@ -96,6 +98,9 @@ public class TesteTabela extends JFrame implements ActionListener{
         }catch(Exception e) {
         	e.printStackTrace();
         }
+        btnAdd = new JButton("Adminstrar usuarios");
+        btnAdd.setBounds(50,50,170,50);
+        btnAdd.addActionListener(this);
         
         setLayout(new BorderLayout());
         add(scroll, BorderLayout.SOUTH);
