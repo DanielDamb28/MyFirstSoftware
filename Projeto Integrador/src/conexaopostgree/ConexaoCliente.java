@@ -40,7 +40,7 @@ public class ConexaoCliente {
 		
 	}
 	
-	public String enviaDados(Cliente cliente){
+	private String enviaDados(Cliente cliente){
 		int result = 0;
 		String resposta = null;
 		
@@ -110,7 +110,7 @@ public class ConexaoCliente {
 		
 	}
 	
-	public String removeDados(String cpfCnpj) {
+	private String removeDados(String cpfCnpj) {
 		int result = 0;
 		String resposta = null;
 		
@@ -163,7 +163,7 @@ public class ConexaoCliente {
 			System.out.println("Usuario da Conexao: " + conexao.getConexao().getMetaData().getUserName());
 			System.out.println("URL da Conexao: " + conexao.getConexao().getMetaData().getURL());
 			
-			clientes = getClientes();
+			clientes = getAllClientes();
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -174,7 +174,7 @@ public class ConexaoCliente {
 		
 	}
 	
-	public List<Cliente> getClientes() throws CpfNotNull, NameNotNull{
+	private List<Cliente> getAllClientes() throws CpfNotNull, NameNotNull{
 		Connection con = conexao.getConexao();
 		String comandoInsereClienteNoBancoDeDados = "SELECT * FROM cliente;";
 		ResultSet rs = null;

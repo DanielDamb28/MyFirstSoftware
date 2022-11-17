@@ -18,48 +18,36 @@ public class AdminFornecedorMenu extends JFrame implements ActionListener {
 
     public AdminFornecedorMenu() {
 
-    	imgFundoTela = new ImageIcon(".\\src\\screens\\fundo_menu.png");
+    	setImageBackground();
+    	setScreenDefaultSettings();
+ 
+        this.setVisible(true);
+    }
+    
+    private void setImageBackground() {
+    	imgFundoTela = new ImageIcon(".\\src\\imagens\\fundo_menu.png");
         lblFundoTela = new JLabel();
         lblFundoTela.setIcon(imgFundoTela);
         lblFundoTela.setBounds(0 , 0, 1000, 750 );
         this.setContentPane(lblFundoTela);
-
-        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        this.setSize(1000, 750);
-        this.setTitle("Menu para a edicao dos clientes");
-        this.setLocationRelativeTo(null);
-        this.setLayout(null);
-        setResizable(false);
-
-        btnCadastrarFornecedor = new JButton("Cadastrar novo fornecedor");
-        btnCadastrarFornecedor.setBounds(50,350,200,50);
-        btnCadastrarFornecedor.addActionListener(this);
-
-        btnEditarFornecedor = new JButton("Editar fornecedor");
-        btnEditarFornecedor.setBounds(275, 350, 200,50);
-        btnEditarFornecedor.addActionListener(this);
-
-        btnExcluirFornecedor = new JButton("Excluir fornecedor");
-        btnExcluirFornecedor.setBounds(500,350 ,200,50);
-        btnExcluirFornecedor.addActionListener(this);
-
-        btnBuscarFornedor = new JButton("Buscar fornecedor");
-        btnBuscarFornedor.setBounds(725,350 ,200,50);
-        btnBuscarFornedor.addActionListener(this);
-        
-        btnVoltarMenu = new JButton("Voltar");
-        btnVoltarMenu.setBounds(50,620 ,100,50);
-        btnVoltarMenu.addActionListener(this);
-
-        this.add(btnCadastrarFornecedor);
-        this.add(btnEditarFornecedor);
-        this.add(btnExcluirFornecedor);
-        this.add(btnBuscarFornedor);
-        this.add(btnVoltarMenu);
-        this.setVisible(true);
     }
-
-
+    
+    private void setScreenDefaultSettings() {
+    	 this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+         this.setSize(1000, 750);
+         this.setTitle("Menu para a edicao dos clientes");
+         this.setLocationRelativeTo(null);
+         this.setLayout(null);
+         setResizable(false);
+    }
+    
+    private JButton createButton(String mensagem, int xPosition, int yPosition, int width, int height) {
+    	JButton btn = new JButton(mensagem);
+    	btn.setBounds(xPosition,yPosition,width,height);
+    	btn.addActionListener(this);
+        this.add(btn);
+        return btn;
+    }
     @Override
     public void actionPerformed (ActionEvent evt) {
 

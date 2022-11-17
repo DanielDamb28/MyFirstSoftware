@@ -19,7 +19,7 @@ public class AdminUsuarioMenu extends  JFrame implements ActionListener{
 
     public AdminUsuarioMenu() {
 
-    	imgFundoTela = new ImageIcon(".\\src\\screens\\fundo_menu.png");
+    	imgFundoTela = new ImageIcon(".\\src\\imagens\\fundo_menu.png");
         lblFundoTela = new JLabel();
         lblFundoTela.setIcon(imgFundoTela);
         lblFundoTela.setBounds(0 , 0, 1000, 750 );

@@ -131,7 +131,7 @@ public class TelaLogin extends JFrame implements ActionListener {
     				this.dispose();
     			}
     			else if(usuario.getTipoAcesso().equals("usuario")) {
-    				chamaTela.chamaTelaMenuFunc();
+    				chamaTela.chamaFuncionarioTelaMenu();
     				this.dispose();
     			}
     		}

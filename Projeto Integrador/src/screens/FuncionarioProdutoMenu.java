@@ -15,7 +15,7 @@ public class FuncionarioProdutoMenu extends  JFrame implements ActionListener{
 
     public FuncionarioProdutoMenu() {
 
-    	imgFundoTela = new ImageIcon(".\\src\\screens\\fundo_menu.png");
+    	imgFundoTela = new ImageIcon(".\\src\\imagens\\fundo_menu.png");
         lblFundoTela = new JLabel();
         lblFundoTela.setIcon(imgFundoTela);
         lblFundoTela.setBounds(0 , 0, 1000, 750 );
@@ -69,7 +69,7 @@ public class FuncionarioProdutoMenu extends  JFrame implements ActionListener{
         }
         
         if (evt.getSource() == btnVoltarMenu) {
-        	chamaTela.chamaTelaMenuFunc();
+        	chamaTela.chamaFuncionarioTelaMenu();
         	this.dispose();
         }
     }

@@ -10,6 +10,8 @@ public class Program {
 		
 		chamaTela.chamaTelaLogin();
 		
+		//chamaTela.chamaAdminClienteFiltrar();
+		
 	}
 
 }

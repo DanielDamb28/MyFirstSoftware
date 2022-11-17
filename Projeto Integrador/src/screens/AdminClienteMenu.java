@@ -18,18 +18,25 @@ import javax.swing.table.DefaultTableModel;
 
 import conexaopostgree.ConexaoCliente;
 import entities.Cliente;
+import factorys.FactoryScreens;
 
 public class AdminClienteMenu extends JFrame implements ActionListener{
 
-	ImageIcon imgFundoTela;
-    JLabel lblFundoTela;
-    JTable table;
+	private ImageIcon imgFundoTela;
+    private JLabel lblFundoTela;
+    private JTable table;
     
-    List<Cliente> clientes = new ArrayList<Cliente>();
-    String[] columnNames = {"Nome", "Cpf-Cnpj", "Endereço", "Telefone", "Cep", "Sexo", 
+    private List<Cliente> clientes = new ArrayList<Cliente>();
+    private String[] columnNames = {"Nome", "Cpf-Cnpj", "Endereço", "Telefone", "Cep", "Sexo", 
     		"Data_Nascimento", "Data_Cadastro"};
     
-    JButton btnAdd;
+    private JButton btnAdd;
+    private JButton btnDelete;
+    private JButton btnUpdate;
+    private JButton btnSearch;
+    private int buttonWidth = 170;
+    private int buttonHeight = 50;
+    
     
     DefaultTableModel model = new DefaultTableModel() {
 	    public boolean isCellEditable(int row, int column) {
@@ -47,15 +54,19 @@ public class AdminClienteMenu extends JFrame implements ActionListener{
         JScrollPane scroll = new JScrollPane(table);
         setScroolPaneDefaultSettings(scroll);
         
-        fillTableWithDataBaseInformation();
+        //fillTableWithDataBaseInformation();
         
-        btnAdd = createButton("Adicionar Cliente", 50, 80, 170, 50);
+        btnAdd = createButton("Adicionar Cliente", 120, 80, buttonWidth, buttonHeight);
+        btnDelete = createButton("Excluir Cliente", 310, 80, buttonWidth, buttonHeight);
+        btnUpdate = createButton("Atualizar Cliente", 510, 80, buttonWidth, buttonHeight);
+        btnSearch = createButton("Filtrar", 710, 80, buttonWidth, buttonHeight);
+        
         
         setTableLayout(scroll);
         setVisible(true);
     }
     
-    public void setImageBackground() {
+    private void setImageBackground() {
     	imgFundoTela = new ImageIcon(".\\src\\imagens\\fundo_menu.png");
         lblFundoTela = new JLabel();
         lblFundoTela.setIcon(imgFundoTela);
@@ -63,7 +74,7 @@ public class AdminClienteMenu extends JFrame implements ActionListener{
         this.setContentPane(lblFundoTela);
     }
     
-    public void setDefaultScreenSettings() {
+    private void setDefaultScreenSettings() {
     	this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setSize(1000, 750);
         this.setTitle("Menu para a edicao dos clientes");
@@ -72,7 +83,7 @@ public class AdminClienteMenu extends JFrame implements ActionListener{
         setResizable(false);
     }
     
-    public JTable createTable() {
+    private JTable createTable() {
         table = new JTable();
         table.setDefaultRenderer(Object.class, new CellRenderer());
         table.setModel(model);
@@ -91,7 +102,7 @@ public class AdminClienteMenu extends JFrame implements ActionListener{
         return table;
     }
     
-    public void setScroolPaneDefaultSettings(JScrollPane scroll) {
+    private void setScroolPaneDefaultSettings(JScrollPane scroll) {
     	scroll.setHorizontalScrollBarPolicy(
                 JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
         scroll.setVerticalScrollBarPolicy(
@@ -99,7 +110,7 @@ public class AdminClienteMenu extends JFrame implements ActionListener{
         scroll.setPreferredSize(new Dimension(480, 500));
     }
     
-    private void fillTableWithDataBaseInformation() {
+    public void fillTableWithDataBaseInformation() {
     	try {
         	ConexaoCliente conexao = new ConexaoCliente();
         	
@@ -131,14 +142,14 @@ public class AdminClienteMenu extends JFrame implements ActionListener{
         }
     }
     
-    public void setTableLayout(JScrollPane scroll) {
+    private void setTableLayout(JScrollPane scroll) {
     	setLayout(new BorderLayout());
         add(scroll, BorderLayout.SOUTH);
         scroll.setBounds(200, 200, 600, 400);
     }
     
     
-    public JButton createButton(String text, int xPosition, int yPosition, int width, int height) {
+    private JButton createButton(String text, int xPosition, int yPosition, int width, int height) {
         JButton btn = new JButton(text);
         btn.setBounds(xPosition,yPosition,width,height);
         btn.addActionListener(this);
@@ -147,7 +158,10 @@ public class AdminClienteMenu extends JFrame implements ActionListener{
     }
     
 	public void actionPerformed(ActionEvent e) {
-		// TODO Auto-generated method stub
+		FactoryScreens chamaTela = new FactoryScreens();
+		if(e.getSource() == btnSearch) {
+			chamaTela.chamaAdminClienteFiltrar();
+		}
 	}
 	
 }

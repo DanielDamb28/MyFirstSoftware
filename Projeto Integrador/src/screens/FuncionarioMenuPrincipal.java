@@ -18,70 +18,64 @@ public class FuncionarioMenuPrincipal extends  JFrame implements ActionListener{
     JLabel lblFundoTela;
 
     public FuncionarioMenuPrincipal() {
+    	
+    	setScreenDefaultSettings();
+    	setImageBackground();
+    	
+    	btnProduto = createButton("Produtos", 50, 350, 200, 50);
+    	btnCliente = createButton("Clientes", 275, 350, 200, 50);
+    	btnFornecedor = createButton("Fornecedores", 500, 350, 200, 50);
+    	btnVenda = createButton("Vendas", 725, 350, 200, 50);
+        btnDeslogar = createButton("Deslogar", 50, 625, 100, 50);
 
-        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        this.setVisible(true);
+    }
+    
+    private void setScreenDefaultSettings() {
+    	this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setSize(1000, 750);
         this.setTitle("Menu");
         this.setLocationRelativeTo(null);
         this.setLayout(null);
         setResizable(false);
-
-        imgFundoTela = new ImageIcon(".\\src\\screens\\fundo_menu.png");
+    }
+    
+    private void setImageBackground() {
+    	imgFundoTela = new ImageIcon(".\\src\\imagens\\fundo_menu.png");
         lblFundoTela = new JLabel();
         lblFundoTela.setIcon(imgFundoTela);
         lblFundoTela.setBounds(0 , 0, 1000, 750 );
         this.setContentPane(lblFundoTela);
-
-        btnProduto = new JButton("Produtos");
-        btnProduto.setBounds(50, 350, 200,50);
-        btnProduto.addActionListener(this);
-
-        btnCliente = new JButton("Clientes");
-        btnCliente.setBounds(275,350 ,200,50);
-        btnCliente.addActionListener(this);
-
-        btnFornecedor = new JButton("Fornecedores");
-        btnFornecedor.setBounds(500 ,350 ,200,50);
-        btnFornecedor.addActionListener(this);
-
-        btnVenda = new JButton("Vendas");
-        btnVenda.setBounds(725 , 350, 200,50);
-        btnVenda.addActionListener(this);
-        
-        btnDeslogar = new JButton("Deslogar");
-        btnDeslogar.setBounds(50, 620, 100 ,50);
-        btnDeslogar.addActionListener(this);
-
-        this.add(btnProduto);
-        this.add(btnCliente);
-        this.add(btnVenda);
-        this.add(btnFornecedor);
-        this.add(btnDeslogar);
-        this.setVisible(true);
     }
-
-
-    @Override
+    
+    private JButton createButton(String mensagem, int xPosition, int yPosition, int width, int height) {
+    	JButton btn = new JButton(mensagem);
+    	btn.setBounds(xPosition,yPosition,width,height);
+    	btn.addActionListener(this);
+        this.add(btn);
+        return btn;
+    }
+    
     public void actionPerformed (ActionEvent evt) {
     	FactoryScreens chamaTela = new FactoryScreens();
 
         if (evt.getSource() == btnCliente) {
-            chamaTela.chamaTelaDeMenuClientesFunc();
+            chamaTela.chamaFuncionarioClienteMenu();
             this.dispose();
         }
 
         if (evt.getSource() == btnProduto) {
-            chamaTela.chamaTelaDeMenuProdutosFunc();
+            chamaTela.chamaFuncionarioProdutoMenu();
             this.dispose();
         }
 
         if (evt.getSource() == btnVenda) {
-            chamaTela.chamaTelaDeMenuVendasFunc();
+            chamaTela.chamaFuncionarioVendaMenu();
             this.dispose();
         }
 
         if (evt.getSource() == btnFornecedor) {
-            chamaTela.chamaTelaDeMenuFornecedoresFunc();
+            chamaTela.chamaFuncionarioFornecedorMenu();
             this.dispose();
         }
         

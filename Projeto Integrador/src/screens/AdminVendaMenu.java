@@ -15,7 +15,7 @@ public class AdminVendaMenu extends JFrame implements ActionListener {
 
     public AdminVendaMenu() {
 
-    	imgFundoTela = new ImageIcon(".\\src\\screens\\fundo_menu.png");
+    	imgFundoTela = new ImageIcon(".\\src\\imagens\\fundo_menu.png");
         lblFundoTela = new JLabel();
         lblFundoTela.setIcon(imgFundoTela);
         lblFundoTela.setBounds(0 , 0, 1000, 750 );

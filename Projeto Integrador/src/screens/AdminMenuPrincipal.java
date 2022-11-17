@@ -63,27 +63,27 @@ public class AdminMenuPrincipal extends  JFrame implements ActionListener{
     	FactoryScreens chamaTela = new FactoryScreens();
     	
         if (evt.getSource() == btnAdmUsuarios) {
-            chamaTela.chamaTelaDeMenuDeUsuarios();
+            chamaTela.chamaAdminUsuarioMenu();
             this.dispose();
         }
 
         if (evt.getSource() == btnCliente) {
-            chamaTela.chamaAdminMenuCliente();
+            chamaTela.chamaAdminClienteMenu();
             this.dispose();
         }
 
         if (evt.getSource() == btnProduto) {
-            chamaTela.chamaTelaDeMenuDeProduto();
+            chamaTela.chamaAdminProdutoMenu();
             this.dispose();
         }
 
         if (evt.getSource() == btnVenda) {
-            chamaTela.chamaTelaDeMenuDeVendas();
+            chamaTela.chamaAdminVendaMenu();
             this.dispose();
         }
 
         if (evt.getSource() == btnFornecedor) {
-            chamaTela.chamaTelaDeMenuDeFornecedor();
+            chamaTela.chamaAdminFornecedorMenu();
             this.dispose();
         }
         

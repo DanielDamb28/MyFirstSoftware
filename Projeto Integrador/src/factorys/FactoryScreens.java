@@ -1,57 +1,62 @@
 package factorys;
 
-import screens.TelaLogin;
+import screens.AdminClienteFiltrar;
 import screens.AdminClienteMenu;
-import screens.AdminUsuarioMenu;
-import screens.AdminMenuPrincipal;
 import screens.AdminFornecedorMenu;
+import screens.AdminMenuPrincipal;
 import screens.AdminProdutoMenu;
+import screens.AdminUsuarioMenu;
 import screens.AdminVendaMenu;
 import screens.FuncionarioClienteMenu;
+import screens.FuncionarioFornecedorMenu;
 import screens.FuncionarioMenuPrincipal;
 import screens.FuncionarioProdutoMenu;
-import screens.FuncionarioFornecedorMenu;
 import screens.FuncionarioVendaMenu;
+import screens.TelaLogin;
 
 public class FactoryScreens {
 	
 	public void chamaTelaLogin() {
 		new TelaLogin();
 	}
+	
 	public void chamaTelaMenuAdmin() {
 		new AdminMenuPrincipal();
 	}
-	public void chamaAdminMenuCliente() {
+	public void chamaAdminClienteMenu() {
 		new AdminClienteMenu();
 	}
-	public void chamaTelaDeMenuDeUsuarios() {
+	public void chamaAdminClienteFiltrar() {
+		new AdminClienteFiltrar();
+	}
+	public void chamaAdminUsuarioMenu() {
 		new AdminUsuarioMenu();
 	}
-	public void chamaTelaDeMenuDeFornecedor() {
+	public void chamaAdminFornecedorMenu() {
 		new AdminFornecedorMenu();
 	}
-	public void chamaTelaDeMenuDeProduto() {
+	public void chamaAdminProdutoMenu() {
 		new AdminProdutoMenu();
 	}
-	public void chamaTelaDeMenuDeVendas() {
+	public void chamaAdminVendaMenu() {
 		new AdminVendaMenu();
 	}
 	
 	/*-----------------------------------*/
 	
-	public void chamaTelaMenuFunc() {
+	public void chamaFuncionarioTelaMenu() {
 		new FuncionarioMenuPrincipal();
 	}
-	public void chamaTelaDeMenuClientesFunc() {
+	public void chamaFuncionarioClienteMenu() {
 		new FuncionarioClienteMenu();
 	}
-	public void chamaTelaDeMenuProdutosFunc() {
+	public void chamaFuncionarioProdutoMenu() {
 		new FuncionarioProdutoMenu();
 	}
-	public void chamaTelaDeMenuVendasFunc() {
+	public void chamaFuncionarioVendaMenu() {
 		new FuncionarioVendaMenu();
 	}
-	public void chamaTelaDeMenuFornecedoresFunc() {
+	public void chamaFuncionarioFornecedorMenu() {
 		new FuncionarioFornecedorMenu();
 	}
 	
