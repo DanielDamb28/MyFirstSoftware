@@ -5,20 +5,17 @@ import java.time.LocalDate;
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 
-import conexaopostgree.ConexaoCliente;
-import entities.Cliente;
-import exceptions.CpfNotNull;
-import exceptions.NameNotNull;
-import factorys.FactoryEntities;
+import model.entities.Cliente;
+import model.exceptions.CpfNotNull;
+import model.exceptions.NameNotNull;
+import model.factorys.FactoryEntities;
 
 public class TesteCadastroCliente {
 	
 	public static void main(String args[]) throws CpfNotNull, NameNotNull {
 		DateTimeFormatter fmt = DateTimeFormatter.ofPattern("dd-MM-yyyy");
 		
-		ConexaoCliente connect = new ConexaoCliente();
-		
-		LocalDate nascimento = LocalDate.parse("28-06-2003", fmt);
+		Cliente connect = new Cliente();
 		
 		Instant dataCadastro = Instant.now();
 		ZoneId zone = ZoneId.of("America/Edmonton");

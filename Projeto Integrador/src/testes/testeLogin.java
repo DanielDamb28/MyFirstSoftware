@@ -1,14 +1,14 @@
 package testes;
 
-import conexaopostgree.ConexaoLogin;
-import entities.Usuario;
+import model.entities.Login;
+import model.entities.Usuario;
 
 public class testeLogin {
 	public static void main(String args[]) {
 		
-		ConexaoLogin login = new ConexaoLogin();
-		String id = "ADMIN";
-		String senha = "admin";
+		Login login = new Login();
+		String id = "FUNC";
+		String senha = "func";
 		
 		Usuario usuario = login.fazerLogin(id);
 		if(usuario == null) {

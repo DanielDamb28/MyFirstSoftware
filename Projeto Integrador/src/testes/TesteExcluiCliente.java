@@ -1,11 +1,11 @@
 package testes;
 
-import conexaopostgree.ConexaoCliente;
+import model.entities.Cliente;
 
 public class TesteExcluiCliente {
 
 	public static void main(String[] args) {
-		ConexaoCliente connect = new ConexaoCliente();
+		Cliente connect = new Cliente();
 		
 		String cpfCnpj = "70415979118";
 		

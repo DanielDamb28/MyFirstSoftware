@@ -1,6 +1,9 @@
 package application;
 
-import factorys.FactoryScreens;
+import controller.ControllerLogin;
+import model.entities.Login;
+import model.factorys.FactoryScreens;
+import view.TelaLogin;
 
 public class Program {
 	
@@ -8,7 +11,11 @@ public class Program {
 		
 		FactoryScreens chamaTela = new FactoryScreens();
 		
-		chamaTela.chamaTelaLogin();
+		Login login = new Login();
+		
+		ControllerLogin ctrl = new ControllerLogin();
+		
+		TelaLogin screen = new TelaLogin(ctrl);
 		
 		//chamaTela.chamaAdminClienteFiltrar();
 		

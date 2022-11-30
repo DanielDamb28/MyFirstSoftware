@@ -1,4 +1,4 @@
-package testes;
+package view;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
@@ -16,44 +16,86 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
+import controller.ControllerAdminClienteMenu;
 import model.entities.Cliente;
+import model.factorys.FactoryScreens;
 
-public class TesteTabela extends JFrame implements ActionListener{
+public class AdminClienteMenu extends JFrame{
 
-	ImageIcon imgFundoTela;
-    JLabel lblFundoTela;
-    JTable table;
-    List<Cliente> clientes = new ArrayList<Cliente>();
-    String[] columnNames = {"Nome", "Cpf-Cnpj", "Endereço", "Telefone", "Cep", "Sexo", "Data_Nascimento", "Data_Cadastro"};
-    JButton btnAdd;
+	private ImageIcon imgFundoTela;
+    private JLabel lblFundoTela;
+    private JTable table;
     
-    public TesteTabela() {
+    private List<Cliente> clientes = new ArrayList<Cliente>();
+    private String[] columnNames = {"Nome", "Cpf-Cnpj", "Endereço", "Telefone", "Cep", "Sexo", 
+    		"Data_Nascimento", "Data_Cadastro"};
+    
+    private JButton btnAdd;
+    private JButton btnDelete;
+    private JButton btnUpdate;
+    private JButton btnSearch;
+    private JButton btnVoltar;
+    private int buttonWidth = 170;
+    private int buttonHeight = 50;
+    private ActionListener controller;
+    
+    
+    DefaultTableModel model = new DefaultTableModel() {
+	    public boolean isCellEditable(int row, int column) {
+	       return false;
+	    }
+	};
+    
+    public AdminClienteMenu(ControllerAdminClienteMenu ctrl) {
     	
-    	imgFundoTela = new ImageIcon(".\\src\\screens\\fundo_menu.png");
+    	setImageBackground();
+        setDefaultScreenSettings();
+        
+        controller = ctrl;
+        
+        model.setColumnIdentifiers(columnNames);
+        JTable table = createTable();
+        JScrollPane scroll = new JScrollPane(table);
+        setScroolPaneDefaultSettings(scroll);
+        
+        fillTableWithDataBaseInformation();
+        
+        btnAdd = createButton("Adicionar Cliente", 120, 80, buttonWidth, buttonHeight);
+        btnDelete = createButton("Excluir Cliente", 310, 80, buttonWidth, buttonHeight);
+        btnUpdate = createButton("Atualizar Cliente", 510, 80, buttonWidth, buttonHeight);
+        btnSearch = createButton("Filtrar", 710, 80, buttonWidth, buttonHeight);
+        btnVoltar = createButton("<-", 10, 10, 50, 50);
+        
+        
+        
+        setTableLayout(scroll);
+        setVisible(true);
+    }
+    
+    private void setImageBackground() {
+    	imgFundoTela = new ImageIcon(".\\src\\imagens\\fundo_menu.png");
         lblFundoTela = new JLabel();
         lblFundoTela.setIcon(imgFundoTela);
         lblFundoTela.setBounds(0 , 0, 1000, 750 );
         this.setContentPane(lblFundoTela);
-        
-        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    }
+    
+    private void setDefaultScreenSettings() {
+    	this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setSize(1000, 750);
         this.setTitle("Menu para a edicao dos clientes");
         this.setLocationRelativeTo(null);
         this.setLayout(null);
         setResizable(false);
-    	DefaultTableModel model = new DefaultTableModel(){
-
-    	    @Override
-    	    public boolean isCellEditable(int row, int column) {
-    	       //all cells false
-    	       return false;
-    	    }
-    	};;
-        model.setColumnIdentifiers(columnNames);
+    }
+    
+    private JTable createTable() {
         table = new JTable();
+        table.setDefaultRenderer(Object.class, new CellRenderer());
         table.setModel(model);
         table.setFillsViewportHeight(true);
         table.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);	
+        table.setRowHeight(50);
         table.getColumnModel().getColumn(0).setPreferredWidth(120);
         table.getColumnModel().getColumn(1).setPreferredWidth(100);
         table.getColumnModel().getColumn(2).setPreferredWidth(200);
@@ -62,13 +104,20 @@ public class TesteTabela extends JFrame implements ActionListener{
         table.getColumnModel().getColumn(5).setPreferredWidth(60);
         table.getColumnModel().getColumn(6).setPreferredWidth(140);
         table.getColumnModel().getColumn(7).setPreferredWidth(140);
-        JScrollPane scroll = new JScrollPane(table);
-        scroll.setHorizontalScrollBarPolicy(
+        
+        return table;
+    }
+    
+    private void setScroolPaneDefaultSettings(JScrollPane scroll) {
+    	scroll.setHorizontalScrollBarPolicy(
                 JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
         scroll.setVerticalScrollBarPolicy(
                 JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
         scroll.setPreferredSize(new Dimension(480, 500));
-        try {
+    }
+    
+    public void fillTableWithDataBaseInformation() {
+    	try {
         	Cliente conexao = new Cliente();
         	
         	clientes = conexao.retornaClientes();
@@ -97,19 +146,22 @@ public class TesteTabela extends JFrame implements ActionListener{
         }catch(Exception e) {
         	e.printStackTrace();
         }
-        btnAdd = new JButton("Adminstrar usuarios");
-        btnAdd.setBounds(50,50,170,50);
-        btnAdd.addActionListener(this);
-        
-        setLayout(new BorderLayout());
-        add(scroll, BorderLayout.SOUTH);
-        scroll.setBounds(200, 200, 600, 400);
-        setVisible(true);
     }
     
-	public void actionPerformed(ActionEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
+    private void setTableLayout(JScrollPane scroll) {
+    	setLayout(new BorderLayout());
+        add(scroll, BorderLayout.SOUTH);
+        scroll.setBounds(200, 200, 600, 400);
+    }
+    
+    
+    private JButton createButton(String text, int xPosition, int yPosition, int width, int height) {
+        JButton btn = new JButton(text);
+        btn.setBounds(xPosition,yPosition,width,height);
+        btn.addActionListener(controller);
+        this.add(btn);
+        return btn;
+    }
+    
 	
 }
