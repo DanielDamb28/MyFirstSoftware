@@ -10,6 +10,8 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.swing.table.DefaultTableModel;
+
 import model.exceptions.CpfNotNull;
 import model.exceptions.NameNotNull;
 import model.factorys.FactoryException;
@@ -26,6 +28,8 @@ public class Cliente {
 	private LocalDate dataCadastro;
 	private String cep;
 	private char sexo;
+	
+	private List<Cliente> clientes = new ArrayList<Cliente>();
 	
 	public Cliente() {}
 	
@@ -311,6 +315,38 @@ public class Cliente {
 		return clientes;
 		
 	}
+	
+	 public void fillTableWithDataBaseInformation(DefaultTableModel model) {
+	    	try {
+	        	Cliente conexao = new Cliente();
+	        	
+	        	clientes = conexao.retornaClientes();
+	        	
+	        	String nome = "";
+	        	String cpfCnpj = "";
+	        	String endereco = "";
+	        	String telefone = "";
+	        	String cep = "";
+	        	char sexo;
+	        	LocalDate dataNascimento;
+	        	LocalDate dataCadastro;
+	        	
+	        	for(Cliente c: clientes) {
+	                nome = c.getNome();
+	                cpfCnpj = c.getCpfCnpj();
+	                endereco = c.getEndereco();
+	                telefone = c.getTelefone();
+	                cep = c.getCep();
+	                sexo = c.getSexo();
+	                dataNascimento = c.getDataNascimento();
+	                dataCadastro = c.getDataCadastro();
+	                model.addRow(new Object[]{nome, cpfCnpj, endereco, telefone, cep, 
+	                		sexo, dataNascimento, dataCadastro});
+	        	}
+	        }catch(Exception e) {
+	        	e.printStackTrace();
+	        }
+	    }
 	
 	
 }

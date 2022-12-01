@@ -3,7 +3,9 @@ package model.factorys;
 import java.awt.event.ActionListener;
 
 import javax.swing.JFrame;
+import javax.swing.table.DefaultTableModel;
 
+import controller.ControllerAdminClienteFiltrar;
 import controller.ControllerAdminClienteMenu;
 import controller.ControllerAdminFornecedorMenu;
 import controller.ControllerAdminMenuPrincipal;
@@ -17,6 +19,8 @@ import model.entities.Login;
 import model.entities.Produto;
 import model.entities.Usuario;
 import model.entities.Venda;
+import view.AdminClienteCadastro;
+import view.AdminClienteExclusao;
 import view.AdminClienteFiltrar;
 import view.AdminClienteMenu;
 import view.AdminFornecedorMenu;
@@ -53,10 +57,23 @@ public class FactoryScreens {
 		ctrl.setAdminClienteMenu(tela);
 		container.dispose();
 	}
-	public void chamaAdminClienteFiltrar(ActionListener ctrl,JFrame container) {
-		new AdminClienteFiltrar();
-		container.dispose();
+	
+	public void chamaAdminClienteFiltrar(ControllerAdminClienteFiltrar ctrl,DefaultTableModel model, Cliente cliente) {
+		AdminClienteFiltrar tela = new AdminClienteFiltrar(ctrl);
+		ctrl.setView(tela);
+		ctrl.setModel(model);
+		ctrl.setCliente(cliente);
 	}
+	
+	public void chamaAdminClienteCadastro(ControllerAdminClienteMenu ctrl) {
+		AdminClienteCadastro tela = new AdminClienteCadastro(ctrl);
+		
+	}
+	
+	public void chamaAdminClienteExclusao(ControllerAdminClienteMenu ctrl) {
+		AdminClienteExclusao tela = new AdminClienteExclusao(ctrl);
+	}
+	
 	public void chamaAdminUsuarioMenu(ControllerAdminUsuarioMenu ctrl,JFrame container) {
 		AdminUsuarioMenu tela = new AdminUsuarioMenu(ctrl);
 		Usuario usuario = new Usuario();

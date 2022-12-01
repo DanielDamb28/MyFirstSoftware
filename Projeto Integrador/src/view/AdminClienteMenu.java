@@ -27,7 +27,7 @@ public class AdminClienteMenu extends JFrame{
     private JLabel lblFundoTela;
     private JTable table;
     
-    private List<Cliente> clientes = new ArrayList<Cliente>();
+    
     private String[] columnNames = {"Nome", "Cpf-Cnpj", "Endereço", "Telefone", "Cep", "Sexo", 
     		"Data_Nascimento", "Data_Cadastro"};
     
@@ -38,7 +38,7 @@ public class AdminClienteMenu extends JFrame{
     private JButton btnVoltar;
     private int buttonWidth = 170;
     private int buttonHeight = 50;
-    private ActionListener controller;
+    private ControllerAdminClienteMenu controller;
     
     
     DefaultTableModel model = new DefaultTableModel() {
@@ -61,7 +61,7 @@ public class AdminClienteMenu extends JFrame{
         JScrollPane scroll = new JScrollPane(table);
         setScroolPaneDefaultSettings(scroll);
         
-        fillTableWithDataBaseInformation();
+        //fillTableWithDataBaseInformation();
         
         btnAdd = createButton("Adicionar Cliente", 120, 80, buttonWidth, buttonHeight);
         btnDelete = createButton("Excluir Cliente", 310, 80, buttonWidth, buttonHeight);
@@ -119,38 +119,6 @@ public class AdminClienteMenu extends JFrame{
         scroll.setPreferredSize(new Dimension(1000, 600));
     }
     
-    public void fillTableWithDataBaseInformation() {
-    	try {
-        	Cliente conexao = new Cliente();
-        	
-        	clientes = conexao.retornaClientes();
-        	
-        	String nome = "";
-        	String cpfCnpj = "";
-        	String endereco = "";
-        	String telefone = "";
-        	String cep = "";
-        	char sexo;
-        	LocalDate dataNascimento;
-        	LocalDate dataCadastro;
-        	
-        	for(Cliente c: clientes) {
-                nome = c.getNome();
-                cpfCnpj = c.getCpfCnpj();
-                endereco = c.getEndereco();
-                telefone = c.getTelefone();
-                cep = c.getCep();
-                sexo = c.getSexo();
-                dataNascimento = c.getDataNascimento();
-                dataCadastro = c.getDataCadastro();
-                model.addRow(new Object[]{nome, cpfCnpj, endereco, telefone, cep, 
-                		sexo, dataNascimento, dataCadastro});
-        	}
-        }catch(Exception e) {
-        	e.printStackTrace();
-        }
-    }
-    
     private void setTableLayout(JScrollPane scroll) {
     	setLayout(new BorderLayout());
         add(scroll, BorderLayout.SOUTH);
@@ -165,6 +133,8 @@ public class AdminClienteMenu extends JFrame{
         container.add(btn);
         return btn;
     }
+    
+    
 
 	public JButton getBtnAdd() {
 		return btnAdd;
@@ -212,6 +182,22 @@ public class AdminClienteMenu extends JFrame{
 
 	public void setContainer(JFrame container) {
 		this.container = container;
+	}
+
+	public ControllerAdminClienteMenu getController() {
+		return controller;
+	}
+
+	public void setController(ControllerAdminClienteMenu controller) {
+		this.controller = controller;
+	}
+
+	public DefaultTableModel getModel() {
+		return model;
+	}
+
+	public void setModel(DefaultTableModel model) {
+		this.model = model;
 	}
     
     

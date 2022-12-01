@@ -149,6 +149,14 @@ public class TelaLogin extends JFrame{
 	public void setController(ActionListener controller) {
 		this.controller = controller;
 	}
+
+	public JCheckBox getChkMostrarSenha() {
+		return chkMostrarSenha;
+	}
+
+	public void setChkMostrarSenha(JCheckBox chkMostrarSenha) {
+		this.chkMostrarSenha = chkMostrarSenha;
+	}
     
     
 }

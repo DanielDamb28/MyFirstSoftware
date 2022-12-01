@@ -17,7 +17,6 @@ public class ControllerAdminMenuPrincipal implements ActionListener{
 	
 	public void actionPerformed (ActionEvent evt) {
     	FactoryScreens chamaTela = new FactoryScreens();
-    	Login conexao = new Login();
     	
     	ControllerAdminClienteMenu controlCliente = new ControllerAdminClienteMenu();
     	ControllerAdminFornecedorMenu controlFornecedor = new ControllerAdminFornecedorMenu();
