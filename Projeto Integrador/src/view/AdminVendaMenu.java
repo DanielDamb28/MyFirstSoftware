@@ -22,6 +22,8 @@ public class AdminVendaMenu extends JFrame{
 
     public AdminVendaMenu(ControllerAdminVendaMenu ctrl) {
 
+    	container = new JFrame();
+    	
     	setBackgroundImage();
         setScreenDefaultSettings();
         
@@ -59,5 +61,39 @@ public class AdminVendaMenu extends JFrame{
         return btn;
     }
 
+	public JFrame getContainer() {
+		return container;
+	}
+
+	public void setContainer(JFrame container) {
+		this.container = container;
+	}
+
+	public JButton getBtnLancarVenda() {
+		return btnLancarVenda;
+	}
+
+	public void setBtnLancarVenda(JButton btnLancarVenda) {
+		this.btnLancarVenda = btnLancarVenda;
+	}
+
+	public JButton getBtnAcessarHistorico() {
+		return btnAcessarHistorico;
+	}
+
+	public void setBtnAcessarHistorico(JButton btnAcessarHistorico) {
+		this.btnAcessarHistorico = btnAcessarHistorico;
+	}
+
+	public JButton getBtnVoltarMenu() {
+		return btnVoltarMenu;
+	}
+
+	public void setBtnVoltarMenu(JButton btnVoltarMenu) {
+		this.btnVoltarMenu = btnVoltarMenu;
+	}
+
+    
+    
 }
 

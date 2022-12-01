@@ -14,11 +14,15 @@ import view.TelaLogin;
 
 public class ControllerLogin implements ActionListener{
 	
-	private Login conexao;
+	private Login login;
 	private TelaLogin telaLogin;
 	
-	private void setTelaLogin(TelaLogin tela) {
+	public void setTelaLogin(TelaLogin tela) {
 		telaLogin = tela;
+	}
+	
+	public void setLogin(Login login) {
+		this.login = login;
 	}
 
 	public void actionPerformed(ActionEvent event) {
@@ -30,7 +34,7 @@ public class ControllerLogin implements ActionListener{
 			String id = telaLogin.getTxtLogin().getText();
 			String senha = telaLogin.getPswSenha().getText();
 			
-			Usuario usuario = conexao.fazerLogin(id);
+			Usuario usuario = login.fazerLogin(id);
 			if(usuario == null) {
     			JOptionPane.showMessageDialog(telaLogin.receiveContainer(), "Usuario não encontrado");
     			telaLogin.getTxtLogin().setText("");
@@ -42,7 +46,7 @@ public class ControllerLogin implements ActionListener{
     		} else {
     			System.out.println("Id: " + usuario.getId() + ", Senha: " + usuario.getSenha() + ", Tipo de Acesso: "+  usuario.getTipoAcesso());
     			if(usuario.getTipoAcesso().equals("gerente")) {
-    				chamaTela.chamaTelaMenuAdmin(controlAdmin, telaLogin.receiveContainer());
+    				chamaTela.chamaAdminMenuPrincipal(controlAdmin, telaLogin.receiveContainer());
     			}
     			else if(usuario.getTipoAcesso().equals("usuario")) {
     				chamaTela.chamaFuncionarioTelaMenu(controlFuncionario, telaLogin.receiveContainer());

@@ -34,8 +34,6 @@ public class AdminMenuPrincipal extends  JFrame{
         btnVenda = createButton("Vendas", 770, 350, 150, 50);
         btnDeslogar = createButton("Deslogar", 50, 620, 100, 50);
         
-        control.setContainer(container);
-        
         container.setVisible(true);
     }
     
@@ -64,5 +62,15 @@ public class AdminMenuPrincipal extends  JFrame{
         container.add(btn);
         return btn;
     }
+
+	public JFrame getContainer() {
+		return container;
+	}
+
+	public void setContainer(JFrame container) {
+		this.container = container;
+	}
+    
+    
     
 }

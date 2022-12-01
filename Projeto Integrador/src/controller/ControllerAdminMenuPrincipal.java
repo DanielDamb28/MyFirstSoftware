@@ -3,54 +3,51 @@ package controller;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.JFrame;
-
-import model.conexao.ConexaoLogin;
+import model.entities.Login;
 import model.factorys.FactoryScreens;
+import view.AdminMenuPrincipal;
 
 public class ControllerAdminMenuPrincipal implements ActionListener{
 	
-	private JFrame container;
+	private AdminMenuPrincipal view;
 	
-	public ControllerAdminMenuPrincipal(){}
-
-	public void setContainer(JFrame container) {
-		this.container = container;
+	public void setAdminMenuPrincipal(AdminMenuPrincipal view) {
+		this.view = view;
 	}
 	
 	public void actionPerformed (ActionEvent evt) {
     	FactoryScreens chamaTela = new FactoryScreens();
-    	ConexaoLogin conexao = new ConexaoLogin();
+    	Login conexao = new Login();
     	
     	ControllerAdminClienteMenu controlCliente = new ControllerAdminClienteMenu();
     	ControllerAdminFornecedorMenu controlFornecedor = new ControllerAdminFornecedorMenu();
     	ControllerAdminProdutoMenu controlProduto = new ControllerAdminProdutoMenu();
     	ControllerAdminUsuarioMenu controlUsuario = new ControllerAdminUsuarioMenu();
     	ControllerAdminVendaMenu controlVenda = new ControllerAdminVendaMenu();
-    	ControllerLogin controlLogin = new ControllerLogin(conexao);
+    	ControllerLogin controlLogin = new ControllerLogin();
     	
         if (evt.getActionCommand() == "Administrar usuarios") {
-            chamaTela.chamaAdminUsuarioMenu(controlUsuario, container);
+            chamaTela.chamaAdminUsuarioMenu(controlUsuario, view.getContainer());
         }
 
         if (evt.getActionCommand() == "Clientes") {
-            chamaTela.chamaAdminClienteMenu(controlCliente, container);
+            chamaTela.chamaAdminClienteMenu(controlCliente, view.getContainer());
         }
 
         if (evt.getActionCommand() == "Produtos") {
-            chamaTela.chamaAdminProdutoMenu(controlProduto, container);
+            chamaTela.chamaAdminProdutoMenu(controlProduto, view.getContainer());
         }
 
         if (evt.getActionCommand() == "Vendas") {
-            chamaTela.chamaAdminVendaMenu(controlVenda, container);
+            chamaTela.chamaAdminVendaMenu(controlVenda, view.getContainer());
         }
 
         if (evt.getActionCommand() == "Fornecedores") {
-            chamaTela.chamaAdminFornecedorMenu(controlFornecedor, container);
+            chamaTela.chamaAdminFornecedorMenu(controlFornecedor, view.getContainer());
         }
         
         if (evt.getActionCommand() == "Deslogar") {
-        	chamaTela.chamaTelaLogin(controlLogin, container);
+        	chamaTela.chamaTelaLogin(controlLogin, view.getContainer());
         }
 
     }

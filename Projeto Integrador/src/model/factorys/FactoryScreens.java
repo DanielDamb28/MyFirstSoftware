@@ -11,6 +11,12 @@ import controller.ControllerAdminProdutoMenu;
 import controller.ControllerAdminUsuarioMenu;
 import controller.ControllerAdminVendaMenu;
 import controller.ControllerLogin;
+import model.entities.Cliente;
+import model.entities.Fornecedor;
+import model.entities.Login;
+import model.entities.Produto;
+import model.entities.Usuario;
+import model.entities.Venda;
 import view.AdminClienteFiltrar;
 import view.AdminClienteMenu;
 import view.AdminFornecedorMenu;
@@ -28,16 +34,23 @@ import view.TelaLogin;
 public class FactoryScreens {
 	
 	public void chamaTelaLogin(ControllerLogin ctrl, JFrame container) {
-		new TelaLogin(ctrl);
+		Login login = new Login();
+		TelaLogin tela = new TelaLogin(ctrl);
+		ctrl.setLogin(login);
+		ctrl.setTelaLogin(tela);
 		container.dispose();
 	}
 	
-	public void chamaTelaMenuAdmin(ControllerAdminMenuPrincipal ctrl,JFrame container) {
-		new AdminMenuPrincipal(ctrl);
+	public void chamaAdminMenuPrincipal(ControllerAdminMenuPrincipal ctrl,JFrame container) {
+		AdminMenuPrincipal tela = new AdminMenuPrincipal(ctrl);
+		ctrl.setAdminMenuPrincipal(tela);
 		container.dispose();
 	}
 	public void chamaAdminClienteMenu(ControllerAdminClienteMenu ctrl,JFrame container) {
-		new AdminClienteMenu(ctrl);
+		AdminClienteMenu tela = new AdminClienteMenu(ctrl);
+		Cliente cliente = new Cliente();
+		ctrl.setCliente(cliente);
+		ctrl.setAdminClienteMenu(tela);
 		container.dispose();
 	}
 	public void chamaAdminClienteFiltrar(ActionListener ctrl,JFrame container) {
@@ -45,19 +58,31 @@ public class FactoryScreens {
 		container.dispose();
 	}
 	public void chamaAdminUsuarioMenu(ControllerAdminUsuarioMenu ctrl,JFrame container) {
-		new AdminUsuarioMenu(ctrl);
+		AdminUsuarioMenu tela = new AdminUsuarioMenu(ctrl);
+		Usuario usuario = new Usuario();
+		ctrl.setModel(usuario);
+		ctrl.setView(tela);
 		container.dispose();
 	}
 	public void chamaAdminFornecedorMenu(ControllerAdminFornecedorMenu ctrl,JFrame container) {
-		new AdminFornecedorMenu(ctrl);
+		AdminFornecedorMenu tela = new AdminFornecedorMenu(ctrl);
+		Fornecedor fornecedor = new Fornecedor();
+		ctrl.setModel(fornecedor);
+		ctrl.setView(tela);
 		container.dispose();
 	}
 	public void chamaAdminProdutoMenu(ControllerAdminProdutoMenu ctrl,JFrame container) {
-		new AdminProdutoMenu(ctrl);
+		AdminProdutoMenu tela = new AdminProdutoMenu(ctrl);
+		Produto product = new Produto();
+		ctrl.setModel(product);
+		ctrl.setView(tela);
 		container.dispose();
 	}
 	public void chamaAdminVendaMenu(ControllerAdminVendaMenu ctrl,JFrame container) {
-		new AdminVendaMenu(ctrl);
+		AdminVendaMenu tela = new AdminVendaMenu(ctrl);
+		Venda venda = new Venda();
+		ctrl.setModel(venda);
+		ctrl.setView(tela);
 		container.dispose();
 	}
 	

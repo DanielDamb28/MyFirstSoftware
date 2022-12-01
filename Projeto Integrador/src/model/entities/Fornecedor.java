@@ -10,6 +10,7 @@ public class Fornecedor {
 	private String email;
 	private String cnpj;
 	
+	public Fornecedor () {}
 	
 	public Fornecedor(String nome, String cep, String endereco, String telefone, String email, String cnpj) {
 		setNome(nome);

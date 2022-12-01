@@ -6,6 +6,8 @@ public class Usuario {
 	private String senha;
 	private String tipoAcesso;
 	
+	public Usuario() {}
+	
 	public Usuario(String id, String senha, String tipoAcesso) {
 		setId(id);
 		setSenha(senha);

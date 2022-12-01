@@ -22,6 +22,7 @@ import model.factorys.FactoryScreens;
 
 public class AdminClienteMenu extends JFrame{
 
+	private JFrame container;
 	private ImageIcon imgFundoTela;
     private JLabel lblFundoTela;
     private JTable table;
@@ -48,8 +49,10 @@ public class AdminClienteMenu extends JFrame{
     
     public AdminClienteMenu(ControllerAdminClienteMenu ctrl) {
     	
-    	setImageBackground();
+    	container = new JFrame();
+    	
         setDefaultScreenSettings();
+        setImageBackground();
         
         controller = ctrl;
         
@@ -66,10 +69,9 @@ public class AdminClienteMenu extends JFrame{
         btnSearch = createButton("Filtrar", 710, 80, buttonWidth, buttonHeight);
         btnVoltar = createButton("<-", 10, 10, 50, 50);
         
-        
-        
         setTableLayout(scroll);
-        setVisible(true);
+        container.add(scroll);
+        container.setVisible(true);
     }
     
     private void setImageBackground() {
@@ -77,15 +79,16 @@ public class AdminClienteMenu extends JFrame{
         lblFundoTela = new JLabel();
         lblFundoTela.setIcon(imgFundoTela);
         lblFundoTela.setBounds(0 , 0, 1000, 750 );
-        this.setContentPane(lblFundoTela);
+        container.setContentPane(lblFundoTela);
     }
     
     private void setDefaultScreenSettings() {
-    	this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        this.setSize(1000, 750);
-        this.setTitle("Menu para a edicao dos clientes");
-        this.setLocationRelativeTo(null);
-        this.setLayout(null);
+    	container.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    	container.setSize(1000, 750);
+    	container.setTitle("Menu para a edicao dos clientes");
+    	System.out.println("aaaaaaaaaaaaaaaaaaa");
+    	container.setLocationRelativeTo(null);
+    	container.setLayout(null);
         setResizable(false);
     }
     
@@ -113,7 +116,7 @@ public class AdminClienteMenu extends JFrame{
                 JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
         scroll.setVerticalScrollBarPolicy(
                 JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
-        scroll.setPreferredSize(new Dimension(480, 500));
+        scroll.setPreferredSize(new Dimension(1000, 600));
     }
     
     public void fillTableWithDataBaseInformation() {
@@ -151,7 +154,7 @@ public class AdminClienteMenu extends JFrame{
     private void setTableLayout(JScrollPane scroll) {
     	setLayout(new BorderLayout());
         add(scroll, BorderLayout.SOUTH);
-        scroll.setBounds(200, 200, 600, 400);
+        scroll.setBounds(0, 250, 1000, 500);
     }
     
     
@@ -159,9 +162,58 @@ public class AdminClienteMenu extends JFrame{
         JButton btn = new JButton(text);
         btn.setBounds(xPosition,yPosition,width,height);
         btn.addActionListener(controller);
-        this.add(btn);
+        container.add(btn);
         return btn;
     }
+
+	public JButton getBtnAdd() {
+		return btnAdd;
+	}
+
+	public void setBtnAdd(JButton btnAdd) {
+		this.btnAdd = btnAdd;
+	}
+
+	public JButton getBtnDelete() {
+		return btnDelete;
+	}
+
+	public void setBtnDelete(JButton btnDelete) {
+		this.btnDelete = btnDelete;
+	}
+
+	public JButton getBtnUpdate() {
+		return btnUpdate;
+	}
+
+	public void setBtnUpdate(JButton btnUpdate) {
+		this.btnUpdate = btnUpdate;
+	}
+
+	public JButton getBtnSearch() {
+		return btnSearch;
+	}
+
+	public void setBtnSearch(JButton btnSearch) {
+		this.btnSearch = btnSearch;
+	}
+
+	public JButton getBtnVoltar() {
+		return btnVoltar;
+	}
+
+	public void setBtnVoltar(JButton btnVoltar) {
+		this.btnVoltar = btnVoltar;
+	}
+
+	public JFrame getContainer() {
+		return container;
+	}
+
+	public void setContainer(JFrame container) {
+		this.container = container;
+	}
+    
     
 	
 }

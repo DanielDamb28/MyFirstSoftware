@@ -21,7 +21,9 @@ public class AdminProdutoMenu extends  JFrame{
     private ActionListener controller;
 
     public AdminProdutoMenu(ControllerAdminProdutoMenu ctrl) {
-
+    	
+    	container = new JFrame();
+    	
     	setBackgroundImage();
     	setScreenDefaultSettings();
     	
@@ -33,7 +35,7 @@ public class AdminProdutoMenu extends  JFrame{
     	btnBuscarProduto = createButton("Buscar produto", 725,350 ,200,50);
     	btnVoltarMenu = createButton("Voltar", 50,620 ,100,50);
 
-        this.setVisible(true);
+        container.setVisible(true);
     }
 
     private void setBackgroundImage() {
@@ -60,4 +62,54 @@ public class AdminProdutoMenu extends  JFrame{
         container.add(btn);
         return btn;
     }
+
+	public JFrame getContainer() {
+		return container;
+	}
+
+	public void setContainer(JFrame container) {
+		this.container = container;
+	}
+
+	public JButton getBtnCadastrarProduto() {
+		return btnCadastrarProduto;
+	}
+
+	public void setBtnCadastrarProduto(JButton btnCadastrarProduto) {
+		this.btnCadastrarProduto = btnCadastrarProduto;
+	}
+
+	public JButton getBtnExcluirProduto() {
+		return btnExcluirProduto;
+	}
+
+	public void setBtnExcluirProduto(JButton btnExcluirProduto) {
+		this.btnExcluirProduto = btnExcluirProduto;
+	}
+
+	public JButton getBtnEditarProduto() {
+		return btnEditarProduto;
+	}
+
+	public void setBtnEditarProduto(JButton btnEditarProduto) {
+		this.btnEditarProduto = btnEditarProduto;
+	}
+
+	public JButton getBtnBuscarProduto() {
+		return btnBuscarProduto;
+	}
+
+	public void setBtnBuscarProduto(JButton btnBuscarProduto) {
+		this.btnBuscarProduto = btnBuscarProduto;
+	}
+
+	public JButton getBtnVoltarMenu() {
+		return btnVoltarMenu;
+	}
+
+	public void setBtnVoltarMenu(JButton btnVoltarMenu) {
+		this.btnVoltarMenu = btnVoltarMenu;
+	}
+    
+    
 }

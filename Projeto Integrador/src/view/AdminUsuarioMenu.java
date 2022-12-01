@@ -22,6 +22,8 @@ public class AdminUsuarioMenu extends  JFrame{
 
     public AdminUsuarioMenu(ControllerAdminUsuarioMenu ctrl) {
     	
+    	container = new JFrame();
+    	
     	controller = ctrl;
     	
     	setBackgroundImage();
@@ -34,7 +36,7 @@ public class AdminUsuarioMenu extends  JFrame{
     	btnBuscarUsuario = createButton("Cadastrar novo usuario", 725,350,200,50);
     	btnVoltarMenu = createButton("Voltar", 50,620 ,100,50);
 
-        this.setVisible(true);
+        container.setVisible(true);
     }
     
     private void setBackgroundImage() {
@@ -63,4 +65,54 @@ public class AdminUsuarioMenu extends  JFrame{
         container.add(btn);
         return btn;
     }
+
+	public JFrame getContainer() {
+		return container;
+	}
+
+	public void setContainer(JFrame container) {
+		this.container = container;
+	}
+
+	public JButton getBtnCadastrarUsuario() {
+		return btnCadastrarUsuario;
+	}
+
+	public void setBtnCadastrarUsuario(JButton btnCadastrarUsuario) {
+		this.btnCadastrarUsuario = btnCadastrarUsuario;
+	}
+
+	public JButton getBtnExcluirUsuario() {
+		return btnExcluirUsuario;
+	}
+
+	public void setBtnExcluirUsuario(JButton btnExcluirUsuario) {
+		this.btnExcluirUsuario = btnExcluirUsuario;
+	}
+
+	public JButton getBtnBuscarUsuario() {
+		return btnBuscarUsuario;
+	}
+
+	public void setBtnBuscarUsuario(JButton btnBuscarUsuario) {
+		this.btnBuscarUsuario = btnBuscarUsuario;
+	}
+
+	public JButton getBtnEditarUsuario() {
+		return btnEditarUsuario;
+	}
+
+	public void setBtnEditarUsuario(JButton btnEditarUsuario) {
+		this.btnEditarUsuario = btnEditarUsuario;
+	}
+
+	public JButton getBtnVoltarMenu() {
+		return btnVoltarMenu;
+	}
+
+	public void setBtnVoltarMenu(JButton btnVoltarMenu) {
+		this.btnVoltarMenu = btnVoltarMenu;
+	}
+    
+    
 }

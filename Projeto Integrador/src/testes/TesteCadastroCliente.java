@@ -8,7 +8,6 @@ import java.time.format.DateTimeFormatter;
 import model.entities.Cliente;
 import model.exceptions.CpfNotNull;
 import model.exceptions.NameNotNull;
-import model.factorys.FactoryEntities;
 
 public class TesteCadastroCliente {
 	
@@ -21,7 +20,7 @@ public class TesteCadastroCliente {
 		ZoneId zone = ZoneId.of("America/Edmonton");
 		LocalDate cadastro = LocalDate.ofInstant(dataCadastro, zone);
 		
-		Cliente cliente = FactoryEntities.createCliente("34145869023", "Joao", "Cafunde do Juda", "73998656958", LocalDate.parse("16-08-1996", fmt), cadastro, "80545523", "F");
+		Cliente cliente = new Cliente("34145869023", "Joao", "Cafunde do Juda", "73998656958", LocalDate.parse("16-08-1996", fmt), cadastro, "80545523", "F");
 		
 		String result = connect.adicionaClienteNoBancoDeDados(cliente);
 		

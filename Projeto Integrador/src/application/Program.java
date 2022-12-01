@@ -17,6 +17,9 @@ public class Program {
 		
 		TelaLogin screen = new TelaLogin(ctrl);
 		
+		ctrl.setTelaLogin(screen);
+		ctrl.setLogin(login);
+		
 		//chamaTela.chamaAdminClienteFiltrar();
 		
 	}
