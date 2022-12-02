@@ -120,18 +120,9 @@ public class Cliente {
 	
 	public String adicionaClienteNoBancoDeDados(Cliente c) {
 		String result = null;
-		try {
-			conexao = new Conexao();
-			
-			System.out.println("Usuario da Conexao: " + conexao.getConexao().getMetaData().getUserName());
-			System.out.println("URL da Conexao: " + conexao.getConexao().getMetaData().getURL());
-			
-			result = enviaDados(c);
-			
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		conexao = new Conexao();
+		
+		result = enviaDados(c);
 		
 		return result;
 		
@@ -255,17 +246,10 @@ public class Cliente {
 	
 	public List<Cliente> retornaClientes() throws CpfNotNull, NameNotNull {
 		List<Cliente> clientes = new ArrayList<Cliente>();
-		try {
-			conexao = new Conexao();
-			
-			System.out.println("Usuario da Conexao: " + conexao.getConexao().getMetaData().getUserName());
-			System.out.println("URL da Conexao: " + conexao.getConexao().getMetaData().getURL());
-			
-			clientes = getAllClientes();
-			
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
+		conexao = new Conexao();
+		
+		
+		clientes = getAllClientes();
 		
 		return clientes;
 		

@@ -136,7 +136,7 @@ public class AdminClienteMenu extends JFrame{
         return btn;
     }
     
-    public void fillTableWithDataBaseInformation() {
+    public void fillTableWithAllDataBaseInformation() {
     	try {
     	    model.getDataVector().removeAllElements();
     	    revalidate();
@@ -165,6 +165,83 @@ public class AdminClienteMenu extends JFrame{
                 dataCadastro = c.getDataCadastro();
                 model.addRow(new Object[]{nome, cpfCnpj, endereco, telefone, cep, 
                 		sexo, dataNascimento, dataCadastro});
+        	}
+        }catch(Exception e) {
+        	e.printStackTrace();
+        }
+    }
+    
+    public void findRowWithDataBaseInformationByCpf(String cpfSearch) {
+    	try {
+    	    model.getDataVector().removeAllElements();
+    	    model.fireTableDataChanged();
+    		
+        	Cliente conexao = new Cliente();
+        	
+        	clientes = conexao.retornaClientes();
+        	
+        	String nome = "";
+        	String cpfCnpj = "";
+        	String endereco = "";
+        	String telefone = "";
+        	String cep = "";
+        	char sexo;
+        	LocalDate dataNascimento;
+        	LocalDate dataCadastro;
+        	
+        	for(Cliente c: clientes) {
+        		cpfCnpj = c.getCpfCnpj();
+        		if(cpfCnpj.equals(cpfSearch)) {
+        			System.out.println("bbbbbbbbbbb");
+        			 nome = c.getNome();
+                     endereco = c.getEndereco();
+                     telefone = c.getTelefone();
+                     cep = c.getCep();
+                     sexo = c.getSexo();
+                     dataNascimento = c.getDataNascimento();
+                     dataCadastro = c.getDataCadastro();
+                     model.addRow(new Object[]{nome, cpfCnpj, endereco, telefone, cep, 
+                     		sexo, dataNascimento, dataCadastro});
+        		}
+        	}
+        }catch(Exception e) {
+        	e.printStackTrace();
+        }
+    }
+    
+    public void findRowWithDataBaseInformationByName(String nameSearch) {
+    	try {
+    	    model.getDataVector().removeAllElements();
+    	    model.fireTableDataChanged();
+    		
+        	Cliente conexao = new Cliente();
+        	
+        	clientes = conexao.retornaClientes();
+        	
+        	String nome = "";
+        	String cpfCnpj = "";
+        	String endereco = "";
+        	String telefone = "";
+        	String cep = "";
+        	char sexo;
+        	LocalDate dataNascimento;
+        	LocalDate dataCadastro;
+        	
+        	for(Cliente c: clientes) {
+        		nome = c.getNome();
+        		cpfCnpj = c.getCpfCnpj();
+        		if(nome.toLowerCase().contains(nameSearch.toLowerCase())) {
+        			System.out.println("bbbbbbbbbbb");
+        			cpfCnpj = c.getCpfCnpj();
+                     endereco = c.getEndereco();
+                     telefone = c.getTelefone();
+                     cep = c.getCep();
+                     sexo = c.getSexo();
+                     dataNascimento = c.getDataNascimento();
+                     dataCadastro = c.getDataCadastro();
+                     model.addRow(new Object[]{nome, cpfCnpj, endereco, telefone, cep, 
+                     		sexo, dataNascimento, dataCadastro});
+        		}
         	}
         }catch(Exception e) {
         	e.printStackTrace();

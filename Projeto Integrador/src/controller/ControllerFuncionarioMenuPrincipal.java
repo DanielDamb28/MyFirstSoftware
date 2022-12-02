@@ -3,8 +3,6 @@ package controller;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.JFrame;
-
 import model.factorys.FactoryScreens;
 import view.FuncionarioMenuPrincipal;
 
@@ -23,9 +21,10 @@ public class ControllerFuncionarioMenuPrincipal implements ActionListener{
     	ControllerFuncionarioClienteMenu controlCliente = new ControllerFuncionarioClienteMenu();
       	ControllerFuncionarioProdutoMenu controlProduto = new ControllerFuncionarioProdutoMenu();
     	ControllerFuncionarioVendaMenu controlVenda = new ControllerFuncionarioVendaMenu();
+    	ControllerLogin controlLogin = new ControllerLogin();
 
 
-        if (evt.getActionCommand() == "Clientes") {
+        if (evt.getSource() == view.getBtnCliente()) {
             chamaTela.chamaFuncionarioClienteMenu(controlCliente, view.getContainer());
         }
 
@@ -37,10 +36,8 @@ public class ControllerFuncionarioMenuPrincipal implements ActionListener{
             chamaTela.chamaFuncionarioVendaMenu(controlVenda, view.getContainer());
         }
         
-        /*
         if (evt.getActionCommand() == "Deslogar") {
         	chamaTela.chamaTelaLogin(controlLogin, view.getContainer());
         }
-        */
 	}
 }

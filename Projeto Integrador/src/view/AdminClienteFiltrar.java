@@ -5,6 +5,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.ButtonGroup;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -27,53 +28,55 @@ public class AdminClienteFiltrar extends JFrame{
 	private JButton btnFiltrar;
 	private ButtonGroup tipoFiltragem;
 	private ControllerAdminClienteFiltrar controller;
+	private JLabel lblFundoTela; 
+	private ImageIcon imgFundoTela;
 	
 	public AdminClienteFiltrar(ControllerAdminClienteFiltrar ctrl) {
 		container = new JFrame();
 		
 		setScreenDefaultSettings();
+		setImageBackground();
 		
 		controller = ctrl;
 		
-		lPesquisa = new JLabel("Filtrar");
-		lPesquisa.setBounds(50, 50, 100, 40);
+		lPesquisa = new JLabel("Filtrar:");
+		lPesquisa.setBounds(54, 60, 100, 40);
 		lPesquisa.setFont(new Font("Arial", Font.PLAIN, 30));
 		container.add(lPesquisa);
 		
 		tPesquisa = new JTextField();
-		tPesquisa.setBounds(200, 50, 300, 50);
+		tPesquisa.setBounds(150, 59, 360, 50);
 		tPesquisa.setFont(new Font("Arial", Font.PLAIN, 25));
 		container.add(tPesquisa);
 		
 		rbCpfCnpj = new JRadioButton();
-		rbCpfCnpj.setBounds(70, 150, 30, 30);
+		rbCpfCnpj.setBounds(75, 160, 30, 30);
 		rbCpfCnpj.setSelected(true);
 		rbCpfCnpj.addActionListener(controller);
 		container.add(rbCpfCnpj);
 		
 		lCpfCnpj = new JLabel("CPF/CNPJ");
-		lCpfCnpj.setBounds(100, 140, 100, 50);
+		lCpfCnpj.setBounds(105, 150, 100, 50);
 		lCpfCnpj.setFont(new Font("Arial", Font.PLAIN, 20));
 		container.add(lCpfCnpj);
 		
-		
 		rbNome = new JRadioButton();
-		rbNome.setBounds(250, 150, 30, 30);
+		rbNome.setBounds(255, 160, 30, 30);
 		rbNome.addActionListener(controller);
 		container.add(rbNome);
 		
 		lNome = new JLabel("Nome");
-		lNome.setBounds(280, 140, 70, 50);
+		lNome.setBounds(285, 150, 70, 50);
 		lNome.setFont(new Font("Arial", Font.PLAIN, 20));
 		container.add(lNome);
 		
 		rbSemFiltro = new JRadioButton();
-		rbSemFiltro.setBounds(360, 150, 30, 30);
+		rbSemFiltro.setBounds(365, 160, 30, 30);
 		rbSemFiltro.addActionListener(controller);
 		container.add(rbSemFiltro);
 		
 		lSemFiltro = new JLabel("Sem Filtro");
-		lSemFiltro.setBounds(390, 140, 140, 50);
+		lSemFiltro.setBounds(395, 150, 140, 50);
 		lSemFiltro.setFont(new Font("Arial", Font.PLAIN, 20));
 		container.add(lSemFiltro);
 		
@@ -82,7 +85,6 @@ public class AdminClienteFiltrar extends JFrame{
 		btnFiltrar.setFont(new Font("Arial", Font.PLAIN, 30));
 		btnFiltrar.addActionListener(controller);
 		container.add(btnFiltrar);
-		
 		
 		
 		tipoFiltragem = new ButtonGroup();
@@ -101,6 +103,15 @@ public class AdminClienteFiltrar extends JFrame{
         setResizable(false);
     }
 
+	private void setImageBackground() {
+		imgFundoTela = new ImageIcon(".\\src\\imagens\\TelaFiltrarCliente.png");
+        lblFundoTela = new JLabel();
+        lblFundoTela.setIcon(imgFundoTela);
+        lblFundoTela.setBounds(0 , 0, 1000, 750 );
+        container.setContentPane(lblFundoTela);
+    }
+
+    
 	public JRadioButton getRbCpfCnpj() {
 		return rbCpfCnpj;
 	}
@@ -133,6 +144,15 @@ public class AdminClienteFiltrar extends JFrame{
 		this.btnFiltrar = btnFiltrar;
 	}
 
+	public JTextField gettPesquisa() {
+		return tPesquisa;
+	}
+
+	public void settPesquisa(JTextField tPesquisa) {
+		this.tPesquisa = tPesquisa;
+	}
+	
+	
     
     
 }

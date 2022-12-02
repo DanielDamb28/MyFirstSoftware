@@ -12,7 +12,6 @@ public class ControllerAdminClienteMenu implements ActionListener{
 	
 	private Cliente model;
 	private AdminClienteMenu viewClienteMenu;
-	private AdminClienteFiltrar viewClienteFiltrar;
 	
 	public void setCliente(Cliente model) {
 		this.model = model;
@@ -21,11 +20,7 @@ public class ControllerAdminClienteMenu implements ActionListener{
 	public void setAdminClienteMenu(AdminClienteMenu view) {
 		this.viewClienteMenu = view;
 	}
-	
-	public void setAdminClienteFiltrar(AdminClienteFiltrar view) {
-		this.viewClienteFiltrar = view;
-	}
-	
+
 	public void actionPerformed(ActionEvent evt) {
 		ControllerAdminMenuPrincipal controlMenu = new ControllerAdminMenuPrincipal();
 		ControllerAdminClienteMenu controlCliente = new ControllerAdminClienteMenu();

@@ -22,7 +22,17 @@ public class ControllerAdminClienteFiltrar implements ActionListener{
 	@Override
 	public void actionPerformed(ActionEvent evt) {
 		if(evt.getSource() == viewFiltrar.getBtnFiltrar()) {
-			viewMenu.fillTableWithDataBaseInformation();
+			if(viewFiltrar.getRbSemFiltro().isSelected()) {
+				viewMenu.fillTableWithAllDataBaseInformation();
+			}
+			else if(viewFiltrar.getRbCpfCnpj().isSelected()){
+				String cpf = viewFiltrar.gettPesquisa().getText();
+				viewMenu.findRowWithDataBaseInformationByCpf(cpf);
+			}
+			else {
+				String nome = viewFiltrar.gettPesquisa().getText();
+				viewMenu.findRowWithDataBaseInformationByName(nome);
+			}
 		}
 		
 	}

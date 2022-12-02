@@ -28,10 +28,9 @@ public class FuncionarioMenuPrincipal extends  JFrame /*implements ActionListene
     	
     	controller = ctrl; 
     	
-    	btnProduto = createButton("Produtos", 50, 350, 200, 50);
-    	btnCliente = createButton("Clientes", 275, 350, 200, 50);
-    	btnFornecedor = createButton("Fornecedores", 500, 350, 200, 50);
-    	btnVenda = createButton("Vendas", 725, 350, 200, 50);
+    	btnProduto = createButton("Produtos", 625 ,350 ,200,50 );
+    	btnCliente = createButton("Clientes", 400, 350, 200,50);
+    	btnVenda = createButton("Vendas", 175,350,200,50);
         btnDeslogar = createButton("Deslogar", 50, 625, 100, 50);
 
         container.setVisible(true);
@@ -69,5 +68,39 @@ public class FuncionarioMenuPrincipal extends  JFrame /*implements ActionListene
 	public void setContainer(JFrame container) {
 		this.container = container;
 	}
+
+	public JButton getBtnProduto() {
+		return btnProduto;
+	}
+
+	public void setBtnProduto(JButton btnProduto) {
+		this.btnProduto = btnProduto;
+	}
+
+	public JButton getBtnCliente() {
+		return btnCliente;
+	}
+
+	public void setBtnCliente(JButton btnCliente) {
+		this.btnCliente = btnCliente;
+	}
+
+	public JButton getBtnFornecedor() {
+		return btnFornecedor;
+	}
+
+	public void setBtnFornecedor(JButton btnFornecedor) {
+		this.btnFornecedor = btnFornecedor;
+	}
+
+	public JButton getBtnDeslogar() {
+		return btnDeslogar;
+	}
+
+	public void setBtnDeslogar(JButton btnDeslogar) {
+		this.btnDeslogar = btnDeslogar;
+	}
+	
+	
 
 }
