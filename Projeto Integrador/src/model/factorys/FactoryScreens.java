@@ -1,9 +1,6 @@
 package model.factorys;
 
-import java.awt.event.ActionListener;
-
 import javax.swing.JFrame;
-import javax.swing.table.DefaultTableModel;
 
 import controller.ControllerAdminClienteFiltrar;
 import controller.ControllerAdminClienteMenu;
@@ -12,6 +9,10 @@ import controller.ControllerAdminMenuPrincipal;
 import controller.ControllerAdminProdutoMenu;
 import controller.ControllerAdminUsuarioMenu;
 import controller.ControllerAdminVendaMenu;
+import controller.ControllerFuncionarioClienteMenu;
+import controller.ControllerFuncionarioMenuPrincipal;
+import controller.ControllerFuncionarioProdutoMenu;
+import controller.ControllerFuncionarioVendaMenu;
 import controller.ControllerLogin;
 import model.entities.Cliente;
 import model.entities.Fornecedor;
@@ -29,7 +30,6 @@ import view.AdminProdutoMenu;
 import view.AdminUsuarioMenu;
 import view.AdminVendaMenu;
 import view.FuncionarioClienteMenu;
-import view.FuncionarioFornecedorMenu;
 import view.FuncionarioMenuPrincipal;
 import view.FuncionarioProdutoMenu;
 import view.FuncionarioVendaMenu;
@@ -58,11 +58,10 @@ public class FactoryScreens {
 		container.dispose();
 	}
 	
-	public void chamaAdminClienteFiltrar(ControllerAdminClienteFiltrar ctrl,DefaultTableModel model, Cliente cliente) {
+	public void chamaAdminClienteFiltrar(ControllerAdminClienteFiltrar ctrl,AdminClienteMenu view) {
 		AdminClienteFiltrar tela = new AdminClienteFiltrar(ctrl);
-		ctrl.setView(tela);
-		ctrl.setModel(model);
-		ctrl.setCliente(cliente);
+		ctrl.setView(view);
+		ctrl.setClienteFiltrar(tela);
 	}
 	
 	public void chamaAdminClienteCadastro(ControllerAdminClienteMenu ctrl) {
@@ -105,24 +104,30 @@ public class FactoryScreens {
 	
 	/*-----------------------------------*/
 	
-	public void chamaFuncionarioTelaMenu(ActionListener ctrl, JFrame container) {
-		new FuncionarioMenuPrincipal();
+	public void chamaFuncionarioTelaMenu(ControllerFuncionarioMenuPrincipal ctrl, JFrame container) {
+		FuncionarioMenuPrincipal tela = new FuncionarioMenuPrincipal(ctrl);
+		ctrl.setFuncionarioMenuPrincipal(tela);
 		container.dispose();
 	}
-	public void chamaFuncionarioClienteMenu(ActionListener ctrl,JFrame container) {
-		new FuncionarioClienteMenu();
+	public void chamaFuncionarioClienteMenu(ControllerFuncionarioClienteMenu ctrl,JFrame container) {
+		FuncionarioClienteMenu tela= new FuncionarioClienteMenu(ctrl);
+		Cliente cliente = new Cliente();
+		ctrl.setCliente(cliente);
+		ctrl.setFuncionarioClienteMenu(tela);
 		container.dispose();
 	}
-	public void chamaFuncionarioProdutoMenu(ActionListener ctrl,JFrame container) {
-		new FuncionarioProdutoMenu();
+	public void chamaFuncionarioProdutoMenu(ControllerFuncionarioProdutoMenu ctrl,JFrame container) {
+		FuncionarioProdutoMenu tela = new FuncionarioProdutoMenu(ctrl);
+		Produto product = new Produto();
+		ctrl.setProduto(product);
+		ctrl.setFuncionarioProdutoMenu(tela);
 		container.dispose();
 	}
-	public void chamaFuncionarioVendaMenu(ActionListener ctrl,JFrame container) {
-		new FuncionarioVendaMenu();
-		container.dispose();
-	}
-	public void chamaFuncionarioFornecedorMenu(ActionListener ctrl,JFrame container) {
-		new FuncionarioFornecedorMenu();
+	public void chamaFuncionarioVendaMenu(ControllerFuncionarioVendaMenu ctrl,JFrame container) {
+		FuncionarioVendaMenu tela = new FuncionarioVendaMenu(ctrl);
+		Venda venda = new Venda();
+		ctrl.setVenda(venda);
+		ctrl.setFuncionarioVendaMenu(tela);
 		container.dispose();
 	}
 	

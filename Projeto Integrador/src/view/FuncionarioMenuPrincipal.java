@@ -7,20 +7,26 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
+//import javax.swing.JOptionPane;
 
-import model.factorys.FactoryScreens;
+//import model.factorys.FactoryScreens;
+import controller.ControllerFuncionarioMenuPrincipal;
 
-public class FuncionarioMenuPrincipal extends  JFrame implements ActionListener{
+public class FuncionarioMenuPrincipal extends  JFrame /*implements ActionListener*/{
 
-    JButton btnProduto, btnCliente, btnFornecedor, btnVenda, btnDeslogar;
-    ImageIcon imgFundoTela;
-    JLabel lblFundoTela;
+    private JButton btnProduto, btnCliente, btnFornecedor, btnVenda, btnDeslogar;
+    private ImageIcon imgFundoTela;
+    private JLabel lblFundoTela;
+    private JFrame container;
+    private ActionListener controller;
 
-    public FuncionarioMenuPrincipal() {
+    public FuncionarioMenuPrincipal(ControllerFuncionarioMenuPrincipal ctrl) {
     	
+    	container = new JFrame(); 
     	setScreenDefaultSettings();
     	setImageBackground();
+    	
+    	controller = ctrl; 
     	
     	btnProduto = createButton("Produtos", 50, 350, 200, 50);
     	btnCliente = createButton("Clientes", 275, 350, 200, 50);
@@ -28,15 +34,15 @@ public class FuncionarioMenuPrincipal extends  JFrame implements ActionListener{
     	btnVenda = createButton("Vendas", 725, 350, 200, 50);
         btnDeslogar = createButton("Deslogar", 50, 625, 100, 50);
 
-        this.setVisible(true);
+        container.setVisible(true);
     }
     
     private void setScreenDefaultSettings() {
-    	this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        this.setSize(1000, 750);
-        this.setTitle("Menu");
-        this.setLocationRelativeTo(null);
-        this.setLayout(null);
+    	container.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    	container.setSize(1000, 750);
+    	container.setTitle("Menu");
+    	container.setLocationRelativeTo(null);
+    	container.setLayout(null);
         setResizable(false);
     }
     
@@ -45,45 +51,23 @@ public class FuncionarioMenuPrincipal extends  JFrame implements ActionListener{
         lblFundoTela = new JLabel();
         lblFundoTela.setIcon(imgFundoTela);
         lblFundoTela.setBounds(0 , 0, 1000, 750 );
-        this.setContentPane(lblFundoTela);
+        container.setContentPane(lblFundoTela);
     }
     
     private JButton createButton(String mensagem, int xPosition, int yPosition, int width, int height) {
     	JButton btn = new JButton(mensagem);
     	btn.setBounds(xPosition,yPosition,width,height);
-    	btn.addActionListener(this);
-        this.add(btn);
+    	btn.addActionListener(controller);
+        container.add(btn);
         return btn;
     }
     
-    public void actionPerformed (ActionEvent evt) {
-    	FactoryScreens chamaTela = new FactoryScreens();
+	public JFrame getContainer() {
+		return container;
+	}
 
-        if (evt.getSource() == btnCliente) {
-            chamaTela.chamaFuncionarioClienteMenu();
-            this.dispose();
-        }
-
-        if (evt.getSource() == btnProduto) {
-            chamaTela.chamaFuncionarioProdutoMenu();
-            this.dispose();
-        }
-
-        if (evt.getSource() == btnVenda) {
-            chamaTela.chamaFuncionarioVendaMenu();
-            this.dispose();
-        }
-
-        if (evt.getSource() == btnFornecedor) {
-            chamaTela.chamaFuncionarioFornecedorMenu();
-            this.dispose();
-        }
-        
-        if (evt.getSource() == btnDeslogar) {
-        	chamaTela.chamaTelaLogin();
-        	this.dispose();
-        }
-
-    }
+	public void setContainer(JFrame container) {
+		this.container = container;
+	}
 
 }

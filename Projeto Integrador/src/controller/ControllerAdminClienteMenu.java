@@ -28,12 +28,13 @@ public class ControllerAdminClienteMenu implements ActionListener{
 	
 	public void actionPerformed(ActionEvent evt) {
 		ControllerAdminMenuPrincipal controlMenu = new ControllerAdminMenuPrincipal();
-		ControllerAdminClienteFiltrar control = new ControllerAdminClienteFiltrar();
+		ControllerAdminClienteMenu controlCliente = new ControllerAdminClienteMenu();
+		ControllerAdminClienteFiltrar controlFiltrar = new ControllerAdminClienteFiltrar();
 		
 		FactoryScreens chamaTela = new FactoryScreens();
 		
 		if(evt.getSource() == viewClienteMenu.getBtnSearch()) {
-			chamaTela.chamaAdminClienteFiltrar(control, viewClienteMenu.getModel(), model);
+			chamaTela.chamaAdminClienteFiltrar(controlFiltrar, viewClienteMenu);
 		}
 		if(evt.getSource() == viewClienteMenu.getBtnVoltar()) {
 			chamaTela.chamaAdminMenuPrincipal(controlMenu, viewClienteMenu.getContainer());

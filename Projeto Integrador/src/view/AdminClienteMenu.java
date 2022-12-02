@@ -22,6 +22,8 @@ import model.factorys.FactoryScreens;
 
 public class AdminClienteMenu extends JFrame{
 
+	private List<Cliente> clientes = new ArrayList<Cliente>();
+	
 	private JFrame container;
 	private ImageIcon imgFundoTela;
     private JLabel lblFundoTela;
@@ -134,6 +136,40 @@ public class AdminClienteMenu extends JFrame{
         return btn;
     }
     
+    public void fillTableWithDataBaseInformation() {
+    	try {
+    	    model.getDataVector().removeAllElements();
+    	    revalidate();
+    		
+        	Cliente conexao = new Cliente();
+        	
+        	clientes = conexao.retornaClientes();
+        	
+        	String nome = "";
+        	String cpfCnpj = "";
+        	String endereco = "";
+        	String telefone = "";
+        	String cep = "";
+        	char sexo;
+        	LocalDate dataNascimento;
+        	LocalDate dataCadastro;
+        	
+        	for(Cliente c: clientes) {
+                nome = c.getNome();
+                cpfCnpj = c.getCpfCnpj();
+                endereco = c.getEndereco();
+                telefone = c.getTelefone();
+                cep = c.getCep();
+                sexo = c.getSexo();
+                dataNascimento = c.getDataNascimento();
+                dataCadastro = c.getDataCadastro();
+                model.addRow(new Object[]{nome, cpfCnpj, endereco, telefone, cep, 
+                		sexo, dataNascimento, dataCadastro});
+        	}
+        }catch(Exception e) {
+        	e.printStackTrace();
+        }
+    }
     
 
 	public JButton getBtnAdd() {

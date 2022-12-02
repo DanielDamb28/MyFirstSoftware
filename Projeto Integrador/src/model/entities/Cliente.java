@@ -29,7 +29,7 @@ public class Cliente {
 	private String cep;
 	private char sexo;
 	
-	private List<Cliente> clientes = new ArrayList<Cliente>();
+	
 	
 	public Cliente() {}
 	
@@ -316,37 +316,6 @@ public class Cliente {
 		
 	}
 	
-	 public void fillTableWithDataBaseInformation(DefaultTableModel model) {
-	    	try {
-	        	Cliente conexao = new Cliente();
-	        	
-	        	clientes = conexao.retornaClientes();
-	        	
-	        	String nome = "";
-	        	String cpfCnpj = "";
-	        	String endereco = "";
-	        	String telefone = "";
-	        	String cep = "";
-	        	char sexo;
-	        	LocalDate dataNascimento;
-	        	LocalDate dataCadastro;
-	        	
-	        	for(Cliente c: clientes) {
-	                nome = c.getNome();
-	                cpfCnpj = c.getCpfCnpj();
-	                endereco = c.getEndereco();
-	                telefone = c.getTelefone();
-	                cep = c.getCep();
-	                sexo = c.getSexo();
-	                dataNascimento = c.getDataNascimento();
-	                dataCadastro = c.getDataCadastro();
-	                model.addRow(new Object[]{nome, cpfCnpj, endereco, telefone, cep, 
-	                		sexo, dataNascimento, dataCadastro});
-	        	}
-	        }catch(Exception e) {
-	        	e.printStackTrace();
-	        }
-	    }
 	
 	
 }

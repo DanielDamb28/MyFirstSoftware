@@ -1,6 +1,8 @@
 package view;
 
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
@@ -10,7 +12,6 @@ import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 
 import controller.ControllerAdminClienteFiltrar;
-import controller.ControllerAdminClienteMenu;
 
 public class AdminClienteFiltrar extends JFrame{
 
@@ -79,6 +80,7 @@ public class AdminClienteFiltrar extends JFrame{
 		btnFiltrar = new JButton("Filtrar");
 		btnFiltrar.setBounds(350, 350, 200, 50);
 		btnFiltrar.setFont(new Font("Arial", Font.PLAIN, 30));
+		btnFiltrar.addActionListener(controller);
 		container.add(btnFiltrar);
 		
 		

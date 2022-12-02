@@ -7,71 +7,112 @@ import model.factorys.FactoryScreens;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class FuncionarioProdutoMenu extends  JFrame implements ActionListener{
+import model.factorys.FactoryScreens;
+import controller.ControllerAdminVendaMenu;
+import controller.ControllerFuncionarioProdutoMenu;
 
-    JButton btnCadastrarProduto, btnEditarProduto, btnBuscarProduto, btnVoltarMenu;
-    ImageIcon imgFundoTela;
-    JLabel lblFundoTela;
+public class FuncionarioProdutoMenu extends  JFrame /*implements ActionListener*/{
 
-    public FuncionarioProdutoMenu() {
+    private JButton btnCadastrarProduto, btnEditarProduto, btnBuscarProduto, btnVoltarMenu;
+    private ImageIcon imgFundoTela;
+    private JLabel lblFundoTela;
+    private JFrame container;
+    private ActionListener controller;
 
+    public FuncionarioProdutoMenu(ControllerFuncionarioProdutoMenu ctrl) {
+    	
+    	container = new JFrame();
+
+    	setScreenDefaultSettings(); 
+
+    	setImageBackground(); 
+    	
+    	controller = ctrl; 
+
+        btnCadastrarProduto = createButton("Cadastrar novo produto", 175,350,200,50);
+
+        btnEditarProduto = createButton("Editar produto", 400, 350, 200,50);
+
+        btnBuscarProduto = createButton("Buscar produto", 625 ,350 ,200,50);
+        
+        btnVoltarMenu = createButton("Voltar", 50,620 ,100,50);
+
+        container.setVisible(true);
+    }
+
+    private void setScreenDefaultSettings() {
+    	container.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    	container.setSize(1000, 750);
+    	container.setTitle("Menu");
+    	container.setLocationRelativeTo(null);
+    	container.setLayout(null);
+        setResizable(false);
+    }
+    
+    private void setImageBackground() {
     	imgFundoTela = new ImageIcon(".\\src\\imagens\\fundo_menu.png");
         lblFundoTela = new JLabel();
         lblFundoTela.setIcon(imgFundoTela);
         lblFundoTela.setBounds(0 , 0, 1000, 750 );
-        this.setContentPane(lblFundoTela);
-
-        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        this.setSize(1000, 750);
-        this.setTitle("Menu para a edicao dos clientes");
-        this.setLocationRelativeTo(null);
-        this.setLayout(null);
-        setResizable(false);
-
-        btnCadastrarProduto = new JButton("Cadastrar novo produto");
-        btnCadastrarProduto.setBounds(175,350,200,50);
-        btnCadastrarProduto.addActionListener(this);
-
-        btnEditarProduto = new JButton("Editar produto");
-        btnEditarProduto.setBounds(400, 350, 200,50);
-        btnEditarProduto.addActionListener(this);
-
-        btnBuscarProduto = new JButton("Buscar produto");
-        btnBuscarProduto.setBounds(625 ,350 ,200,50);
-        btnBuscarProduto.addActionListener(this);
-        
-        btnVoltarMenu = new JButton("Voltar");
-        btnVoltarMenu.setBounds(50,620 ,100,50);
-        btnVoltarMenu.addActionListener(this);
-
-        this.add(btnCadastrarProduto);
-        this.add(btnEditarProduto);
-        this.add(btnBuscarProduto);
-        this.add(btnVoltarMenu);
-        this.setVisible(true);
+        container.setContentPane(lblFundoTela);
+    }
+    
+    private JButton createButton(String text, int xPosition, int yPosition, int width, int height) {
+        JButton btn = new JButton(text);
+        btn.setBounds(xPosition,yPosition,width,height);
+        btn.addActionListener(controller);
+        container.add(btn);
+        return btn;
     }
 
+	public JFrame getContainer() {
+		return container;
+	}
 
-    @Override
-    public void actionPerformed (ActionEvent evt) {
-    	
-    	FactoryScreens chamaTela = new FactoryScreens();
-        if (evt.getSource() == btnCadastrarProduto) {
-            JOptionPane.showMessageDialog(this, "Trocar tela para tela de cadastro de produto");
-        }
+	public void setContainer(JFrame container) {
+		this.container = container;
+	}
 
-        if (evt.getSource() == btnEditarProduto) {
-            JOptionPane.showMessageDialog(this, "Trocar tela para tela de edicao de produto");
-        }
+	public JButton getBtnCadastrarProduto() {
+		return btnCadastrarProduto;
+	}
 
-        if(evt.getSource() == btnBuscarProduto) {
-            JOptionPane.showMessageDialog(this, "Trocar tela para busca de produto");
-        }
-        
-        if (evt.getSource() == btnVoltarMenu) {
-        	chamaTela.chamaFuncionarioTelaMenu();
-        	this.dispose();
-        }
-    }
+	public void setBtnCadastrarProduto(JButton btnCadastrarProduto) {
+		this.btnCadastrarProduto = btnCadastrarProduto;
+	}
+
+	/*
+	public JButton getBtnExcluirProduto() {
+		return btnExcluirProduto;
+	}
+
+	public void setBtnExcluirProduto(JButton btnExcluirProduto) {
+		this.btnExcluirProduto = btnExcluirProduto;
+	}
+	*/
+
+	public JButton getBtnEditarProduto() {
+		return btnEditarProduto;
+	}
+
+	public void setBtnEditarProduto(JButton btnEditarProduto) {
+		this.btnEditarProduto = btnEditarProduto;
+	}
+
+	public JButton getBtnBuscarProduto() {
+		return btnBuscarProduto;
+	}
+
+	public void setBtnBuscarProduto(JButton btnBuscarProduto) {
+		this.btnBuscarProduto = btnBuscarProduto;
+	}
+
+	public JButton getBtnVoltarMenu() {
+		return btnVoltarMenu;
+	}
+
+	public void setBtnVoltarMenu(JButton btnVoltarMenu) {
+		this.btnVoltarMenu = btnVoltarMenu;
+	}
 }
 
