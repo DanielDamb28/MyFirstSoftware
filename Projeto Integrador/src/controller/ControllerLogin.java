@@ -36,12 +36,12 @@ public class ControllerLogin implements ActionListener{
 			
 			Usuario usuario = login.fazerLogin(id);
 			if(usuario == null) {
-    			JOptionPane.showMessageDialog(view.receiveContainer(), "Usuario não encontrado");
+    			view.mensagemUsuarioNaoEncontrado();
     			view.getTxtLogin().setText("");
     			view.getPswSenha().setText("");
     		}
     		else if(!senha.equals(usuario.getSenha())) {
-    			JOptionPane.showMessageDialog(view.receiveContainer() ,"Senha inválida!");
+    			view.mensagemSenhaInvalida();
     			view.getPswSenha().setText("");
     		} else {
     			System.out.println("Id: " + usuario.getId() + ", Senha: " + usuario.getSenha() + ", Tipo de Acesso: "+  usuario.getTipoAcesso());

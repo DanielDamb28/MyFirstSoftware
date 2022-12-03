@@ -1,26 +1,26 @@
 package view;
 
-import java.awt.event.ActionEvent;
-
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
-import controller.ControllerAdminClienteMenu;
+import controller.ControllerAdminClienteExcluir;
 
 public class AdminClienteExclusao extends JFrame{
     
 	private JFrame container;
-	private JLabel lblCpfCnpj; 
+	private JLabel lblCpfCnpj;
+	private JTextArea info;
 	private JTextField txtCpfCnpj; 
-	private JButton btnEditarCliente, btnExcluirCliente; 
+	private JButton btnProcurarCliente, btnExcluirCliente; 
 	private ImageIcon imgFundoTela;
-	private ControllerAdminClienteMenu controller;
+	private ControllerAdminClienteExcluir controller;
 
 
-    public AdminClienteExclusao(ControllerAdminClienteMenu ctrl) {
+    public AdminClienteExclusao(ControllerAdminClienteExcluir ctrl) {
     	
     	container = new JFrame();
     	
@@ -32,6 +32,11 @@ public class AdminClienteExclusao extends JFrame{
     	setCpfCnpjTextField();
     	setEditClientButton();
     	setDelClientButton();
+    	
+    	info = new JTextArea();
+    	info.setBounds(45,100,510,280);
+    	info.setEditable(false);
+    	container.add(info);
     	
     	addComponentsToScreen();
 
@@ -48,7 +53,6 @@ public class AdminClienteExclusao extends JFrame{
     }
     
     private void setDefaultScreenSettings() {
-    	container.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     	container.setSize(600, 450);
     	container.setTitle("Cadastro de cliente");
     	container.setLocationRelativeTo(null);
@@ -64,9 +68,9 @@ public class AdminClienteExclusao extends JFrame{
     }
     
     private void setEditClientButton() {
-        btnEditarCliente = new JButton("Pesquisar");
-        btnEditarCliente.setBounds(300,25,100,40);
-        btnEditarCliente.addActionListener(controller);
+        btnProcurarCliente = new JButton("Pesquisar");
+        btnProcurarCliente.setBounds(300,25,100,40);
+        btnProcurarCliente.addActionListener(controller);
     }
     
     private void setDelClientButton() {
@@ -79,22 +83,42 @@ public class AdminClienteExclusao extends JFrame{
     	
     	container.add(lblCpfCnpj);
     	container.add(txtCpfCnpj);
-    	container.add(btnEditarCliente);
+    	container.add(btnProcurarCliente);
     	container.add(btnExcluirCliente);
  
     }
+
+	public JTextField getTxtCpfCnpj() {
+		return txtCpfCnpj;
+	}
+
+	public void setTxtCpfCnpj(JTextField txtCpfCnpj) {
+		this.txtCpfCnpj = txtCpfCnpj;
+	}
+
+	public JButton getBtnProcurarCliente() {
+		return btnProcurarCliente;
+	}
+
+	public void setBtnEditarCliente(JButton btnProcurarCliente) {
+		this.btnProcurarCliente = btnProcurarCliente;
+	}
+
+	public JButton getBtnExcluirCliente() {
+		return btnExcluirCliente;
+	}
+
+	public void setBtnExcluirCliente(JButton btnExcluirCliente) {
+		this.btnExcluirCliente = btnExcluirCliente;
+	}
+
+	public JTextArea getInfo() {
+		return info;
+	}
+
+	public void setInfo(JTextArea info) {
+		this.info = info;
+	}
     
-    public void actionPerformed (ActionEvent evt) {
-
-        if (evt.getSource() == btnEditarCliente) {
-        	
-        	/* BRILHA NO BACKEND DANIBOY */
-        }
-        
-        if (evt.getSource() == btnExcluirCliente) {
-        	
-        	/* BRILHA NO BACKEND DANIBOY */
-        }
-
-    }
+    
 }

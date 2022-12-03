@@ -25,6 +25,8 @@ public class ControllerAdminClienteMenu implements ActionListener{
 		ControllerAdminMenuPrincipal controlMenu = new ControllerAdminMenuPrincipal();
 		ControllerAdminClienteMenu controlCliente = new ControllerAdminClienteMenu();
 		ControllerAdminClienteFiltrar controlFiltrar = new ControllerAdminClienteFiltrar();
+		ControllerAdminClienteCadastro controlCadastro = new ControllerAdminClienteCadastro();
+		ControllerAdminClienteExcluir controlExcluir = new ControllerAdminClienteExcluir();
 		
 		FactoryScreens chamaTela = new FactoryScreens();
 		
@@ -35,10 +37,10 @@ public class ControllerAdminClienteMenu implements ActionListener{
 			chamaTela.chamaAdminMenuPrincipal(controlMenu, viewClienteMenu.getContainer());
 		}
 		if(evt.getSource() == viewClienteMenu.getBtnAdd()) {
-			chamaTela.chamaAdminClienteCadastro(viewClienteMenu.getController());
+			chamaTela.chamaAdminClienteCadastro(controlCadastro, viewClienteMenu);
 		}
 		if(evt.getSource() == viewClienteMenu.getBtnDelete()) {
-			chamaTela.chamaAdminClienteExclusao(viewClienteMenu.getController());
+			chamaTela.chamaAdminClienteExclusao(controlExcluir);
 		}
 	}
 }

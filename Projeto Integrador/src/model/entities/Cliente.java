@@ -10,10 +10,10 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.swing.table.DefaultTableModel;
-
 import model.exceptions.CpfNotNull;
 import model.exceptions.NameNotNull;
+import model.exceptions.NascimentoNotNull;
+import model.exceptions.SexoNotNull;
 import model.factorys.FactoryException;
 
 public class Cliente {
@@ -35,7 +35,7 @@ public class Cliente {
 	
 	public Cliente(String cpfCnpj, String nome, String endereco, String telefone, LocalDate nascimento,
 						LocalDate dataCadastro, String cep, String sexo) 
-					throws CpfNotNull, NameNotNull{
+					throws CpfNotNull, NameNotNull, SexoNotNull, NascimentoNotNull{
 		
 		setCpfCnpj(cpfCnpj);
 		setNome(nome);
@@ -90,8 +90,12 @@ public class Cliente {
 	public LocalDate getDataNascimento() {
 		return dataNascimento;
 	}
-	public void setDataNascimento(LocalDate dataNascimento) {
-		this.dataNascimento = dataNascimento;
+	public void setDataNascimento(LocalDate dataNascimento) throws NascimentoNotNull {
+		if(dataNascimento != null) {
+			this.dataNascimento = dataNascimento;
+		}else {
+			FactoryException.callNascimentoNotNull();
+		}
 	}
 	
 	
@@ -114,10 +118,22 @@ public class Cliente {
 		return this.sexo;
 	}
 	
-	public void setSexo(String sexo) {
-		this.sexo = sexo.charAt(0);
+	public void setSexo(String sexo) throws SexoNotNull{
+		if(!sexo.isEmpty()) {
+			this.sexo = sexo.charAt(0);
+		}else {
+			FactoryException.callSexoNotNull();
+		}
 	}
 	
+	
+	
+	public String toString() {
+		return "Cliente \ncpfCnpj=" + cpfCnpj + " \nnome=" + nome + " \nendereco=" + endereco + " \ntelefone=" + telefone
+				+ " \ndataNascimento=" + dataNascimento + " \ndataCadastro=" + dataCadastro + " \ncep=" + cep + " \nsexo="
+				+ sexo;
+	}
+
 	public String adicionaClienteNoBancoDeDados(Cliente c) {
 		String result = null;
 		conexao = new Conexao();
@@ -156,7 +172,7 @@ public class Cliente {
 			
 		}catch (SQLException e) {
 			result = 0;
-			resposta = "Esse CPF/CNPJ já está cadastrado";
+			resposta = e.getMessage();
 
 		}finally{
 			if(con != null){
@@ -181,18 +197,9 @@ public class Cliente {
 	
 	public String removeClienteDoBancoDeDados(String cpfCnpj) {
 		String result = null;
-		try {
-			conexao = new Conexao();
-			
-			System.out.println("Usuario da Conexao: " + conexao.getConexao().getMetaData().getUserName());
-			System.out.println("URL da Conexao: " + conexao.getConexao().getMetaData().getURL());
-			
-			result = removeDados(cpfCnpj);
-			
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		conexao = new Conexao();
+		
+		result = removeDados(cpfCnpj);
 		
 		return result;
 		
@@ -243,8 +250,69 @@ public class Cliente {
 		}
 	}
 	
+	public String procuraDados(String cpfCnpj) throws NameNotNull, CpfNotNull, NascimentoNotNull, SexoNotNull {
+		int result = 0;
+		String resposta = null;
+		Cliente cliente = null;
+		
+		conexao = new Conexao();
+		
+		Connection con = conexao.getConexao();
+		String comandoInsereClienteNoBancoDeDados = "SELECT * FROM cliente WHERE pk_cpf_Cnpj = ?;";
+		
+		try {
+			PreparedStatement stmInsereClienteNoBancoDeDados = con.prepareStatement(comandoInsereClienteNoBancoDeDados);
+			
+			stmInsereClienteNoBancoDeDados.setString(1, cpfCnpj);
+			
+			System.out.println(stmInsereClienteNoBancoDeDados);
+			
+			ResultSet rs = stmInsereClienteNoBancoDeDados.executeQuery();
+			if(rs.next()) {
+				cliente = new Cliente();
+				
+				cliente.setNome(rs.getString("nome"));
+				cliente.setDataCadastro(rs.getDate("Data_Cadastro").toLocalDate());
+				cliente.setEndereco(rs.getString("endereco"));
+				cliente.setCpfCnpj(rs.getString("pk_cpf_cnpj"));
+				cliente.setDataNascimento(rs.getDate("data_nascimento").toLocalDate());
+				cliente.setTelefone(rs.getString("telefone"));
+				cliente.setCep(rs.getString("cep"));
+				cliente.setSexo(rs.getString("sexo"));
+				
+				result = 1;
+			}
+			
+			
+		}catch (SQLException e) {
+			e.printStackTrace();
+			result = 2;
+			resposta = "Erro ao procurar cliente";
+
+		}finally{
+			if(con != null){
+				try {
+					con.setAutoCommit(true);
+					con.close();
+				} catch (SQLException e) {
+					result = 2;
+					resposta = "Erro ao encerrar conexao";
+					e.getStackTrace();
+				}
+			}
+		}
+		
+		if(result == 1) {
+			return cliente.toString();
+		} else if(result == 0){
+			return "CPF/CNPJ não encontrado";
+		} else {
+			return resposta;
+		}
+	}
 	
-	public List<Cliente> retornaClientes() throws CpfNotNull, NameNotNull {
+	
+	public List<Cliente> retornaClientes() throws CpfNotNull, NameNotNull, SexoNotNull, NascimentoNotNull {
 		List<Cliente> clientes = new ArrayList<Cliente>();
 		conexao = new Conexao();
 		
@@ -256,7 +324,7 @@ public class Cliente {
 		
 	}
 	
-	private List<Cliente> getAllClientes() throws CpfNotNull, NameNotNull{
+	private List<Cliente> getAllClientes() throws CpfNotNull, NameNotNull, SexoNotNull, NascimentoNotNull{
 		Connection con = conexao.getConexao();
 		String comandoInsereClienteNoBancoDeDados = "SELECT * FROM cliente;";
 		ResultSet rs = null;
@@ -265,8 +333,6 @@ public class Cliente {
 		
 		try {
 			PreparedStatement stmInsereClienteNoBancoDeDados = con.prepareStatement(comandoInsereClienteNoBancoDeDados);
-			
-			System.out.println(stmInsereClienteNoBancoDeDados);
 			
 			rs = stmInsereClienteNoBancoDeDados.executeQuery();
 			while(rs.next()) {

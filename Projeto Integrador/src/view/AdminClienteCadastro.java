@@ -1,31 +1,31 @@
 package view;
 
-import java.awt.event.ActionListener;
-
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 
-import controller.ControllerAdminClienteMenu;
+import controller.ControllerAdminClienteCadastro;
 
 public class AdminClienteCadastro extends JFrame{
 	
 	private JFrame container;
 	private JTextField txtNome, txtCpfCnpj, txtDataNasc, txtTelefone, txtCep, txtSexo; 
 	private JLabel lblNome, lblCpfCnpj, lblDataNasc, lblTelefone, lblCep, lblSexo; 
-	private JLabel lblRua, lblCidadeUF, lblBairro, lblNumero; 
+	private JLabel lblRua, lblCidadeUF, lblBairro, lblNumero, mensagem; 
 	private JTextField txtRua, txtCidadeUF, txtBairro, txtNumero; 
 	private JButton btnCadastrarCliente;
 	private ImageIcon imgFundoTela;
-	private ActionListener controller;
+	private ControllerAdminClienteCadastro controller;
 
 
 
-    public AdminClienteCadastro(ControllerAdminClienteMenu ctrl) {
+    public AdminClienteCadastro(ControllerAdminClienteCadastro ctrl) {
     	
     	container = new JFrame();
+    	
+    	controller = ctrl;
     	
     	setBackgroundImage();
     	setDefaultScreenSettings();
@@ -42,13 +42,14 @@ public class AdminClienteCadastro extends JFrame{
     	lblRua = setLabel("Rua:", 52, 313, 100,35);
     	txtRua = setTextField(82, 316, 200,30);
     	lblDataNasc = setLabel("Nascimento:", 245, 120, 150,35);
-    	txtDataNasc = setTextField(325, 123, 87,30);
+    	txtDataNasc = setTextField(325, 123, 87,30, "dd/MM/yyyy");
     	lblTelefone = setLabel("Telefone:", 360, 25, 100,35);
     	txtTelefone = setTextField(418, 28, 130,30);
 		lblCep = setLabel("Cep:", 420, 215, 100,35);
 		txtCep = setTextField(450, 220, 100,30);
     	lblSexo = setLabel("Sexo:", 430, 122, 100,35);
     	txtSexo = setTextField(467, 125, 85,30);
+    	mensagem = setLabel("aaaaaaaaaaaaaaaaaaaaaaa", 50, 360, 300, 40);
     	
     	setCreateClientButton();
 
@@ -65,7 +66,6 @@ public class AdminClienteCadastro extends JFrame{
     }
     
     private void setDefaultScreenSettings() {
-    	container.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     	container.setSize(600, 450);
     	container.setTitle("Cadastro de cliente");
     	container.setLocationRelativeTo(null);
@@ -88,6 +88,13 @@ public class AdminClienteCadastro extends JFrame{
     	container.add(txt);
     	return txt;
     }
+    
+    private JTextField setTextField(int xText, int yText, int width, int height, String Mensagem) {
+    	JTextField txt = new JTextField();
+    	txt.setBounds(xText,yText,width,height);
+    	container.add(txt);
+    	return txt;
+    }
    
     private void setCreateClientButton() {
         btnCadastrarCliente = new JButton("Cadastrar");
@@ -96,5 +103,77 @@ public class AdminClienteCadastro extends JFrame{
         container.add(btnCadastrarCliente);
 
     }
+    
+    
+
+	public JButton getBtnCadastrarCliente() {
+		return btnCadastrarCliente;
+	}
+
+	public void setBtnCadastrarCliente(JButton btnCadastrarCliente) {
+		this.btnCadastrarCliente = btnCadastrarCliente;
+	}
+
+	public JTextField getTxtNome() {
+		return txtNome;
+	}
+
+	public void setTxtNome(JTextField txtNome) {
+		this.txtNome = txtNome;
+	}
+
+	public JTextField getTxtCpfCnpj() {
+		return txtCpfCnpj;
+	}
+
+	public void setTxtCpfCnpj(JTextField txtCpfCnpj) {
+		this.txtCpfCnpj = txtCpfCnpj;
+	}
+
+	public JTextField getTxtDataNasc() {
+		return txtDataNasc;
+	}
+
+	public void setTxtDataNasc(JTextField txtDataNasc) {
+		this.txtDataNasc = txtDataNasc;
+	}
+
+	public JTextField getTxtTelefone() {
+		return txtTelefone;
+	}
+
+	public void setTxtTelefone(JTextField txtTelefone) {
+		this.txtTelefone = txtTelefone;
+	}
+
+	public JTextField getTxtCep() {
+		return txtCep;
+	}
+
+	public void setTxtCep(JTextField txtCep) {
+		this.txtCep = txtCep;
+	}
+
+	public JTextField getTxtSexo() {
+		return txtSexo;
+	}
+
+	public void setTxtSexo(JTextField txtSexo) {
+		this.txtSexo = txtSexo;
+	}
+    
+    public String getEndereco() {
+    	return txtCidadeUF.getText() + ";" + txtBairro.getText() + ";" + txtRua.getText() + ";" + txtNumero.getText();
+    }
+
+	public JLabel getMensagem() {
+		return mensagem;
+	}
+
+	public void setMensagem(JLabel mensagem) {
+		this.mensagem = mensagem;
+	}
+    
+    
     
 }

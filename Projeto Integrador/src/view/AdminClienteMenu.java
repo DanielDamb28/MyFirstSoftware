@@ -103,10 +103,10 @@ public class AdminClienteMenu extends JFrame{
         table.setRowHeight(50);
         table.getColumnModel().getColumn(0).setPreferredWidth(120);
         table.getColumnModel().getColumn(1).setPreferredWidth(100);
-        table.getColumnModel().getColumn(2).setPreferredWidth(200);
+        table.getColumnModel().getColumn(2).setPreferredWidth(230);
         table.getColumnModel().getColumn(3).setPreferredWidth(110);
         table.getColumnModel().getColumn(4).setPreferredWidth(90);
-        table.getColumnModel().getColumn(5).setPreferredWidth(60);
+        table.getColumnModel().getColumn(5).setPreferredWidth(35);
         table.getColumnModel().getColumn(6).setPreferredWidth(140);
         table.getColumnModel().getColumn(7).setPreferredWidth(140);
         
@@ -136,15 +136,11 @@ public class AdminClienteMenu extends JFrame{
         return btn;
     }
     
-    public void fillTableWithAllDataBaseInformation() {
+    public void fillTableWithAllDataBaseInformation(List<Cliente> clientes) {
     	try {
     	    model.getDataVector().removeAllElements();
     	    revalidate();
-    		
-        	Cliente conexao = new Cliente();
-        	
-        	clientes = conexao.retornaClientes();
-        	
+    	
         	String nome = "";
         	String cpfCnpj = "";
         	String endereco = "";
@@ -171,14 +167,10 @@ public class AdminClienteMenu extends JFrame{
         }
     }
     
-    public void findRowWithDataBaseInformationByCpf(String cpfSearch) {
+    public void findRowWithDataBaseInformationByCpf(String cpfSearch, List<Cliente> clientes) {
     	try {
     	    model.getDataVector().removeAllElements();
     	    model.fireTableDataChanged();
-    		
-        	Cliente conexao = new Cliente();
-        	
-        	clientes = conexao.retornaClientes();
         	
         	String nome = "";
         	String cpfCnpj = "";
@@ -192,7 +184,6 @@ public class AdminClienteMenu extends JFrame{
         	for(Cliente c: clientes) {
         		cpfCnpj = c.getCpfCnpj();
         		if(cpfCnpj.equals(cpfSearch)) {
-        			System.out.println("bbbbbbbbbbb");
         			 nome = c.getNome();
                      endereco = c.getEndereco();
                      telefone = c.getTelefone();
@@ -209,14 +200,10 @@ public class AdminClienteMenu extends JFrame{
         }
     }
     
-    public void findRowWithDataBaseInformationByName(String nameSearch) {
+    public void findRowWithDataBaseInformationByName(String nameSearch, List<Cliente> clientes) {
     	try {
     	    model.getDataVector().removeAllElements();
     	    model.fireTableDataChanged();
-    		
-        	Cliente conexao = new Cliente();
-        	
-        	clientes = conexao.retornaClientes();
         	
         	String nome = "";
         	String cpfCnpj = "";
@@ -227,11 +214,14 @@ public class AdminClienteMenu extends JFrame{
         	LocalDate dataNascimento;
         	LocalDate dataCadastro;
         	
+        	if(nameSearch.equals("")) {
+        		nameSearch = "456";
+        	}
+        	
         	for(Cliente c: clientes) {
         		nome = c.getNome();
         		cpfCnpj = c.getCpfCnpj();
         		if(nome.toLowerCase().contains(nameSearch.toLowerCase())) {
-        			System.out.println("bbbbbbbbbbb");
         			cpfCnpj = c.getCpfCnpj();
                      endereco = c.getEndereco();
                      telefone = c.getTelefone();

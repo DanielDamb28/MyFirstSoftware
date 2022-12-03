@@ -2,6 +2,8 @@ package model.factorys;
 
 import javax.swing.JFrame;
 
+import controller.ControllerAdminClienteCadastro;
+import controller.ControllerAdminClienteExcluir;
 import controller.ControllerAdminClienteFiltrar;
 import controller.ControllerAdminClienteMenu;
 import controller.ControllerAdminFornecedorMenu;
@@ -60,17 +62,25 @@ public class FactoryScreens {
 	
 	public void chamaAdminClienteFiltrar(ControllerAdminClienteFiltrar ctrl,AdminClienteMenu view) {
 		AdminClienteFiltrar tela = new AdminClienteFiltrar(ctrl);
+		Cliente cliente = new Cliente();
+		ctrl.setModel(cliente);
 		ctrl.setView(view);
 		ctrl.setClienteFiltrar(tela);
 	}
 	
-	public void chamaAdminClienteCadastro(ControllerAdminClienteMenu ctrl) {
+	public void chamaAdminClienteCadastro(ControllerAdminClienteCadastro ctrl, AdminClienteMenu telaMenu) {
 		AdminClienteCadastro tela = new AdminClienteCadastro(ctrl);
+		Cliente cliente = new Cliente();
+		ctrl.setModel(cliente);
+		ctrl.setViewCadastro(tela);
 		
 	}
 	
-	public void chamaAdminClienteExclusao(ControllerAdminClienteMenu ctrl) {
+	public void chamaAdminClienteExclusao(ControllerAdminClienteExcluir ctrl) {
 		AdminClienteExclusao tela = new AdminClienteExclusao(ctrl);
+		Cliente cliente = new Cliente();
+		ctrl.setModel(cliente);
+		ctrl.setViewExcluir(tela);
 	}
 	
 	public void chamaAdminUsuarioMenu(ControllerAdminUsuarioMenu ctrl,JFrame container) {

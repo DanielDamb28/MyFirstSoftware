@@ -8,6 +8,7 @@ import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
@@ -108,6 +109,14 @@ public class TelaLogin extends JFrame{
     	container.add(btnEntrar);
     	container.add(chkMostrarSenha);
     	container.add(lblMensagem);
+    }
+    
+    public void mensagemUsuarioNaoEncontrado() {
+    	JOptionPane.showMessageDialog(container, "Usuario não encontrado");
+    }
+    
+    public void mensagemSenhaInvalida() {
+    	JOptionPane.showMessageDialog(container,"Senha inválida!");
     }
 
 	public JFrame receiveContainer() {
