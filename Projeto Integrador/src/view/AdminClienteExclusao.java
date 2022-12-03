@@ -44,7 +44,7 @@ public class AdminClienteExclusao extends JFrame{
     }
     
     private void setBackgroundImage() {
-    	imgFundoTela = new ImageIcon(".\\src\\imagens\\atualizarClienteBg.png");
+    	imgFundoTela = new ImageIcon(".\\src\\imagens\\excluirClienteBg.png");
         JLabel lblFundoTela = new JLabel();
         lblFundoTela.setIcon(imgFundoTela);
         lblFundoTela.setBounds(0 , 0, 600, 450 );

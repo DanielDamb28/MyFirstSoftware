@@ -98,7 +98,7 @@ public class Fornecedor {
 	public String adicionaFornecedorNoBancoDeDados(Fornecedor f) {
 		String result = null;
 		conexao = new Conexao();
-		
+		System.out.println(f.getCnpj());
 		result = enviaDados(f);
 		
 		return result;
@@ -111,7 +111,7 @@ public class Fornecedor {
 		DateTimeFormatter fmt = DateTimeFormatter.ofPattern("dd-MM-yyyy");
 		
 		Connection con = conexao.getConexao();
-		String comandoInsereFornecedorNoBancoDeDados = "INSERT INTO cliente(nome, cep, endereco, telefone, email, pk_cnpj)"
+		String comandoInsereFornecedorNoBancoDeDados = "INSERT INTO fornecedor(nome, cep, endereco, telefone, email, pk_cnpj)"
 				+ " VALUES (?, ?, ?, ?, ?, ?);";
 		
 		try {
@@ -263,7 +263,7 @@ public class Fornecedor {
 	}
 	
 	
-	public List<Fornecedor> retornaClientes() throws CnpjNotNull, NameNotNull, TelefoneNotNull, EmailNotNull {
+	public List<Fornecedor> retornaFornecedores() throws CnpjNotNull, NameNotNull, TelefoneNotNull, EmailNotNull {
 		List<Fornecedor> fornecedores = new ArrayList<Fornecedor>();
 		conexao = new Conexao();
 		

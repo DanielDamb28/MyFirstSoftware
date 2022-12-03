@@ -1,40 +1,72 @@
 package view;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.awt.BorderLayout;
+import java.awt.Dimension;
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
 
+import controller.ControllerAdminClienteMenu;
 import controller.ControllerAdminFornecedorMenu;
-import model.factorys.FactoryScreens;
+import model.entities.Cliente;
+import model.entities.Fornecedor;
 
 public class AdminFornecedorMenu extends JFrame{
-    
+	
 	private JFrame container;
-	private JButton btnCadastrarFornecedor, btnExcluirFornecedor, btnEditarFornecedor, btnBuscarFornedor, btnVoltarMenu;
-    private ImageIcon imgFundoTela;
+	private ImageIcon imgFundoTela;
     private JLabel lblFundoTela;
-    private ActionListener controller;
-
+    private JTable table;
+    
+    
+    private String[] columnNames = {"Cnpj", "Nome", "Cep", "Endereço", "Telefone", "Email"};
+    
+    private JButton btnAdd;
+    private JButton btnDelete;
+    private JButton btnSearch;
+    private JButton btnVoltar;
+    private int buttonWidth = 170;
+    private int buttonHeight = 50;
+    private ControllerAdminFornecedorMenu controller;
+    
+    
+    DefaultTableModel model = new DefaultTableModel() {
+	    public boolean isCellEditable(int row, int column) {
+	       return false;
+	    }
+	};
+    
     public AdminFornecedorMenu(ControllerAdminFornecedorMenu ctrl) {
-
+    	
     	container = new JFrame();
     	
-    	setImageBackground();
-    	setScreenDefaultSettings();
-    	
-    	controller = ctrl;
-    	
-    	btnCadastrarFornecedor = createButton("Cadastrar novo fornecedor", 50, 350, 200, 50);
-    	btnEditarFornecedor = createButton("Editar fornecedor", 275, 350, 200,50);
-    	btnExcluirFornecedor = createButton("Excluir fornecedor", 500,350 ,200,50);
-    	btnBuscarFornedor = createButton("Cadastrar novo fornecedor", 725,350,200,50);
-    	btnVoltarMenu = createButton("Voltar", 50,620 ,100,50);
- 
+        setDefaultScreenSettings();
+        setImageBackground();
+        
+        controller = ctrl;
+        
+        model.setColumnIdentifiers(columnNames);
+        JTable table = createTable();
+        JScrollPane scroll = new JScrollPane(table);
+        setScroolPaneDefaultSettings(scroll);
+        
+        //fillTableWithDataBaseInformation();
+        
+        btnAdd = createButton("Adicionar Cliente", 120, 80, buttonWidth, buttonHeight);
+        btnDelete = createButton("Excluir Cliente", 310, 80, buttonWidth, buttonHeight);
+        btnSearch = createButton("Filtrar", 710, 80, buttonWidth, buttonHeight);
+        btnVoltar = createButton("<-", 10, 10, 50, 50);
+        
+        setTableLayout(scroll);
+        container.add(scroll);
         container.setVisible(true);
     }
     
@@ -46,14 +78,46 @@ public class AdminFornecedorMenu extends JFrame{
         container.setContentPane(lblFundoTela);
     }
     
-    private void setScreenDefaultSettings() {
+    private void setDefaultScreenSettings() {
     	container.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     	container.setSize(1000, 750);
-    	container.setTitle("Menu para a edicao dos fornecedores");
+    	container.setTitle("Menu para a edicao dos clientes");
     	container.setLocationRelativeTo(null);
     	container.setLayout(null);
-        container.setResizable(false);
+        setResizable(false);
     }
+    
+    private JTable createTable() {
+        table = new JTable();
+        table.setDefaultRenderer(Object.class, new CellRenderer());
+        table.setModel(model);
+        table.setFillsViewportHeight(true);
+        table.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);	
+        table.setRowHeight(50);
+        table.getColumnModel().getColumn(0).setPreferredWidth(120);
+        table.getColumnModel().getColumn(1).setPreferredWidth(180);
+        table.getColumnModel().getColumn(2).setPreferredWidth(100);
+        table.getColumnModel().getColumn(3).setPreferredWidth(270);
+        table.getColumnModel().getColumn(4).setPreferredWidth(90);
+        table.getColumnModel().getColumn(5).setPreferredWidth(200);
+        
+        return table;
+    }
+    
+    private void setScroolPaneDefaultSettings(JScrollPane scroll) {
+    	scroll.setHorizontalScrollBarPolicy(
+                JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+        scroll.setVerticalScrollBarPolicy(
+                JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
+        scroll.setPreferredSize(new Dimension(1000, 600));
+    }
+    
+    private void setTableLayout(JScrollPane scroll) {
+    	setLayout(new BorderLayout());
+        add(scroll, BorderLayout.SOUTH);
+        scroll.setBounds(0, 250, 1000, 500);
+    }
+    
     
     private JButton createButton(String text, int xPosition, int yPosition, int width, int height) {
         JButton btn = new JButton(text);
@@ -62,54 +126,127 @@ public class AdminFornecedorMenu extends JFrame{
         container.add(btn);
         return btn;
     }
+    
+    public void fillTableWithAllDataBaseInformation(List<Fornecedor> fornecedores) {
+    	try {
+    	    model.getDataVector().removeAllElements();
+    	    revalidate();
+    	    
+        	String cnpj = "";
+        	String nome = "";
+           	String cep = "";
+        	String endereco = "";
+        	String telefone = "";
+        	String email = "";
+        	
+        	for(Fornecedor f: fornecedores) {
+                cnpj = f.getCnpj();
+                nome = f.getNome();
+                endereco = f.getEndereco();
+                telefone = f.getTelefone();
+                cep = f.getCep();
+                email = f.getEmail();
+                model.addRow(new Object[]{cnpj, nome, cep, endereco, telefone, email});
+        	}
+        }catch(Exception e) {
+        	e.printStackTrace();
+        }
+    }
+    
+    public void findRowWithDataBaseInformationByCnpj(String cpfSearch, List<Fornecedor> fornecedores) {
+    	try {
+    	    model.getDataVector().removeAllElements();
+    	    model.fireTableDataChanged();
+        	
+    	    String cnpj = "";
+        	String nome = "";
+           	String cep = "";
+        	String endereco = "";
+        	String telefone = "";
+        	String email = "";
+        	
+        	for(Fornecedor f: fornecedores) {
+        		cnpj = f.getCnpj();
+        		if(cnpj.equals(cpfSearch)) {
+        			cnpj = f.getCnpj();
+                    nome = f.getNome();
+                    endereco = f.getEndereco();
+                    telefone = f.getTelefone();
+                    cep = f.getCep();
+                    email = f.getEmail();
+                    model.addRow(new Object[]{cnpj, nome, cep, endereco, telefone, email});
+        		}
+        	}
+        }catch(Exception e) {
+        	e.printStackTrace();
+        }
+    }
+    
+    public void findRowWithDataBaseInformationByName(String nameSearch, List<Fornecedor> fornecedores) {
+    	try {
+    	    model.getDataVector().removeAllElements();
+    	    model.fireTableDataChanged();
+        	
+    	    String cnpj = "";
+        	String nome = "";
+           	String cep = "";
+        	String endereco = "";
+        	String telefone = "";
+        	String email = "";
+        	
+        	if(nameSearch.equals("")) {
+        		nameSearch = "456";
+        	}
+        	
+        	for(Fornecedor f: fornecedores) {
+        		nome = f.getNome();
+        		if(nome.toLowerCase().contains(nameSearch.toLowerCase())) {
+        			cnpj = f.getCnpj();
+                    nome = f.getNome();
+                    endereco = f.getEndereco();
+                    telefone = f.getTelefone();
+                    cep = f.getCep();
+                    email = f.getEmail();
+                    model.addRow(new Object[]{cnpj, nome, cep, endereco, telefone, email});
+        		}
+        	}
+        }catch(Exception e) {
+        	e.printStackTrace();
+        }
+    }
 
-	public JFrame getContainer() {
-		return container;
+	public JButton getBtnAdd() {
+		return btnAdd;
 	}
 
-	public void setContainer(JFrame container) {
-		this.container = container;
+	public void setBtnAdd(JButton btnAdd) {
+		this.btnAdd = btnAdd;
 	}
 
-	public JButton getBtnCadastrarFornecedor() {
-		return btnCadastrarFornecedor;
+	public JButton getBtnDelete() {
+		return btnDelete;
 	}
 
-	public void setBtnCadastrarFornecedor(JButton btnCadastrarFornecedor) {
-		this.btnCadastrarFornecedor = btnCadastrarFornecedor;
+	public void setBtnDelete(JButton btnDelete) {
+		this.btnDelete = btnDelete;
 	}
 
-	public JButton getBtnExcluirFornecedor() {
-		return btnExcluirFornecedor;
+	public JButton getBtnSearch() {
+		return btnSearch;
 	}
 
-	public void setBtnExcluirFornecedor(JButton btnExcluirFornecedor) {
-		this.btnExcluirFornecedor = btnExcluirFornecedor;
+	public void setBtnSearch(JButton btnSearch) {
+		this.btnSearch = btnSearch;
 	}
 
-	public JButton getBtnEditarFornecedor() {
-		return btnEditarFornecedor;
+	public JButton getBtnVoltar() {
+		return btnVoltar;
 	}
 
-	public void setBtnEditarFornecedor(JButton btnEditarFornecedor) {
-		this.btnEditarFornecedor = btnEditarFornecedor;
+	public void setBtnVoltar(JButton btnVoltar) {
+		this.btnVoltar = btnVoltar;
 	}
-
-	public JButton getBtnBuscarFornedor() {
-		return btnBuscarFornedor;
-	}
-
-	public void setBtnBuscarFornedor(JButton btnBuscarFornedor) {
-		this.btnBuscarFornedor = btnBuscarFornedor;
-	}
-
-	public JButton getBtnVoltarMenu() {
-		return btnVoltarMenu;
-	}
-
-	public void setBtnVoltarMenu(JButton btnVoltarMenu) {
-		this.btnVoltarMenu = btnVoltarMenu;
-	}
+    
     
     
 }

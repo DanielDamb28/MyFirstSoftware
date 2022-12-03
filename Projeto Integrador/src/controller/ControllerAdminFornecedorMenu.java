@@ -3,8 +3,6 @@ package controller;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.JOptionPane;
-
 import model.entities.Fornecedor;
 import model.factorys.FactoryScreens;
 import view.AdminFornecedorMenu;
@@ -27,25 +25,23 @@ public class ControllerAdminFornecedorMenu implements ActionListener{
     	
     	ControllerAdminMenuPrincipal controlMenu = new ControllerAdminMenuPrincipal();
     	ControllerAdminFornecedorCadastro controlCadastro = new ControllerAdminFornecedorCadastro();
+    	ControllerAdminFornecedorFiltrar controlFiltrar = new ControllerAdminFornecedorFiltrar();
     	
-        if (evt.getSource() == view.getBtnCadastrarFornecedor()) {
+        if (evt.getSource() == view.getBtnAdd()) {
         	chamaTela.chamaAdminFornecedorCadastro(controlCadastro);
         }
 
-        if (evt.getSource() == view.getBtnEditarFornecedor()) {
-            JOptionPane.showMessageDialog(view.getContainer(), "Trocar tela para tela de edicao de fornecedor");
-        }
-
+        if (evt.getSource() == view.getBtnSearch()) {
+            chamaTela.chamaAdminFornecedorFiltrar(controlFiltrar, view);
+        }/*
         if (evt.getSource() == view.getBtnExcluirFornecedor()) {
             JOptionPane.showMessageDialog(view.getContainer(), "Trocar tela para exclusao de fornecedor");
         }
 
-        if (evt.getSource() == view.getBtnBuscarFornedor()) {
-            JOptionPane.showMessageDialog(view.getContainer(), "Trocar tela para busca de fornecedor");
-        }
         if (evt.getSource() == view.getBtnVoltarMenu()) {
         	chamaTela.chamaAdminMenuPrincipal(controlMenu, view.getContainer());
         }
+        */
 	}
 
 }

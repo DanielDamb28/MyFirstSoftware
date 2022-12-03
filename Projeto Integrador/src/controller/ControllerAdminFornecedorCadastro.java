@@ -81,7 +81,6 @@ public class ControllerAdminFornecedorCadastro implements ActionListener{
 				e.printStackTrace();
 			}
 			
-			
 			String result = model.adicionaFornecedorNoBancoDeDados(fornecedor);
 			
 			System.out.println(result);

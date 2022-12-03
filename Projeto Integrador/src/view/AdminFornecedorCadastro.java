@@ -29,32 +29,31 @@ public class AdminFornecedorCadastro extends JFrame{
     	setBackgroundImage();
     	setDefaultScreenSettings();
     	lblNome = setLabel("Nome:", 52,25,60,35);
-    	txtNome = setTextField(98,28,240,30);
-    	
-    	lblCnpj = setLabel("CNPJ:", 50,120,100,35);
-    	txtCnpj = setTextField(116,123,110,30);
-    	
-    	lblEmail = setLabel("Nascimento:", 245, 120, 150,35);
-    	txtEmail = setTextField(325, 123, 87,30, "dd/MM/yyyy");
-    	
-    	lblTelefone = setLabel("Telefone:", 360, 25, 100,35);
-    	txtTelefone = setTextField(418, 28, 130,30);
-    	
-    	lblCidadeUF = setLabel("Cidade-UF:", 52, 215, 100,35);
-    	txtCidadeUF = setTextField(115, 220, 135,30);
-    	
-    	lblBairro = setLabel("Bairro:", 270, 215, 100,35);
-    	txtBairro = setTextField(312, 220, 85,30);
-		
-    	lblNumero = setLabel("Numero/Qdr/Lote:", 315, 313, 100,35);
-		txtNumero = setTextField(420, 316, 130,30);
-    	
-		lblRua = setLabel("Rua:", 52, 313, 100,35);
-    	txtRua = setTextField(82, 316, 200,30);
-    	
-		
-    	lblCep = setLabel("Cep:", 420, 215, 100,35);
-		txtCep = setTextField(450, 220, 100,30);
+        txtNome = setTextField(98,28,240,30);
+
+        lblCnpj = setLabel("CNPJ:", 50,120,100,35);
+        txtCnpj = setTextField(90,123,135,30);
+
+        lblEmail = setLabel("Email:", 260, 120, 50,35);
+        txtEmail = setTextField(300, 123, 250,30);
+
+        lblTelefone = setLabel("Telefone:", 360, 25, 100,35);
+        txtTelefone = setTextField(418, 28, 130,30);
+
+        lblCidadeUF = setLabel("Cidade-UF:", 52, 215, 100,35);
+        txtCidadeUF = setTextField(115, 220, 135,30);
+
+        lblBairro = setLabel("Bairro:", 270, 215, 100,35);
+        txtBairro = setTextField(312, 220, 85,30);
+
+        lblNumero = setLabel("Numero/Qdr/Lote:", 315, 313, 100,35);
+        txtNumero = setTextField(420, 316, 130,30);
+
+        lblRua = setLabel("Rua:", 52, 313, 100,35);
+        txtRua = setTextField(82, 316, 200,30);
+
+        lblCep = setLabel("Cep:", 420, 215, 100,35);
+        txtCep = setTextField(450, 220, 100,30);
     	
     	mensagem = setLabel("", 50, 360, 300, 40);
     	

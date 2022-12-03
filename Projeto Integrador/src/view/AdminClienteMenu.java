@@ -21,8 +21,6 @@ import model.entities.Cliente;
 import model.factorys.FactoryScreens;
 
 public class AdminClienteMenu extends JFrame{
-
-	private List<Cliente> clientes = new ArrayList<Cliente>();
 	
 	private JFrame container;
 	private ImageIcon imgFundoTela;
