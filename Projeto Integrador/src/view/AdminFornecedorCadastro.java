@@ -7,21 +7,20 @@ import javax.swing.JLabel;
 import javax.swing.JTextField;
 
 import controller.ControllerAdminClienteCadastro;
+import controller.ControllerAdminFornecedorCadastro;
 
-public class AdminClienteCadastro extends JFrame{
+public class AdminFornecedorCadastro extends JFrame{
 	
 	private JFrame container;
-	private JTextField txtNome, txtCpfCnpj, txtDataNasc, txtTelefone, txtCep, txtSexo; 
-	private JLabel lblNome, lblCpfCnpj, lblDataNasc, lblTelefone, lblCep, lblSexo; 
+	private JTextField txtNome, txtCnpj, txtEmail, txtTelefone, txtCep; 
+	private JLabel lblNome, lblCnpj, lblEmail, lblTelefone, lblCep; 
 	private JLabel lblRua, lblCidadeUF, lblBairro, lblNumero, mensagem; 
 	private JTextField txtRua, txtCidadeUF, txtBairro, txtNumero; 
-	private JButton btnCadastrarCliente;
+	private JButton btnCadastrarFornecedor;
 	private ImageIcon imgFundoTela;
-	private ControllerAdminClienteCadastro controller;
+	private ControllerAdminFornecedorCadastro controller;
 
-
-
-    public AdminClienteCadastro(ControllerAdminClienteCadastro ctrl) {
+    public AdminFornecedorCadastro(ControllerAdminFornecedorCadastro ctrl) {
     	
     	container = new JFrame();
     	
@@ -29,35 +28,43 @@ public class AdminClienteCadastro extends JFrame{
     	
     	setBackgroundImage();
     	setDefaultScreenSettings();
-    	lblCpfCnpj = setLabel("Nome:", 52,25,60,35); /* <---------- */
+    	lblNome = setLabel("Nome:", 52,25,60,35);
     	txtNome = setTextField(98,28,240,30);
-    	lblCpfCnpj = setLabel("CPF/CNPJ:", 50,120,100,35);
-    	txtCpfCnpj = setTextField(116,123,110,30);
-    	lblCidadeUF = setLabel("Cidade-UF:", 52, 215, 100,35);
-    	txtCidadeUF = setTextField(115, 220, 135,30);
-    	lblBairro = setLabel("Bairro:", 270, 215, 100,35);
-    	txtBairro = setTextField(312, 220, 85,30);
-		lblNumero = setLabel("Numero/Qdr/Lote:", 315, 313, 100,35);
-		txtNumero = setTextField(420, 316, 130,30);
-    	lblRua = setLabel("Rua:", 52, 313, 100,35);
-    	txtRua = setTextField(82, 316, 200,30);
-    	lblDataNasc = setLabel("Nascimento:", 245, 120, 150,35);
-    	txtDataNasc = setTextField(325, 123, 87,30, "dd/MM/yyyy");
+    	
+    	lblCnpj = setLabel("CNPJ:", 50,120,100,35);
+    	txtCnpj = setTextField(116,123,110,30);
+    	
+    	lblEmail = setLabel("Nascimento:", 245, 120, 150,35);
+    	txtEmail = setTextField(325, 123, 87,30, "dd/MM/yyyy");
+    	
     	lblTelefone = setLabel("Telefone:", 360, 25, 100,35);
     	txtTelefone = setTextField(418, 28, 130,30);
-		lblCep = setLabel("Cep:", 420, 215, 100,35);
+    	
+    	lblCidadeUF = setLabel("Cidade-UF:", 52, 215, 100,35);
+    	txtCidadeUF = setTextField(115, 220, 135,30);
+    	
+    	lblBairro = setLabel("Bairro:", 270, 215, 100,35);
+    	txtBairro = setTextField(312, 220, 85,30);
+		
+    	lblNumero = setLabel("Numero/Qdr/Lote:", 315, 313, 100,35);
+		txtNumero = setTextField(420, 316, 130,30);
+    	
+		lblRua = setLabel("Rua:", 52, 313, 100,35);
+    	txtRua = setTextField(82, 316, 200,30);
+    	
+		
+    	lblCep = setLabel("Cep:", 420, 215, 100,35);
 		txtCep = setTextField(450, 220, 100,30);
-    	lblSexo = setLabel("Sexo:", 430, 122, 100,35);
-    	txtSexo = setTextField(467, 125, 85,30);
+    	
     	mensagem = setLabel("", 50, 360, 300, 40);
     	
-    	setCreateClientButton();
+    	setCreateFornecedorButton();
 
     	container.setVisible(true);
     }
     
     private void setBackgroundImage() {
-    	imgFundoTela = new ImageIcon(".\\src\\imagens\\fundoCadastroCliente.png");
+    	imgFundoTela = new ImageIcon(".\\src\\imagens\\CadastroFornecedor.png");
         JLabel lblFundoTela = new JLabel();
         lblFundoTela.setIcon(imgFundoTela);
         lblFundoTela.setBounds(0 , 0, 600, 450 );
@@ -96,22 +103,20 @@ public class AdminClienteCadastro extends JFrame{
     	return txt;
     }
    
-    private void setCreateClientButton() {
-        btnCadastrarCliente = new JButton("Cadastrar");
-        btnCadastrarCliente.setBounds(450,360,100,40);
-        btnCadastrarCliente.addActionListener(controller);
-        container.add(btnCadastrarCliente);
+    private void setCreateFornecedorButton() {
+        btnCadastrarFornecedor = new JButton("Cadastrar");
+        btnCadastrarFornecedor.setBounds(450,360,100,40);
+        btnCadastrarFornecedor.addActionListener(controller);
+        container.add(btnCadastrarFornecedor);
 
     }
     
-    
-
-	public JButton getBtnCadastrarCliente() {
-		return btnCadastrarCliente;
+	public JButton getBtnCadastrarFornecedor() {
+		return btnCadastrarFornecedor;
 	}
 
-	public void setBtnCadastrarCliente(JButton btnCadastrarCliente) {
-		this.btnCadastrarCliente = btnCadastrarCliente;
+	public void setBtnCadastrarFornecedor(JButton btnCadastrarFornecedor) {
+		this.btnCadastrarFornecedor = btnCadastrarFornecedor;
 	}
 
 	public JTextField getTxtNome() {
@@ -122,20 +127,20 @@ public class AdminClienteCadastro extends JFrame{
 		this.txtNome = txtNome;
 	}
 
-	public JTextField getTxtCpfCnpj() {
-		return txtCpfCnpj;
+	public JTextField getTxtCnpj() {
+		return txtCnpj;
 	}
 
-	public void setTxtCpfCnpj(JTextField txtCpfCnpj) {
-		this.txtCpfCnpj = txtCpfCnpj;
+	public void setTxtCnpj(JTextField txtCnpj) {
+		this.txtCnpj = txtCnpj;
 	}
 
-	public JTextField getTxtDataNasc() {
-		return txtDataNasc;
+	public JTextField getTxtEmail() {
+		return txtEmail;
 	}
 
-	public void setTxtDataNasc(JTextField txtDataNasc) {
-		this.txtDataNasc = txtDataNasc;
+	public void setTxtDataNasc(JTextField txtEmail) {
+		this.txtEmail = txtEmail;
 	}
 
 	public JTextField getTxtTelefone() {
@@ -153,14 +158,6 @@ public class AdminClienteCadastro extends JFrame{
 	public void setTxtCep(JTextField txtCep) {
 		this.txtCep = txtCep;
 	}
-
-	public JTextField getTxtSexo() {
-		return txtSexo;
-	}
-
-	public void setTxtSexo(JTextField txtSexo) {
-		this.txtSexo = txtSexo;
-	}
     
     public String getEndereco() {
     	return txtCidadeUF.getText() + ";" + txtBairro.getText() + ";" + txtRua.getText() + ";" + txtNumero.getText();
@@ -174,6 +171,5 @@ public class AdminClienteCadastro extends JFrame{
 		this.mensagem = mensagem;
 	}
     
-    
-    
 }
+

@@ -26,9 +26,10 @@ public class ControllerAdminFornecedorMenu implements ActionListener{
     	FactoryScreens chamaTela = new FactoryScreens();
     	
     	ControllerAdminMenuPrincipal controlMenu = new ControllerAdminMenuPrincipal();
+    	ControllerAdminFornecedorCadastro controlCadastro = new ControllerAdminFornecedorCadastro();
     	
         if (evt.getSource() == view.getBtnCadastrarFornecedor()) {
-            JOptionPane.showMessageDialog(view.getContainer(), "Trocar tela para tela de cadastro de fornecedor");
+        	chamaTela.chamaAdminFornecedorCadastro(controlCadastro);
         }
 
         if (evt.getSource() == view.getBtnEditarFornecedor()) {

@@ -6,6 +6,7 @@ import controller.ControllerAdminClienteCadastro;
 import controller.ControllerAdminClienteExcluir;
 import controller.ControllerAdminClienteFiltrar;
 import controller.ControllerAdminClienteMenu;
+import controller.ControllerAdminFornecedorCadastro;
 import controller.ControllerAdminFornecedorMenu;
 import controller.ControllerAdminMenuPrincipal;
 import controller.ControllerAdminProdutoMenu;
@@ -26,6 +27,7 @@ import view.AdminClienteCadastro;
 import view.AdminClienteExclusao;
 import view.AdminClienteFiltrar;
 import view.AdminClienteMenu;
+import view.AdminFornecedorCadastro;
 import view.AdminFornecedorMenu;
 import view.AdminMenuPrincipal;
 import view.AdminProdutoMenu;
@@ -73,7 +75,6 @@ public class FactoryScreens {
 		Cliente cliente = new Cliente();
 		ctrl.setModel(cliente);
 		ctrl.setViewCadastro(tela);
-		
 	}
 	
 	public void chamaAdminClienteExclusao(ControllerAdminClienteExcluir ctrl) {
@@ -97,6 +98,14 @@ public class FactoryScreens {
 		ctrl.setView(tela);
 		container.dispose();
 	}
+	
+	public void chamaAdminFornecedorCadastro(ControllerAdminFornecedorCadastro ctrl) {
+		AdminFornecedorCadastro tela = new AdminFornecedorCadastro(ctrl);
+		Fornecedor fornecedor = new Fornecedor();
+		ctrl.setModel(fornecedor);
+		ctrl.setViewCadastro(tela);
+	}
+	
 	public void chamaAdminProdutoMenu(ControllerAdminProdutoMenu ctrl,JFrame container) {
 		AdminProdutoMenu tela = new AdminProdutoMenu(ctrl);
 		Produto product = new Produto();

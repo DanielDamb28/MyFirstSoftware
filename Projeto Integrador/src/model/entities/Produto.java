@@ -157,7 +157,7 @@ public class Produto {
 			stmInsereClienteNoBancoDeDados.setString(7, product.getTamanho());
 			stmInsereClienteNoBancoDeDados.setFloat(8, product.getPreco());
 			stmInsereClienteNoBancoDeDados.setInt(9, product.getUnidadesEstoque());
-			stmInsereClienteNoBancoDeDados.setString(10, String.valueOf(product.getFornecedor().getCNPJ()));
+			stmInsereClienteNoBancoDeDados.setString(10, String.valueOf(product.getFornecedor().getCnpj()));
 			
 			result = stmInsereClienteNoBancoDeDados.executeUpdate();
 			

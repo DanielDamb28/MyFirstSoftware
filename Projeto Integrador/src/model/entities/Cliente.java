@@ -365,7 +365,4 @@ public class Cliente {
 		return clientes;
 		
 	}
-	
-	
-	
 }
