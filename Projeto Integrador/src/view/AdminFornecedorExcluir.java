@@ -7,20 +7,19 @@ import javax.swing.JLabel;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
-import controller.ControllerAdminClienteExcluir;
+import controller.ControllerAdminFornecedorExcluir;
 
-public class AdminClienteExclusao extends JFrame{
-    
+public class AdminFornecedorExcluir {
 	private JFrame container;
-	private JLabel lblCpfCnpj;
+	private JLabel lblCnpj;
 	private JTextArea info;
-	private JTextField txtCpfCnpj; 
-	private JButton btnProcurarCliente, btnExcluirCliente; 
+	private JTextField txtCnpj; 
+	private JButton btnProcurarFornecedor, btnExcluirFornecedor; 
 	private ImageIcon imgFundoTela;
-	private ControllerAdminClienteExcluir controller;
+	private ControllerAdminFornecedorExcluir controller;
 
 
-    public AdminClienteExclusao(ControllerAdminClienteExcluir ctrl) {
+    public AdminFornecedorExcluir(ControllerAdminFornecedorExcluir ctrl) {
     	
     	container = new JFrame();
     	
@@ -54,62 +53,62 @@ public class AdminClienteExclusao extends JFrame{
     
     private void setDefaultScreenSettings() {
     	container.setSize(600, 450);
-    	container.setTitle("Cadastro de cliente");
+    	container.setTitle("Excluir Fornecedor");
     	container.setLocationRelativeTo(null);
     	container.setLayout(null);
 
     }
     
     private void setCpfCnpjTextField(){
-    	lblCpfCnpj = new JLabel("CPF/CNPJ:");
-    	lblCpfCnpj.setBounds(50,25,100,35);
-    	txtCpfCnpj = new JTextField();
-    	txtCpfCnpj.setBounds(116,28,135,30);
+    	lblCnpj = new JLabel("CNPJ:");
+    	lblCnpj.setBounds(50,25,100,35);
+    	txtCnpj = new JTextField();
+    	txtCnpj.setBounds(116,28,135,30);
     }
     
     private void setEditClientButton() {
-        btnProcurarCliente = new JButton("Pesquisar");
-        btnProcurarCliente.setBounds(300,25,100,40);
-        btnProcurarCliente.addActionListener(controller);
+        btnProcurarFornecedor = new JButton("Pesquisar");
+        btnProcurarFornecedor.setBounds(300,25,100,40);
+        btnProcurarFornecedor.addActionListener(controller);
     }
     
     private void setDelClientButton() {
-        btnExcluirCliente = new JButton("Excluir");
-        btnExcluirCliente.setBounds(450,25,100,40);
-        btnExcluirCliente.addActionListener(controller);
+        btnExcluirFornecedor = new JButton("Excluir");
+        btnExcluirFornecedor.setBounds(450,25,100,40);
+        btnExcluirFornecedor.addActionListener(controller);
     }
     
     private void addComponentsToScreen() {
     	
-    	container.add(lblCpfCnpj);
-    	container.add(txtCpfCnpj);
-    	container.add(btnProcurarCliente);
-    	container.add(btnExcluirCliente);
+    	container.add(lblCnpj);
+    	container.add(txtCnpj);
+    	container.add(btnProcurarFornecedor);
+    	container.add(btnExcluirFornecedor);
  
     }
 
-	public JTextField getTxtCpfCnpj() {
-		return txtCpfCnpj;
+	public JTextField getTxtCnpj() {
+		return txtCnpj;
 	}
 
-	public void setTxtCpfCnpj(JTextField txtCpfCnpj) {
-		this.txtCpfCnpj = txtCpfCnpj;
+	public void setTxtCnpj(JTextField txtCpfCnpj) {
+		this.txtCnpj = txtCpfCnpj;
 	}
 
-	public JButton getBtnProcurarCliente() {
-		return btnProcurarCliente;
+	public JButton getBtnProcurarFornecedor() {
+		return btnProcurarFornecedor;
 	}
 
-	public void setBtnEditarCliente(JButton btnProcurarCliente) {
-		this.btnProcurarCliente = btnProcurarCliente;
+	public void setBtnEditarFornecedor(JButton btnProcurarCliente) {
+		this.btnProcurarFornecedor = btnProcurarCliente;
 	}
 
-	public JButton getBtnExcluirCliente() {
-		return btnExcluirCliente;
+	public JButton getBtnExcluirFornecedor() {
+		return btnExcluirFornecedor;
 	}
 
-	public void setBtnExcluirCliente(JButton btnExcluirCliente) {
-		this.btnExcluirCliente = btnExcluirCliente;
+	public void setBtnExcluirFornecedor(JButton btnExcluirCliente) {
+		this.btnExcluirFornecedor = btnExcluirCliente;
 	}
 
 	public JTextArea getInfo() {
@@ -119,6 +118,4 @@ public class AdminClienteExclusao extends JFrame{
 	public void setInfo(JTextArea info) {
 		this.info = info;
 	}
-    
-    
 }
