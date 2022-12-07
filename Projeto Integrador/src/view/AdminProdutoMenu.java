@@ -137,99 +137,157 @@ public class AdminProdutoMenu extends  JFrame{
     	    model.fireTableDataChanged();
     	    revalidate();
     	
-        	String nome = "";
-        	String cpfCnpj = "";
-        	String endereco = "";
-        	String telefone = "";
-        	String cep = "";
-        	char sexo;
-        	LocalDate dataNascimento;
-        	LocalDate dataCadastro;
+        	int id = 0;
+        	String modelo = "";
+        	String categoria = "";
+        	String marca = "";
+        	String setor = "";
+        	String cor = "";
+        	String tamanho = "";
+        	float preco = 0;
+        	int unidades = 0;
+        	String fornecedorCnpj = null;
         	
         	for(Produto p: produtos) {
-                nome = c.getNome();
-                cpfCnpj = c.getCpfCnpj();
-                endereco = c.getEndereco();
-                telefone = c.getTelefone();
-                cep = c.getCep();
-                sexo = c.getSexo();
-                dataNascimento = c.getDataNascimento();
-                dataCadastro = c.getDataCadastro();
-                model.addRow(new Object[]{nome, cpfCnpj, endereco, telefone, cep, 
-                		sexo, dataNascimento, dataCadastro});
+
+        		id = p.getId();
+        		modelo = p.getModelo();
+        		categoria = p.getCategoria();
+        		marca = p.getMarca();
+        		setor = p.getSetor();
+        		cor = p.getCor();
+        		tamanho = p.getTamanho();
+        		preco = p.getPreco();
+        		unidades = p.getUnidadesEstoque();
+        		fornecedorCnpj = p.getFornecedor();
+                model.addRow(new Object[]{id, modelo, categoria, marca, setor, cor, tamanho, preco, unidades, fornecedorCnpj});
         	}
         }catch(Exception e) {
         	e.printStackTrace();
         }
     }
     
-    public void findRowWithDataBaseInformationByCpf(String cpfSearch, List<Produto> produtos) {
+    public void findRowWithDataBaseInformationByModelo(String modeloSearch, List<Produto> produtos) {
     	try {
     	    model.getDataVector().removeAllElements();
     	    model.fireTableDataChanged();
     	    revalidate();
         	
-        	String nome = "";
-        	String cpfCnpj = "";
-        	String endereco = "";
-        	String telefone = "";
-        	String cep = "";
-        	char sexo;
-        	LocalDate dataNascimento;
-        	LocalDate dataCadastro;
+    	    int id = 0;
+        	String modelo = "";
+        	String categoria = "";
+        	String marca = "";
+        	String setor = "";
+        	String cor = "";
+        	String tamanho = "";
+        	float preco = 0;
+        	int unidades = 0;
+        	String fornecedorCnpj = null;
         	
+        	if(modeloSearch.equals("")) {
+        		modeloSearch = "888888888888888888888888";
+        	}
+   
         	for(Produto p: produtos) {
-        		cpfCnpj = c.getCpfCnpj().strip();
-        		if(cpfCnpj.equals(cpfSearch.strip())) {
-        			 nome = c.getNome();
-                     endereco = c.getEndereco();
-                     telefone = c.getTelefone();
-                     cep = c.getCep();
-                     sexo = c.getSexo();
-                     dataNascimento = c.getDataNascimento();
-                     dataCadastro = c.getDataCadastro();
-                     model.addRow(new Object[]{nome, cpfCnpj, endereco, telefone, cep, 
-                     		sexo, dataNascimento, dataCadastro});
+        		modelo = p.getModelo();
+        		if(modelo.contains(modeloSearch)) {
+        			id = p.getId();
+            		categoria = p.getCategoria();
+            		marca = p.getMarca();
+            		setor = p.getSetor();
+            		cor = p.getCor();
+            		tamanho = p.getTamanho();
+            		preco = p.getPreco();
+            		unidades = p.getUnidadesEstoque();
+            		fornecedorCnpj = p.getFornecedor();
+                    model.addRow(new Object[]{id, modelo, categoria, marca, setor, cor, tamanho, preco, unidades, fornecedorCnpj});
         		}
+        		
         	}
         }catch(Exception e) {
         	e.printStackTrace();
         }
     }
     
-    public void findRowWithDataBaseInformationByName(String nameSearch, List<Produto> produtos) {
+    public void findRowWithDataBaseInformationByMarca(String marcaSearch, List<Produto> produtos) {
     	try {
     	    model.getDataVector().removeAllElements();
     	    model.fireTableDataChanged();
     	    revalidate();
         	
-        	String nome = "";
-        	String cpfCnpj = "";
-        	String endereco = "";
-        	String telefone = "";
-        	String cep = "";
-        	char sexo;
-        	LocalDate dataNascimento;
-        	LocalDate dataCadastro;
+    	    int id = 0;
+        	String modelo = "";
+        	String categoria = "";
+        	String marca = "";
+        	String setor = "";
+        	String cor = "";
+        	String tamanho = "";
+        	float preco = 0;
+        	int unidades = 0;
+        	String fornecedorCnpj = null;
         	
-        	if(nameSearch.equals("")) {
-        		nameSearch = "456";
+        	if(marcaSearch.equals("")) {
+        		marcaSearch = "888888888888888888888888";
         	}
-        	
+   
         	for(Produto p: produtos) {
-        		nome = c.getNome();
-        		cpfCnpj = c.getCpfCnpj();
-        		if(nome.toLowerCase().contains(nameSearch.toLowerCase())) {
-        			cpfCnpj = c.getCpfCnpj();
-                     endereco = c.getEndereco();
-                     telefone = c.getTelefone();
-                     cep = c.getCep();
-                     sexo = c.getSexo();
-                     dataNascimento = c.getDataNascimento();
-                     dataCadastro = c.getDataCadastro();
-                     model.addRow(new Object[]{nome, cpfCnpj, endereco, telefone, cep, 
-                     		sexo, dataNascimento, dataCadastro});
+        		marca = p.getMarca();
+        		if(marca.contains(marcaSearch)) {
+        			id = p.getId();
+            		categoria = p.getCategoria();
+            		modelo = p.getModelo();
+            		setor = p.getSetor();
+            		cor = p.getCor();
+            		tamanho = p.getTamanho();
+            		preco = p.getPreco();
+            		unidades = p.getUnidadesEstoque();
+            		fornecedorCnpj = p.getFornecedor();
+                    model.addRow(new Object[]{id, modelo, categoria, marca, setor, cor, tamanho, preco, unidades, fornecedorCnpj});
         		}
+        		
+        	}
+        }catch(Exception e) {
+        	e.printStackTrace();
+        }
+    }
+    
+    public void findRowWithDataBaseInformationByTamanho(String tamanhoSearch, List<Produto> produtos) {
+    	try {
+    	    model.getDataVector().removeAllElements();
+    	    model.fireTableDataChanged();
+    	    revalidate();
+        	
+    	    int id = 0;
+        	String modelo = "";
+        	String categoria = "";
+        	String marca = "";
+        	String setor = "";
+        	String cor = "";
+        	String tamanho = "";
+        	float preco = 0;
+        	int unidades = 0;
+        	String fornecedorCnpj = null;
+        	
+        	if(tamanhoSearch.equals("")) {
+        		tamanhoSearch = "888888888888888888888888";
+        	}
+   
+        	for(Produto p: produtos) {
+        		tamanho = p.getTamanho();
+        		if(tamanho.equals(tamanhoSearch)) {
+        			id = p.getId();
+            		categoria = p.getCategoria();
+            		modelo = p.getModelo();
+            		marca = p.getMarca();
+            		setor = p.getSetor();
+            		cor = p.getCor();
+            		tamanho = p.getTamanho();
+            		preco = p.getPreco();
+            		unidades = p.getUnidadesEstoque();
+            		fornecedorCnpj = p.getFornecedor();
+                    model.addRow(new Object[]{id, modelo, categoria, marca, setor, cor, tamanho, preco, unidades, fornecedorCnpj});
+        		}
+        		
         	}
         }catch(Exception e) {
         	e.printStackTrace();

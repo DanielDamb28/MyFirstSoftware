@@ -12,6 +12,8 @@ import controller.ControllerAdminFornecedorFiltrar;
 import controller.ControllerAdminFornecedorMenu;
 import controller.ControllerAdminMenuPrincipal;
 import controller.ControllerAdminProdutoCadastro;
+import controller.ControllerAdminProdutoExcluir;
+import controller.ControllerAdminProdutoFiltrar;
 import controller.ControllerAdminProdutoMenu;
 import controller.ControllerAdminUsuarioMenu;
 import controller.ControllerAdminVendaMenu;
@@ -36,6 +38,8 @@ import view.AdminFornecedorFiltrar;
 import view.AdminFornecedorMenu;
 import view.AdminMenuPrincipal;
 import view.AdminProdutoCadastro;
+import view.AdminProdutoExcluir;
+import view.AdminProdutoFiltrar;
 import view.AdminProdutoMenu;
 import view.AdminUsuarioMenu;
 import view.AdminVendaMenu;
@@ -142,6 +146,21 @@ public class FactoryScreens {
 		tela.setComboBox(fornecedor.retornaCnpjs());
 		ctrl.setModel(product);
 		ctrl.setView(tela);
+	}
+	
+	public void chamaAdminProdutoFiltrar(ControllerAdminProdutoFiltrar ctrl, AdminProdutoMenu viewMenu) {
+		AdminProdutoFiltrar tela = new AdminProdutoFiltrar(ctrl);
+		Produto product = new Produto();
+		ctrl.setModel(product);
+		ctrl.setView(tela);
+		ctrl.setViewMenu(viewMenu);
+	}
+	
+	public void chamaAdminProdutoExcluir(ControllerAdminProdutoExcluir ctrl) {
+		AdminProdutoExcluir tela = new AdminProdutoExcluir(ctrl);
+		Produto product = new Produto();
+		ctrl.setViewExcluir(tela);
+		ctrl.setModel(product);
 	}
 	
 	public void chamaAdminVendaMenu(ControllerAdminVendaMenu ctrl,JFrame container) {

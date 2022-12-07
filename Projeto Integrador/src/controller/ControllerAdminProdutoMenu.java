@@ -26,6 +26,8 @@ public class ControllerAdminProdutoMenu implements ActionListener{
 		
 		ControllerAdminMenuPrincipal controlMenu = new ControllerAdminMenuPrincipal();
 		ControllerAdminProdutoCadastro controlCadastro = new ControllerAdminProdutoCadastro();
+		ControllerAdminProdutoFiltrar controlFiltrar = new ControllerAdminProdutoFiltrar();
+		ControllerAdminProdutoExcluir controlExcluir = new ControllerAdminProdutoExcluir();
 		
         if (evt.getSource() == view.getBtnAdd()) {
            chamaTela.chamaAdminProdutoCadastro(controlCadastro);
@@ -36,11 +38,11 @@ public class ControllerAdminProdutoMenu implements ActionListener{
         }
 
         if (evt.getSource() == view.getBtnDelete()) {
-            JOptionPane.showMessageDialog(view.getContainer(), "Trocar tela para tela de exclusao de produto");
+        	chamaTela.chamaAdminProdutoExcluir(controlExcluir);
         }
 
         if(evt.getSource() == view.getBtnSearch()) {
-            JOptionPane.showMessageDialog(view.getContainer(), "Trocar tela para busca de produto");
+        	chamaTela.chamaAdminProdutoFiltrar(controlFiltrar, view);
         }
         if (evt.getSource() == view.getBtnVoltar()) {
         	chamaTela.chamaAdminMenuPrincipal(controlMenu, view.getContainer());

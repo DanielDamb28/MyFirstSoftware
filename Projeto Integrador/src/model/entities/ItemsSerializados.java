@@ -2,9 +2,10 @@ package model.entities;
 
 import java.io.Serializable;
 
+@SuppressWarnings("serial")
 public class ItemsSerializados implements Serializable{
 	
-	
+
 	private int id;
 	
 	public int getId() {

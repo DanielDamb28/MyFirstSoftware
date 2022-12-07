@@ -91,7 +91,7 @@ public class Fornecedor {
 	}
 	
 	public String toString() {
-		return "Cliente \ncpfCnpj=" + cnpj + " \nnome=" + nome + " \nendereco=" + endereco + " \ntelefone=" + telefone
+		return "Fornecedor \ncpfCnpj=" + cnpj + " \nnome=" + nome + " \nendereco=" + endereco + " \ntelefone=" + telefone
 				+ " \nemail=" + email + "\ncep=" + cep ;
 	}
 
