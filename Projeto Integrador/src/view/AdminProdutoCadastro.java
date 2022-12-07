@@ -1,12 +1,16 @@
 package view;
 
+import java.util.List;
+import java.util.Vector;
+
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 
-import controller.ControllerAdminClienteCadastro;
+import controller.ControllerAdminProdutoCadastro;
 
 public class AdminProdutoCadastro extends JFrame{
 	
@@ -16,46 +20,46 @@ public class AdminProdutoCadastro extends JFrame{
 	private JLabel lblModelo, lblCategoria, lblSetor, lblMarca, lblCor;
 	private JLabel lblTamanho, lblPreco, lblUnidades, lblFornecedor; 
 	private JButton btnCadastrarProduto;
+	private JComboBox cnpjs;
 	private ImageIcon imgFundoTela;
-	private ControllerAdminClienteCadastro controller;
+	private ControllerAdminProdutoCadastro controller;
 
 
 
-    public AdminProdutoCadastro(/*ControllerAdminClienteCadastro ctrl*/) {
+    public AdminProdutoCadastro(ControllerAdminProdutoCadastro ctrl) {
     	
     	container = new JFrame();
     	
-    	//controller = ctrl;
+    	controller = ctrl;
     	
     	setBackgroundImage();
     	setDefaultScreenSettings();
     	
-    	lblModelo = setLabel("Modelo:", 52,25,60,35); /* <---------- */
-    	txtModelo = setTextField(98,28,240,30);
+    	lblModelo = setLabel("Modelo:", 50,25,60,35); /* <---------- */
+    	txtModelo = setTextField(100 ,28,120, 30);
     	
-    	lblCategoria = setLabel("Categoria:", 50,120,100,35);
-    	txtCategoria = setTextField(116,123,110,30);
+    	lblCategoria = setLabel("Categoria:", 240, 25,100,35);
+    	txtCategoria = setTextField(300, 28, 95, 30);
     	
-    	lblSetor = setLabel("Setor:", 52, 215, 100,35);
-    	txtSetor = setTextField(115, 220, 135,30);
+    	lblSetor = setLabel("Setor:", 415, 25, 100,35);
+    	txtSetor = setTextField(455, 28, 95, 30);
     	
-    	lblMarca = setLabel("Marca:", 270, 215, 100,35);
-    	txtMarca = setTextField(312, 220, 85,30);
+    	lblMarca = setLabel("Marca:", 50, 135, 100,35);
+    	txtMarca = setTextField(100, 138, 160, 30);
 		
-    	lblCor = setLabel("Cor:", 315, 313, 100,35);
-		txtCor = setTextField(420, 316, 130,30);
+    	lblCor = setLabel("Cor:", 285, 135, 100,35);
+		txtCor = setTextField(315, 138, 90, 30);
+    
+		lblTamanho = setLabel("Tamanho:", 425, 135, 100,35);
+    	txtTamanho = setTextField(485, 138, 65, 30);
     	
-		lblTamanho = setLabel("Tamanho:", 52, 313, 100,35);
-    	txtTamanho = setTextField(82, 316, 200,30);
+    	lblPreco = setLabel("Preco:", 50, 245, 150,35);
+    	txtPreco = setTextField(95, 247, 60,30);
     	
-    	lblPreco = setLabel("Preco:", 245, 120, 150,35);
-    	txtPreco = setTextField(325, 123, 87,30, "dd/MM/yyyy");
-    	
-    	lblUnidades = setLabel("Unidades:", 360, 25, 100,35);
-    	txtUnidades = setTextField(418, 28, 130,30);
+    	lblUnidades = setLabel("Unidades:", 185, 245, 100,35);
+    	txtUnidades = setTextField(245, 247, 45,30);
 		
-    	lblFornecedor = setLabel("Fornecedor:", 420, 215, 100,35);
-		txtFornecedor = setTextField(450, 220, 100,30);
+    	lblFornecedor = setLabel("Fornecedor:", 325, 245, 100,35);
     	
     	setCreateProductButton();
 
@@ -63,7 +67,7 @@ public class AdminProdutoCadastro extends JFrame{
     }
     
     private void setBackgroundImage() {
-    	imgFundoTela = new ImageIcon(".\\src\\imagens\\fundoCadastroCliente.png");
+    	imgFundoTela = new ImageIcon(".\\src\\imagens\\CadastroProduto.png");
         JLabel lblFundoTela = new JLabel();
         lblFundoTela.setIcon(imgFundoTela);
         lblFundoTela.setBounds(0 , 0, 600, 450 );
@@ -95,19 +99,25 @@ public class AdminProdutoCadastro extends JFrame{
     	return txt;
     }
     
-    private JTextField setTextField(int xText, int yText, int width, int height, String Mensagem) {
-    	JTextField txt = new JTextField();
-    	txt.setBounds(xText,yText,width,height);
-    	container.add(txt);
-    	return txt;
-    }
    
     private void setCreateProductButton() {
         btnCadastrarProduto = new JButton("Cadastrar");
-        btnCadastrarProduto.setBounds(450,360,100,40);
+        btnCadastrarProduto.setBounds(450,325,100,40);
         btnCadastrarProduto.addActionListener(controller);
         container.add(btnCadastrarProduto);
 
+    }
+    
+    public void setComboBox(List<String> list) {
+    	Vector<String> vect = new Vector();
+    	for(String a: list) {
+    		vect.add(a);
+    	}
+    	cnpjs = new JComboBox<String>(vect);
+    	cnpjs.setSelectedIndex(0);
+    	cnpjs.addActionListener(controller);
+    	cnpjs.setBounds(400, 247, 150,30);
+    	container.add(cnpjs);
     }
     
 	public JFrame getContainer() {
@@ -198,4 +208,13 @@ public class AdminProdutoCadastro extends JFrame{
 		this.btnCadastrarProduto = btnCadastrarProduto;
 	}
 
+	public JComboBox getCnpjs() {
+		return cnpjs;
+	}
+
+	public void setCnpjs(JComboBox cnpjs) {
+		this.cnpjs = cnpjs;
+	}
+	
+	
 }

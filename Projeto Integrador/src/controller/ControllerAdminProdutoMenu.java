@@ -25,23 +25,24 @@ public class ControllerAdminProdutoMenu implements ActionListener{
 		FactoryScreens chamaTela = new FactoryScreens();
 		
 		ControllerAdminMenuPrincipal controlMenu = new ControllerAdminMenuPrincipal();
+		ControllerAdminProdutoCadastro controlCadastro = new ControllerAdminProdutoCadastro();
 		
-        if (evt.getSource() == view.getBtnCadastrarProduto()) {
-            JOptionPane.showMessageDialog(view.getContainer(), "Trocar tela para tela de cadastro de produto");
+        if (evt.getSource() == view.getBtnAdd()) {
+           chamaTela.chamaAdminProdutoCadastro(controlCadastro);
         }
 
-        if (evt.getSource() == view.getBtnEditarProduto()) {
+        if (evt.getSource() == view.getBtnUpdate()) {
             JOptionPane.showMessageDialog(view.getContainer(), "Trocar tela para tela de edicao de produto");
         }
 
-        if (evt.getSource() == view.getBtnExcluirProduto()) {
+        if (evt.getSource() == view.getBtnDelete()) {
             JOptionPane.showMessageDialog(view.getContainer(), "Trocar tela para tela de exclusao de produto");
         }
 
-        if(evt.getSource() == view.getBtnBuscarProduto()) {
+        if(evt.getSource() == view.getBtnSearch()) {
             JOptionPane.showMessageDialog(view.getContainer(), "Trocar tela para busca de produto");
         }
-        if (evt.getSource() == view.getBtnVoltarMenu()) {
+        if (evt.getSource() == view.getBtnVoltar()) {
         	chamaTela.chamaAdminMenuPrincipal(controlMenu, view.getContainer());
         }
 		

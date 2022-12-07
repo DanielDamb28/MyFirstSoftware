@@ -7,9 +7,11 @@ import controller.ControllerAdminClienteExcluir;
 import controller.ControllerAdminClienteFiltrar;
 import controller.ControllerAdminClienteMenu;
 import controller.ControllerAdminFornecedorCadastro;
+import controller.ControllerAdminFornecedorExcluir;
 import controller.ControllerAdminFornecedorFiltrar;
 import controller.ControllerAdminFornecedorMenu;
 import controller.ControllerAdminMenuPrincipal;
+import controller.ControllerAdminProdutoCadastro;
 import controller.ControllerAdminProdutoMenu;
 import controller.ControllerAdminUsuarioMenu;
 import controller.ControllerAdminVendaMenu;
@@ -29,9 +31,11 @@ import view.AdminClienteExclusao;
 import view.AdminClienteFiltrar;
 import view.AdminClienteMenu;
 import view.AdminFornecedorCadastro;
+import view.AdminFornecedorExcluir;
 import view.AdminFornecedorFiltrar;
 import view.AdminFornecedorMenu;
 import view.AdminMenuPrincipal;
+import view.AdminProdutoCadastro;
 import view.AdminProdutoMenu;
 import view.AdminUsuarioMenu;
 import view.AdminVendaMenu;
@@ -116,6 +120,13 @@ public class FactoryScreens {
 		ctrl.setClienteFiltrar(tela);
 	}
 	
+	public void chamaAdminFornecedorExcluir(ControllerAdminFornecedorExcluir ctrl) {
+		AdminFornecedorExcluir tela = new AdminFornecedorExcluir(ctrl);
+		Fornecedor fornecedor = new Fornecedor();
+		ctrl.setModel(fornecedor);
+		ctrl.setViewExcluir(tela);
+	}
+	
 	public void chamaAdminProdutoMenu(ControllerAdminProdutoMenu ctrl,JFrame container) {
 		AdminProdutoMenu tela = new AdminProdutoMenu(ctrl);
 		Produto product = new Produto();
@@ -123,6 +134,16 @@ public class FactoryScreens {
 		ctrl.setView(tela);
 		container.dispose();
 	}
+	
+	public void chamaAdminProdutoCadastro(ControllerAdminProdutoCadastro ctrl) {
+		AdminProdutoCadastro tela = new AdminProdutoCadastro(ctrl);
+		Produto product = new Produto();
+		Fornecedor fornecedor = new Fornecedor();
+		tela.setComboBox(fornecedor.retornaCnpjs());
+		ctrl.setModel(product);
+		ctrl.setView(tela);
+	}
+	
 	public void chamaAdminVendaMenu(ControllerAdminVendaMenu ctrl,JFrame container) {
 		AdminVendaMenu tela = new AdminVendaMenu(ctrl);
 		Venda venda = new Venda();

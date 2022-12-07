@@ -26,9 +26,13 @@ public class ControllerAdminFornecedorMenu implements ActionListener{
     	ControllerAdminMenuPrincipal controlMenu = new ControllerAdminMenuPrincipal();
     	ControllerAdminFornecedorCadastro controlCadastro = new ControllerAdminFornecedorCadastro();
     	ControllerAdminFornecedorFiltrar controlFiltrar = new ControllerAdminFornecedorFiltrar();
+    	ControllerAdminFornecedorExcluir controlExcluir = new ControllerAdminFornecedorExcluir();
     	
         if (evt.getSource() == view.getBtnAdd()) {
         	chamaTela.chamaAdminFornecedorCadastro(controlCadastro);
+        }
+        if(evt.getSource() == view.getBtnDelete()) {
+        	chamaTela.chamaAdminFornecedorExcluir(controlExcluir);
         }
 
         if (evt.getSource() == view.getBtnSearch()) {

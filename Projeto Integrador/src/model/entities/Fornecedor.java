@@ -313,4 +313,47 @@ public class Fornecedor {
 		return fornecedores;
 		
 	}
+	
+	public List<String> retornaCnpjs(){
+		List<String> fornecedores = new ArrayList<String>();
+		conexao = new Conexao();
+		
+		fornecedores = getAllCnpjs();
+		
+		return fornecedores;
+		
+		
+	}
+	
+	private List<String> getAllCnpjs(){
+		Connection con = conexao.getConexao();
+		String comandoInsereFornecedorNoBancoDeDados = "SELECT pk_cnpj FROM fornecedor;";
+		ResultSet rs = null;
+		
+		ArrayList<String> fornecedores = new ArrayList<String>();
+		
+		try {
+			PreparedStatement stmInsereFornecedorNoBancoDeDados = con.prepareStatement(comandoInsereFornecedorNoBancoDeDados);
+			
+			rs = stmInsereFornecedorNoBancoDeDados.executeQuery();
+			while(rs.next()) {
+				
+				fornecedores.add(rs.getString("pk_cnpj"));
+			}
+			
+		}catch (SQLException e) {
+			e.printStackTrace();
+		}finally{
+			if(con != null){
+				try {
+					con.setAutoCommit(true);
+					con.close();
+				} catch (SQLException e) {
+					e.getStackTrace();
+				}
+			}
+		}
+		return fornecedores;
+		
+	}
 }

@@ -130,6 +130,7 @@ public class AdminFornecedorMenu extends JFrame{
     public void fillTableWithAllDataBaseInformation(List<Fornecedor> fornecedores) {
     	try {
     	    model.getDataVector().removeAllElements();
+    	    model.fireTableDataChanged();
     	    revalidate();
     	    
         	String cnpj = "";
@@ -157,6 +158,7 @@ public class AdminFornecedorMenu extends JFrame{
     	try {
     	    model.getDataVector().removeAllElements();
     	    model.fireTableDataChanged();
+    	    revalidate();
         	
     	    String cnpj = "";
         	String nome = "";
@@ -186,6 +188,7 @@ public class AdminFornecedorMenu extends JFrame{
     	try {
     	    model.getDataVector().removeAllElements();
     	    model.fireTableDataChanged();
+    	    revalidate();
         	
     	    String cnpj = "";
         	String nome = "";

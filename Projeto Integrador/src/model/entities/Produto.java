@@ -5,9 +5,11 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.time.format.DateTimeFormatter;
 
-public class Produto {
+public class Produto{
 	
 	private static Conexao conexao = null;
+	
+	private static int ids;
 	
 	private String modelo;
 	private String categoria;
@@ -17,13 +19,14 @@ public class Produto {
 	private String tamanho;
 	private Float preco;
 	private	Integer unidadesEstoque;
-	private String id;
-	private Fornecedor fornecedor;
+	private int id;
+	private String fornecedor;
 	
-	public Produto() {}
+	public Produto() {
+	}
 	
 	public Produto(String modelo, String categoria, String marca, String setor, String cor, String tamanho, Float preco,
-			Integer unidadesEstoque, String id, Fornecedor fornecedor) {
+			Integer unidadesEstoque, String fornecedorCnpj) {
 		setModelo(modelo);
 		setCategoria(categoria);
 		setMarca(marca);
@@ -32,8 +35,8 @@ public class Produto {
 		setTamanho(tamanho);
 		setPreco(preco);
 		setUnidadesEstoque(unidadesEstoque);
-		setId(id);
-		setFornecedor(fornecedor);
+		setId();
+		setFornecedor(fornecedorCnpj);
 	}
 
 	public String getModelo() {
@@ -100,19 +103,29 @@ public class Produto {
 		this.unidadesEstoque = unidadesEstoque;
 	}
 
-	public String getId() {
+	public int getId() {
 		return id;
 	}
 
-	public void setId(String id) {
-		this.id = id;
+	public void setId() {
+		ItemsSerializados item = new ItemsSerializados();
+		this.id = ids;
+		ids = ids + 1;
+		Serializar s = new Serializar();
+		item.setId(ids);
+		try {
+			s.serializar("./id.obj", item);
+			System.out.println("bbbbbbbbbbbbbbbbbbbbbb");
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 
-	public Fornecedor getFornecedor() {
+	public String getFornecedor() {
 		return fornecedor;
 	}
 
-	public void setFornecedor(Fornecedor fornecedor) {
+	public void setFornecedor(String fornecedor) {
 		this.fornecedor = fornecedor;
 	}
 	
@@ -128,7 +141,6 @@ public class Produto {
 			result = enviaDados(product); 
 			
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
@@ -142,13 +154,13 @@ public class Produto {
 		DateTimeFormatter fmt = DateTimeFormatter.ofPattern("dd-MM-yyyy");
 		
 		Connection con = conexao.getConexao();
-		String comandoInsereClienteNoBancoDeDados = "INSERT INTO cliente(pk_id, modelo, categoria, marca, setor, cor, tamanho, preco, unidades_estoque, fk_fornecedor_cnpj)"
+		String comandoInsereClienteNoBancoDeDados = "INSERT INTO produto(pk_id, modelo, categoria, marca, setor, cor, tamanho, preco, unidades_estoque, fk_fornecedor_cnpj)"
 				+ " VALUES (?, ?, ?, ? , ?, ?, ?, ?, ?, ?);";
 		
 		try {
 			PreparedStatement stmInsereClienteNoBancoDeDados = con.prepareStatement(comandoInsereClienteNoBancoDeDados);
 			
-			stmInsereClienteNoBancoDeDados.setString(1, product.getId());
+			stmInsereClienteNoBancoDeDados.setInt(1, product.getId());
 			stmInsereClienteNoBancoDeDados.setString(2, product.getModelo());
 			stmInsereClienteNoBancoDeDados.setString(3, product.getCategoria());
 			stmInsereClienteNoBancoDeDados.setString(4, product.getMarca());
@@ -157,12 +169,13 @@ public class Produto {
 			stmInsereClienteNoBancoDeDados.setString(7, product.getTamanho());
 			stmInsereClienteNoBancoDeDados.setFloat(8, product.getPreco());
 			stmInsereClienteNoBancoDeDados.setInt(9, product.getUnidadesEstoque());
-			stmInsereClienteNoBancoDeDados.setString(10, String.valueOf(product.getFornecedor().getCnpj()));
+			stmInsereClienteNoBancoDeDados.setString(10, String.valueOf(product.getFornecedor()));
 			
 			result = stmInsereClienteNoBancoDeDados.executeUpdate();
 			
 			
 		}catch (SQLException e) {
+			e.printStackTrace();
 			result = 0;
 			resposta = "Esse Id já está cadastrado";
 
@@ -184,5 +197,15 @@ public class Produto {
 			return resposta;
 		}
 	}
+
+	public static int getIds() {
+		return ids;
+	}
+
+	public static void setIds(int ids) {
+		Produto.ids = ids;
+	}
+	
+	
 
 }

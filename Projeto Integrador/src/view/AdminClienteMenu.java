@@ -136,6 +136,7 @@ public class AdminClienteMenu extends JFrame{
     public void fillTableWithAllDataBaseInformation(List<Cliente> clientes) {
     	try {
     	    model.getDataVector().removeAllElements();
+    	    model.fireTableDataChanged();
     	    revalidate();
     	
         	String nome = "";
@@ -168,6 +169,7 @@ public class AdminClienteMenu extends JFrame{
     	try {
     	    model.getDataVector().removeAllElements();
     	    model.fireTableDataChanged();
+    	    revalidate();
         	
         	String nome = "";
         	String cpfCnpj = "";
@@ -201,6 +203,7 @@ public class AdminClienteMenu extends JFrame{
     	try {
     	    model.getDataVector().removeAllElements();
     	    model.fireTableDataChanged();
+    	    revalidate();
         	
         	String nome = "";
         	String cpfCnpj = "";
