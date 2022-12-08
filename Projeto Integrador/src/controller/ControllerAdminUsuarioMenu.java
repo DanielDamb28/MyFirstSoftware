@@ -3,8 +3,6 @@ package controller;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.JOptionPane;
-
 import model.entities.Usuario;
 import model.factorys.FactoryScreens;
 import view.AdminUsuarioMenu;
@@ -27,23 +25,23 @@ public class ControllerAdminUsuarioMenu implements ActionListener{
 		FactoryScreens chamaTela = new FactoryScreens();
 		
 		ControllerAdminMenuPrincipal controlMenu = new ControllerAdminMenuPrincipal();
+		ControllerAdminUsuarioCadastro controlCadastro = new ControllerAdminUsuarioCadastro();
+		ControllerAdminUsuarioFiltrar controlFiltrar = new ControllerAdminUsuarioFiltrar();
+		ControllerAdminUsuarioExcluir controlExcluir = new ControllerAdminUsuarioExcluir();
 		
-	    if (evt.getSource() == view.getBtnExcluirUsuario()) {
-	        JOptionPane.showMessageDialog(view.getContainer(), "Trocar tela para tela de excluir usuario");
+	    if (evt.getSource() == view.getBtnDelete()) {
+	        chamaTela.chamaAdminUsuarioExcluir(controlExcluir);
 	    }
 
-	    if (evt.getSource() == view.getBtnEditarUsuario()) {
-	        JOptionPane.showMessageDialog(view.getContainer(), "Trocar tela para tela de edicao usuario");
+	    if (evt.getSource() == view.getBtnAdd()) {
+	        chamaTela.chamaAdminUsuarioCadastro(controlCadastro);
 	    }
 
-	    if (evt.getSource() == view.getBtnCadastrarUsuario()) {
-	        JOptionPane.showMessageDialog(view.getContainer(), "Trocar tela para cadastro de usuario");
+	    if (evt.getSource() == view.getBtnSearch()) {
+	        chamaTela.chamaAdminUsuarioFiltrar(controlFiltrar, view);
 	    }
-
-	    if (evt.getSource() == view.getBtnBuscarUsuario()) {
-	        JOptionPane.showMessageDialog(view.getContainer(), "Trocar tela para busca de usuario");
-	    }
-	    if (evt.getSource() == view.getBtnVoltarMenu()) {
+	    
+	    if (evt.getSource() == view.getBtnVoltar()) {
 	    	chamaTela.chamaAdminMenuPrincipal(controlMenu, view.getContainer());
 	    }
 		

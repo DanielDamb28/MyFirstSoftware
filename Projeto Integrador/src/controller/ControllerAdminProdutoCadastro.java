@@ -12,7 +12,6 @@ public class ControllerAdminProdutoCadastro implements ActionListener{
 	
 	private AdminProdutoCadastro view;
 	private Produto model;
-	private Fornecedor fornecedor;
 	
 	public void setView(AdminProdutoCadastro view) {
 		this.view = view;
@@ -20,10 +19,6 @@ public class ControllerAdminProdutoCadastro implements ActionListener{
 
 	public void setModel(Produto model) {
 		this.model = model;
-	}
-	
-	public void setFornecedor(Fornecedor fornecedor) {
-		this.fornecedor = fornecedor;
 	}
 
 	public void actionPerformed(ActionEvent evt) {

@@ -40,52 +40,52 @@ public class AdminClienteFiltrar extends JFrame{
 		controller = ctrl;
 		
 		lPesquisa = new JLabel("Filtrar:");
-		lPesquisa.setBounds(54, 60, 100, 40);
+		lPesquisa.setBounds(73, 60, 100, 40);
 		lPesquisa.setFont(new Font("Arial", Font.PLAIN, 30));
 		container.add(lPesquisa);
 		
 		tPesquisa = new JTextField();
-		tPesquisa.setBounds(150, 59, 360, 50);
+		tPesquisa.setBounds(168, 58, 360, 50);
 		tPesquisa.setFont(new Font("Arial", Font.PLAIN, 25));
 		container.add(tPesquisa);
 		
+		
 		rbCpfCnpj = new JRadioButton();
-		rbCpfCnpj.setBounds(75, 160, 30, 30);
+		rbCpfCnpj.setBounds(75, 150, 30, 30);
 		rbCpfCnpj.setSelected(true);
 		rbCpfCnpj.addActionListener(controller);
 		container.add(rbCpfCnpj);
 		
 		lCpfCnpj = new JLabel("CPF/CNPJ");
-		lCpfCnpj.setBounds(105, 150, 100, 50);
+		lCpfCnpj.setBounds(105, 140, 100, 50);
 		lCpfCnpj.setFont(new Font("Arial", Font.PLAIN, 20));
 		container.add(lCpfCnpj);
 		
 		rbNome = new JRadioButton();
-		rbNome.setBounds(255, 160, 30, 30);
+		rbNome.setBounds(255, 150, 30, 30);
 		rbNome.addActionListener(controller);
 		container.add(rbNome);
 		
 		lNome = new JLabel("Nome");
-		lNome.setBounds(285, 150, 70, 50);
+		lNome.setBounds(285, 140, 70, 50);
 		lNome.setFont(new Font("Arial", Font.PLAIN, 20));
 		container.add(lNome);
 		
 		rbSemFiltro = new JRadioButton();
-		rbSemFiltro.setBounds(365, 160, 30, 30);
+		rbSemFiltro.setBounds(365, 150, 30, 30);
 		rbSemFiltro.addActionListener(controller);
 		container.add(rbSemFiltro);
 		
 		lSemFiltro = new JLabel("Sem Filtro");
-		lSemFiltro.setBounds(395, 150, 140, 50);
+		lSemFiltro.setBounds(395, 140, 140, 50);
 		lSemFiltro.setFont(new Font("Arial", Font.PLAIN, 20));
 		container.add(lSemFiltro);
 		
 		btnFiltrar = new JButton("Filtrar");
-		btnFiltrar.setBounds(350, 350, 200, 50);
+		btnFiltrar.setBounds(350, 250, 200, 50);
 		btnFiltrar.setFont(new Font("Arial", Font.PLAIN, 30));
 		btnFiltrar.addActionListener(controller);
 		container.add(btnFiltrar);
-		
 		
 		tipoFiltragem = new ButtonGroup();
 		tipoFiltragem.add(rbCpfCnpj);
@@ -104,7 +104,7 @@ public class AdminClienteFiltrar extends JFrame{
     }
 
 	private void setImageBackground() {
-		imgFundoTela = new ImageIcon(".\\src\\imagens\\TelaFiltrarCliente.png");
+		imgFundoTela = new ImageIcon(".\\src\\imagens\\TelaFiltrar.png");
         lblFundoTela = new JLabel();
         lblFundoTela.setIcon(imgFundoTela);
         lblFundoTela.setBounds(0 , 0, 1000, 750 );

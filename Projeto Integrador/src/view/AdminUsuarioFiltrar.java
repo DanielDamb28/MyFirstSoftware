@@ -10,27 +10,25 @@ import javax.swing.JLabel;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 
-import controller.ControllerAdminProdutoFiltrar;
+import controller.ControllerAdminUsuarioFiltrar;
 
-public class AdminProdutoFiltrar {
+public class AdminUsuarioFiltrar {
 	private JFrame container;
 	private JLabel lPesquisa;
 	private JTextField tPesquisa;
-	private JRadioButton rbModelo;
-	private JLabel lModelo;
-	private JRadioButton rbMarca;
-	private JLabel lMarca;
-	private JRadioButton rbTamanho;
-	private JLabel lTamanho;
+	private JRadioButton rbId;
+	private JLabel lId;
+	private JRadioButton rbTipoAcesso;
+	private JLabel lTipoAcesso;
 	private JRadioButton rbSemFiltro;
 	private JLabel lSemFiltro;
 	private JButton btnFiltrar;
 	private ButtonGroup tipoFiltragem;
-	private ControllerAdminProdutoFiltrar controller;
+	private ControllerAdminUsuarioFiltrar controller;
 	private JLabel lblFundoTela; 
 	private ImageIcon imgFundoTela;
 	
-	public AdminProdutoFiltrar(ControllerAdminProdutoFiltrar ctrl) {
+	public AdminUsuarioFiltrar(ControllerAdminUsuarioFiltrar ctrl) {
 		container = new JFrame();
 		
 		setScreenDefaultSettings();
@@ -48,36 +46,26 @@ public class AdminProdutoFiltrar {
 		tPesquisa.setFont(new Font("Arial", Font.PLAIN, 25));
 		container.add(tPesquisa);
 		
-		rbModelo = new JRadioButton();
-		rbModelo.setBounds(80, 150, 20, 30);
-		rbModelo.setSelected(true);
-		rbModelo.addActionListener(controller);
-		container.add(rbModelo);
 		
-		lModelo = new JLabel("Modelo");
-		lModelo.setBounds(105, 140, 70, 50);
-		lModelo.setFont(new Font("Arial", Font.PLAIN, 20));
-		container.add(lModelo);
+		rbId = new JRadioButton();
+		rbId.setBounds(70, 150, 20, 30);
+		rbId.addActionListener(controller);
+		container.add(rbId);
 		
-		rbMarca = new JRadioButton();
-		rbMarca.setBounds(175, 150, 20, 30);
-		rbMarca.addActionListener(controller);
-		container.add(rbMarca);
+		lId = new JLabel("Id");
+		lId.setBounds(100, 140, 70, 50);
+		lId.setFont(new Font("Arial", Font.PLAIN, 20));
+		container.add(lId);
 		
-		lMarca = new JLabel("Marca");
-		lMarca.setBounds(200, 140, 70, 50);
-		lMarca.setFont(new Font("Arial", Font.PLAIN, 20));
-		container.add(lMarca);
+		rbTipoAcesso = new JRadioButton();
+		rbTipoAcesso.setBounds(180, 150, 20, 30);
+		rbTipoAcesso.addActionListener(controller);
+		container.add(rbTipoAcesso);
 		
-		rbTamanho = new JRadioButton();
-		rbTamanho.setBounds(275, 150, 20, 30);
-		rbTamanho.addActionListener(controller);
-		container.add(rbTamanho);
-		
-		lTamanho = new JLabel("Tamanho");
-		lTamanho.setBounds(295, 140, 90, 50);
-		lTamanho.setFont(new Font("Arial", Font.PLAIN, 20));
-		container.add(lTamanho);
+		lTipoAcesso = new JLabel("Tipo de Acesso");
+		lTipoAcesso.setBounds(210, 140, 150, 50);
+		lTipoAcesso.setFont(new Font("Arial", Font.PLAIN, 20));
+		container.add(lTipoAcesso);
 		
 		rbSemFiltro = new JRadioButton();
 		rbSemFiltro.setBounds(400, 150, 20, 30);
@@ -97,9 +85,8 @@ public class AdminProdutoFiltrar {
 		
 		
 		tipoFiltragem = new ButtonGroup();
-		tipoFiltragem.add(rbModelo);
-		tipoFiltragem.add(rbMarca);
-		tipoFiltragem.add(rbTamanho);
+		tipoFiltragem.add(rbId);
+		tipoFiltragem.add(rbTipoAcesso);
 		tipoFiltragem.add(rbSemFiltro);
 		
 		container.setVisible(true);
@@ -121,31 +108,20 @@ public class AdminProdutoFiltrar {
         container.setContentPane(lblFundoTela);
     }
 
-    
-	
-
-	public JRadioButton getRbModelo() {
-		return rbModelo;
+	public JTextField gettPesquisa() {
+		return tPesquisa;
 	}
 
-	public void setRbModelo(JRadioButton rbModelo) {
-		this.rbModelo = rbModelo;
+	public void settPesquisa(JTextField tPesquisa) {
+		this.tPesquisa = tPesquisa;
 	}
 
-	public JRadioButton getRbMarca() {
-		return rbMarca;
+	public JRadioButton getRbTipoAcesso() {
+		return rbTipoAcesso;
 	}
 
-	public void setRbMarca(JRadioButton rbMarca) {
-		this.rbMarca = rbMarca;
-	}
-
-	public JRadioButton getRbTamanho() {
-		return rbTamanho;
-	}
-
-	public void setRbTamanho(JRadioButton rbTamanho) {
-		this.rbTamanho = rbTamanho;
+	public void setRbTipoAcesso(JRadioButton rbTipoAcesso) {
+		this.rbTipoAcesso = rbTipoAcesso;
 	}
 
 	public JRadioButton getRbSemFiltro() {
@@ -164,11 +140,21 @@ public class AdminProdutoFiltrar {
 		this.btnFiltrar = btnFiltrar;
 	}
 
-	public JTextField gettPesquisa() {
-		return tPesquisa;
+	public ButtonGroup getTipoFiltragem() {
+		return tipoFiltragem;
 	}
 
-	public void settPesquisa(JTextField tPesquisa) {
-		this.tPesquisa = tPesquisa;
+	public void setTipoFiltragem(ButtonGroup tipoFiltragem) {
+		this.tipoFiltragem = tipoFiltragem;
 	}
+
+	public JRadioButton getRbId() {
+		return rbId;
+	}
+
+	public void setRbId(JRadioButton rbId) {
+		this.rbId = rbId;
+	}
+	
+	
 }

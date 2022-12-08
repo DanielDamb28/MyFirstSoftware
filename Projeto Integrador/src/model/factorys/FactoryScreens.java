@@ -15,6 +15,9 @@ import controller.ControllerAdminProdutoCadastro;
 import controller.ControllerAdminProdutoExcluir;
 import controller.ControllerAdminProdutoFiltrar;
 import controller.ControllerAdminProdutoMenu;
+import controller.ControllerAdminUsuarioCadastro;
+import controller.ControllerAdminUsuarioExcluir;
+import controller.ControllerAdminUsuarioFiltrar;
 import controller.ControllerAdminUsuarioMenu;
 import controller.ControllerAdminVendaMenu;
 import controller.ControllerFuncionarioClienteMenu;
@@ -41,6 +44,9 @@ import view.AdminProdutoCadastro;
 import view.AdminProdutoExcluir;
 import view.AdminProdutoFiltrar;
 import view.AdminProdutoMenu;
+import view.AdminUsuarioCadastro;
+import view.AdminUsuarioExcluir;
+import view.AdminUsuarioFiltrar;
 import view.AdminUsuarioMenu;
 import view.AdminVendaMenu;
 import view.FuncionarioClienteMenu;
@@ -100,6 +106,27 @@ public class FactoryScreens {
 		ctrl.setModel(usuario);
 		ctrl.setView(tela);
 		container.dispose();
+	}
+	
+	public void chamaAdminUsuarioCadastro(ControllerAdminUsuarioCadastro ctrl) {
+		AdminUsuarioCadastro tela = new AdminUsuarioCadastro(ctrl);
+		Usuario model = new Usuario();
+		ctrl.setModel(model);
+		ctrl.setView(tela);
+	}
+	
+	public void chamaAdminUsuarioFiltrar(ControllerAdminUsuarioFiltrar ctrl, AdminUsuarioMenu viewMenu) {
+		AdminUsuarioFiltrar tela = new AdminUsuarioFiltrar(ctrl);
+		Usuario model = new Usuario();
+		ctrl.setModel(model);
+		ctrl.setView(tela);
+		ctrl.setViewMenu(viewMenu);
+	}
+	public void chamaAdminUsuarioExcluir(ControllerAdminUsuarioExcluir ctrl) {
+		AdminUsuarioExcluir tela = new AdminUsuarioExcluir(ctrl);
+		Usuario model = new Usuario();
+		ctrl.setModel(model);
+		ctrl.setViewExcluir(tela);
 	}
 	public void chamaAdminFornecedorMenu(ControllerAdminFornecedorMenu ctrl,JFrame container) {
 		AdminFornecedorMenu tela = new AdminFornecedorMenu(ctrl);

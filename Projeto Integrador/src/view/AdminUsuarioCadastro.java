@@ -9,8 +9,7 @@ import javax.swing.JPasswordField;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 
-import controller.ControllerAdminClienteCadastro;
-import controller.ControllerAdminFornecedorCadastro;
+import controller.ControllerAdminUsuarioCadastro;
 
 public class AdminUsuarioCadastro extends JFrame{
 	
@@ -20,16 +19,16 @@ public class AdminUsuarioCadastro extends JFrame{
 	private JPasswordField pswSenha; 
 	private JButton btnCadastrarUsuario;
 	private ImageIcon imgFundoTela;
-	//private ControllerAdminFornecedorCadastro controller;
+	private ControllerAdminUsuarioCadastro controller;
 	private JRadioButton rbGerente;
     private JRadioButton rbUsuario;
     private ButtonGroup tipoFiltragem;
 
-    public AdminUsuarioCadastro(/*ControllerAdminUsuarioCadastro ctrl*/) {
+    public AdminUsuarioCadastro(ControllerAdminUsuarioCadastro ctrl) {
     	
     	container = new JFrame();
     	
-    	//controller = ctrl;
+    	controller = ctrl;
     	
     	setBackgroundImage();
     	setDefaultScreenSettings();
@@ -47,6 +46,7 @@ public class AdminUsuarioCadastro extends JFrame{
         lblAdministrador = setLabel("Gerente", 420, 135, 100 ,35); 
 
 		rbUsuario = setRadioButton(390, 170, 25, 30);
+		rbUsuario.setSelected(true);
 		lblUsuario = setLabel("Usuario", 420, 170, 100 ,35);
     	
 		setCreateUsuarioButton();
@@ -110,10 +110,52 @@ public class AdminUsuarioCadastro extends JFrame{
     private void setCreateUsuarioButton() {
         btnCadastrarUsuario = new JButton("Cadastrar");
         btnCadastrarUsuario.setBounds(450,280,100,40);
-        //btnCadastrarUsuario.addActionListener(/*controller*/);
+        btnCadastrarUsuario.addActionListener(controller);
         container.add(btnCadastrarUsuario);
 
     }
+
+	public JButton getBtnCadastrarUsuario() {
+		return btnCadastrarUsuario;
+	}
+
+	public void setBtnCadastrarUsuario(JButton btnCadastrarUsuario) {
+		this.btnCadastrarUsuario = btnCadastrarUsuario;
+	}
+
+	public JTextField getTxtId() {
+		return txtId;
+	}
+
+	public void setTxtId(JTextField txtId) {
+		this.txtId = txtId;
+	}
+
+	public JPasswordField getPswSenha() {
+		return pswSenha;
+	}
+
+	public void setPswSenha(JPasswordField pswSenha) {
+		this.pswSenha = pswSenha;
+	}
+
+	public JRadioButton getRbGerente() {
+		return rbGerente;
+	}
+
+	public void setRbGerente(JRadioButton rbGerente) {
+		this.rbGerente = rbGerente;
+	}
+
+	public JRadioButton getRbUsuario() {
+		return rbUsuario;
+	}
+
+	public void setRbUsuario(JRadioButton rbUsuario) {
+		this.rbUsuario = rbUsuario;
+	}
+    
+    
 
     
 }
