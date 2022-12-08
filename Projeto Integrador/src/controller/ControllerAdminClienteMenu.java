@@ -37,7 +37,7 @@ public class ControllerAdminClienteMenu implements ActionListener{
 			chamaTela.chamaAdminMenuPrincipal(controlMenu, viewClienteMenu.getContainer());
 		}
 		if(evt.getSource() == viewClienteMenu.getBtnAdd()) {
-			chamaTela.chamaAdminClienteCadastro(controlCadastro, viewClienteMenu);
+			chamaTela.chamaAdminClienteCadastro(controlCadastro);
 		}
 		if(evt.getSource() == viewClienteMenu.getBtnDelete()) {
 			chamaTela.chamaAdminClienteExclusao(controlExcluir);

@@ -43,7 +43,7 @@ public class AdminProdutoMenu extends  JFrame{
 	    }
 	};
 
- public AdminProdutoMenu(ControllerAdminProdutoMenu ctrl) {
+	public AdminProdutoMenu(ControllerAdminProdutoMenu ctrl) {
     	
     	container = new JFrame();
     	

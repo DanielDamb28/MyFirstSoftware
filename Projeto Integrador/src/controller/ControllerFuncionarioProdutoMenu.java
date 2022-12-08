@@ -24,29 +24,28 @@ public class ControllerFuncionarioProdutoMenu implements ActionListener{
 	
 	public void actionPerformed(ActionEvent evt) {
 		ControllerFuncionarioMenuPrincipal control= new ControllerFuncionarioMenuPrincipal();
+		ControllerAdminProdutoCadastro controlCadastro = new ControllerAdminProdutoCadastro();
+		ControllerAdminProdutoExcluir controlExcluir = new ControllerAdminProdutoExcluir();
+		ControllerAdminProdutoFiltrar controlFiltrar = new ControllerAdminProdutoFiltrar();
 		
 		FactoryScreens chamaTela = new FactoryScreens();
 		
-		if (evt.getSource() == view.getBtnCadastrarProduto()) {
-            JOptionPane.showMessageDialog(view.getContainer(), "Trocar tela para tela de cadastro de produto");
+		if (evt.getSource() == view.getBtnAdd()) {
+			chamaTela.chamaAdminProdutoCadastro(controlCadastro);
         }
 
-        if (evt.getSource() == view.getBtnEditarProduto()) {
-            JOptionPane.showMessageDialog(view.getContainer(), "Trocar tela para tela de edicao de produto");
+        
+        if (evt.getSource() == view.getBtnDelete()) {
+            chamaTela.chamaAdminProdutoExcluir(controlExcluir);
         }
+        
 
-        /*
-        if (evt.getSource() == view.getBtnExcluirProduto()) {
-            JOptionPane.showMessageDialog(view.getContainer(), "Trocar tela para tela de exclusao de produto");
-        }
-        */
-
-        if(evt.getSource() == view.getBtnBuscarProduto()) {
-            JOptionPane.showMessageDialog(view.getContainer(), "Trocar tela para busca de produto");
+        if(evt.getSource() == view.getBtnSearch()) {
+        	chamaTela.chamaAdminProdutoFiltrar(controlFiltrar, view);
         }
         
         
-        if (evt.getSource() == view.getBtnVoltarMenu()) {
+        if (evt.getSource() == view.getBtnVoltar()) {
         	chamaTela.chamaFuncionarioTelaMenu(control , view.getContainer());
         }
 		

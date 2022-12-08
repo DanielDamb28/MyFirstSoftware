@@ -11,19 +11,25 @@ import model.exceptions.NascimentoNotNull;
 import model.exceptions.SexoNotNull;
 import view.AdminClienteFiltrar;
 import view.AdminClienteMenu;
+import view.FuncionarioClienteMenu;
 
 public class ControllerAdminClienteFiltrar implements ActionListener{
 	
 	private AdminClienteFiltrar viewFiltrar;
-	private AdminClienteMenu viewMenu;
+	private FuncionarioClienteMenu viewMenuFuncionario;
+	private AdminClienteMenu viewMenuAdmin;
 	private Cliente model;
 	
 	public void setClienteFiltrar(AdminClienteFiltrar view) {
 		this.viewFiltrar = view;
 	}
 	
-	public void setView(AdminClienteMenu view) {
-		this.viewMenu = view;
+	public void setViewFuncionario(FuncionarioClienteMenu view) {
+		this.viewMenuFuncionario = view;
+	}
+	
+	public void setViewAdmin(AdminClienteMenu view) {
+		this.viewMenuAdmin = view;
 	}
 	
 	public void setModel(Cliente cliente) {
@@ -52,7 +58,11 @@ public class ControllerAdminClienteFiltrar implements ActionListener{
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
-				viewMenu.fillTableWithAllDataBaseInformation(clientes);
+	        	try {
+	        		viewMenuAdmin.fillTableWithAllDataBaseInformation(clientes);
+	        	}catch(Exception e) {
+	        		viewMenuFuncionario.fillTableWithAllDataBaseInformation(clientes);
+	        	}
 			}
 			else if(viewFiltrar.getRbCpfCnpj().isSelected()){
 				String cpf = viewFiltrar.gettPesquisa().getText();
@@ -73,7 +83,11 @@ public class ControllerAdminClienteFiltrar implements ActionListener{
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
-				viewMenu.findRowWithDataBaseInformationByCpf(cpf, clientes);
+	        	try {
+	        		viewMenuAdmin.findRowWithDataBaseInformationByCpf(cpf, clientes);
+	        	} catch(Exception e) {
+	        		viewMenuFuncionario.findRowWithDataBaseInformationByCpf(cpf, clientes);
+	        	}
 			}
 			else {
 				String nome = viewFiltrar.gettPesquisa().getText();
@@ -94,7 +108,11 @@ public class ControllerAdminClienteFiltrar implements ActionListener{
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
-				viewMenu.findRowWithDataBaseInformationByName(nome, clientes);
+	        	try {
+	        		viewMenuAdmin.findRowWithDataBaseInformationByName(nome, clientes);
+	        	} catch(Exception e) {
+	        		viewMenuFuncionario.findRowWithDataBaseInformationByName(nome, clientes);
+	        	}
 			}
 		}
 		

@@ -82,11 +82,19 @@ public class FactoryScreens {
 		AdminClienteFiltrar tela = new AdminClienteFiltrar(ctrl);
 		Cliente cliente = new Cliente();
 		ctrl.setModel(cliente);
-		ctrl.setView(view);
+		ctrl.setViewAdmin(view);
 		ctrl.setClienteFiltrar(tela);
 	}
 	
-	public void chamaAdminClienteCadastro(ControllerAdminClienteCadastro ctrl, AdminClienteMenu telaMenu) {
+	public void chamaAdminClienteFiltrar(ControllerAdminClienteFiltrar ctrl,FuncionarioClienteMenu view) {
+		AdminClienteFiltrar tela = new AdminClienteFiltrar(ctrl);
+		Cliente cliente = new Cliente();
+		ctrl.setModel(cliente);
+		ctrl.setViewFuncionario(view);
+		ctrl.setClienteFiltrar(tela);
+	}
+	
+	public void chamaAdminClienteCadastro(ControllerAdminClienteCadastro ctrl) {
 		AdminClienteCadastro tela = new AdminClienteCadastro(ctrl);
 		Cliente cliente = new Cliente();
 		ctrl.setModel(cliente);
@@ -180,7 +188,15 @@ public class FactoryScreens {
 		Produto product = new Produto();
 		ctrl.setModel(product);
 		ctrl.setView(tela);
-		ctrl.setViewMenu(viewMenu);
+		ctrl.setViewMenuAdmin(viewMenu);
+	}
+	
+	public void chamaAdminProdutoFiltrar(ControllerAdminProdutoFiltrar ctrl, FuncionarioProdutoMenu viewMenu) {
+		AdminProdutoFiltrar tela = new AdminProdutoFiltrar(ctrl);
+		Produto product = new Produto();
+		ctrl.setModel(product);
+		ctrl.setView(tela);
+		ctrl.setViewMenuFuncionario(viewMenu);
 	}
 	
 	public void chamaAdminProdutoExcluir(ControllerAdminProdutoExcluir ctrl) {
@@ -209,7 +225,7 @@ public class FactoryScreens {
 		FuncionarioClienteMenu tela= new FuncionarioClienteMenu(ctrl);
 		Cliente cliente = new Cliente();
 		ctrl.setCliente(cliente);
-		ctrl.setFuncionarioClienteMenu(tela);
+		ctrl.setAdminClienteMenu(tela);
 		container.dispose();
 	}
 	public void chamaFuncionarioProdutoMenu(ControllerFuncionarioProdutoMenu ctrl,JFrame container) {
