@@ -5,6 +5,7 @@ import model.entities.Deserializar;
 import model.entities.ItemsSerializados;
 import model.entities.Login;
 import model.entities.Produto;
+import model.entities.Venda;
 import model.factorys.FactoryScreens;
 import view.TelaLogin;
 
@@ -22,7 +23,8 @@ public class Program {
 			e.printStackTrace();
 		}
 		
-		Produto.setIds(item.getId());
+		Produto.setIds(item.getIdProduto());
+		Venda.setIds(item.getIdVenda());
 		
 		FactoryScreens chamaTela = new FactoryScreens();
 		

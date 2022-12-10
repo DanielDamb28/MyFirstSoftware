@@ -8,10 +8,19 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
+import model.exceptions.CategoriaNotNull;
 import model.exceptions.CnpjNotNull;
+import model.exceptions.CorNotNull;
 import model.exceptions.EmailNotNull;
+import model.exceptions.FornecedorNotNull;
+import model.exceptions.MarcaNotNull;
+import model.exceptions.ModeloNotNull;
 import model.exceptions.NameNotNull;
+import model.exceptions.PrecoNotNull;
+import model.exceptions.SetorNotNull;
+import model.exceptions.TamanhoNotNull;
 import model.exceptions.TelefoneNotNull;
+import model.exceptions.UnidadeNotNull;
 
 public class Produto{
 	
@@ -34,7 +43,9 @@ public class Produto{
 	}
 	
 	public Produto(String modelo, String categoria, String marca, String setor, String cor, String tamanho, Float preco,
-			Integer unidadesEstoque, String fornecedorCnpj) {
+			Integer unidadesEstoque, String fornecedorCnpj) 
+					throws ModeloNotNull, CategoriaNotNull, MarcaNotNull, SetorNotNull, CorNotNull, TamanhoNotNull, PrecoNotNull, UnidadeNotNull, FornecedorNotNull {
+		
 		setModelo(modelo);
 		setCategoria(categoria);
 		setMarca(marca);
@@ -120,7 +131,7 @@ public class Produto{
 		this.id = ids;
 		ids = ids + 1;
 		Serializar s = new Serializar();
-		item.setId(ids);
+		item.setIdProduto(ids);
 		try {
 			s.serializar("./id.obj", item);
 		} catch (Exception e) {

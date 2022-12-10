@@ -1,24 +1,29 @@
 package view;
 
+import java.text.ParseException;
+
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JFormattedTextField;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
+import javax.swing.text.MaskFormatter;
 
 import controller.ControllerAdminClienteCadastro;
 
 public class AdminClienteCadastro extends JFrame{
 	
 	private JFrame container;
-	private JTextField txtNome, txtCpfCnpj, txtDataNasc, txtTelefone, txtCep, txtSexo; 
+	private JTextField txtNome, txtCpfCnpj, txtTelefone, txtCep, txtSexo; 
+	private JFormattedTextField txtDataNasc; 
 	private JLabel lblNome, lblCpfCnpj, lblDataNasc, lblTelefone, lblCep, lblSexo; 
 	private JLabel lblRua, lblCidadeUF, lblBairro, lblNumero, mensagem; 
 	private JTextField txtRua, txtCidadeUF, txtBairro, txtNumero; 
 	private JButton btnCadastrarCliente;
 	private ImageIcon imgFundoTela;
 	private ControllerAdminClienteCadastro controller;
-
+	private MaskFormatter mascaraData = null;
 
 
     public AdminClienteCadastro(ControllerAdminClienteCadastro ctrl) {
@@ -41,8 +46,8 @@ public class AdminClienteCadastro extends JFrame{
 		txtNumero = setTextField(420, 316, 130,30);
     	lblRua = setLabel("Rua:", 52, 313, 100,35);
     	txtRua = setTextField(82, 316, 200,30);
-    	lblDataNasc = setLabel("Nascimento:", 245, 120, 150,35);
-    	txtDataNasc = setTextField(325, 123, 87,30, "dd/MM/yyyy");
+    	lblDataNasc = setLabel("Nascimento:", 245, 120, 160,35);
+    	txtDataNasc = setTextFieldData(340, 123, 75,30);
     	lblTelefone = setLabel("Telefone:", 360, 25, 100,35);
     	txtTelefone = setTextField(418, 28, 130,30);
 		lblCep = setLabel("Cep:", 420, 215, 100,35);
@@ -89,11 +94,19 @@ public class AdminClienteCadastro extends JFrame{
     	return txt;
     }
     
-    private JTextField setTextField(int xText, int yText, int width, int height, String Mensagem) {
-    	JTextField txt = new JTextField();
-    	txt.setBounds(xText,yText,width,height);
-    	container.add(txt);
-    	return txt;
+    private JFormattedTextField setTextFieldData(int xText, int yText, int width, int height){
+    	JFormattedTextField mtxt = new JFormattedTextField();
+    	try {
+	    	mascaraData = new MaskFormatter("##/##/####");
+	    	mascaraData.setPlaceholderCharacter('_');
+    	} catch(ParseException excp) {
+                System.err.println("Erro na formatação: " + excp.getMessage());
+                System.exit(-1);
+         }	
+    	mtxt = new JFormattedTextField(mascaraData);
+    	mtxt.setBounds(xText, yText, width, height);
+    	container.add(mtxt);
+    	return mtxt;
     }
    
     private void setCreateClientButton() {
@@ -103,8 +116,6 @@ public class AdminClienteCadastro extends JFrame{
         container.add(btnCadastrarCliente);
 
     }
-    
-    
 
 	public JButton getBtnCadastrarCliente() {
 		return btnCadastrarCliente;
@@ -134,7 +145,7 @@ public class AdminClienteCadastro extends JFrame{
 		return txtDataNasc;
 	}
 
-	public void setTxtDataNasc(JTextField txtDataNasc) {
+	public void setTxtDataNasc(JFormattedTextField txtDataNasc) {
 		this.txtDataNasc = txtDataNasc;
 	}
 

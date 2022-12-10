@@ -3,17 +3,20 @@
 import java.time.LocalDate;
 
 public class Venda {
-	private String id;
+	
+	private static Usuario usuario;
+	private static int ids;
+	
+	private int id;
 	private LocalDate data;
 	private Float precoTotal;
 	private String tipoVenda;
 	private Cliente cliente;
-	private Usuario usuario;
 	
 	public Venda() {}
 	
 	public Venda(String id, LocalDate data, Float precoTotal, String tipoVenda, Cliente cliente, Usuario usuario) {
-		setId(id);
+		novoId();
 		setData(data);
 		setPrecoTotal(precoTotal);
 		setTipoVenda(tipoVenda);
@@ -21,14 +24,27 @@ public class Venda {
 		setUsuario(usuario);
 	}
 
-	public String getId() {
+	public int getId() {
 		return id;
 	}
 
-	public void setId(String id) {
-		this.id = id;
+	public void setId(int ids) {
+		id = ids;
 	}
-
+	
+	public void novoId() {
+		ItemsSerializados item = new ItemsSerializados();
+		this.id = ids;
+		ids = ids + 1;
+		Serializar s = new Serializar();
+		item.setIdVenda(ids);
+		try {
+			s.serializar("./id.obj", item);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
 	public LocalDate getData() {
 		return data;
 	}
@@ -65,8 +81,16 @@ public class Venda {
 		return usuario;
 	}
 
-	public void setUsuario(Usuario usuario) {
-		this.usuario = usuario;
+	public static void setUsuario(Usuario user) {
+		usuario = user;
+	}
+
+	public static int getIds() {
+		return ids;
+	}
+
+	public static void setIds(int ids) {
+		Venda.ids = ids;
 	}
 	
 	

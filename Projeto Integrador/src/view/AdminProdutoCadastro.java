@@ -23,7 +23,7 @@ public class AdminProdutoCadastro extends JFrame{
 	private JComboBox cnpjs;
 	private ImageIcon imgFundoTela;
 	private ControllerAdminProdutoCadastro controller;
-
+	private JLabel mensagem;
 
 
     public AdminProdutoCadastro(ControllerAdminProdutoCadastro ctrl) {
@@ -60,6 +60,7 @@ public class AdminProdutoCadastro extends JFrame{
     	txtUnidades = setTextField(245, 247, 45,30);
 		
     	lblFornecedor = setLabel("Fornecedor:", 325, 245, 100,35);
+    	mensagem = setLabel("", 50, 360, 300, 40);
     	
     	setCreateProductButton();
 
@@ -214,6 +215,14 @@ public class AdminProdutoCadastro extends JFrame{
 
 	public void setCnpjs(JComboBox cnpjs) {
 		this.cnpjs = cnpjs;
+	}
+	
+	public JLabel getMensagem() {
+		return mensagem;
+	}
+
+	public void setMensagem(JLabel mensagem) {
+		this.mensagem = mensagem;
 	}
 	
 	
