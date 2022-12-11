@@ -9,6 +9,7 @@ import javax.swing.JTextField;
 
 import model.entities.Login;
 import model.entities.Usuario;
+import model.entities.Venda;
 import model.factorys.FactoryScreens;
 import view.TelaLogin;
 
@@ -44,6 +45,7 @@ public class ControllerLogin implements ActionListener{
     			view.mensagemSenhaInvalida();
     			view.getPswSenha().setText("");
     		} else {
+    			Venda.setUsuarioX(usuario);
     			System.out.println("Id: " + usuario.getId() + ", Senha: " + usuario.getSenha() + ", Tipo de Acesso: "+  usuario.getTipoAcesso());
     			if(usuario.getTipoAcesso().equals("gerente")) {
     				chamaTela.chamaAdminMenuPrincipal(controlAdmin, view.receiveContainer());

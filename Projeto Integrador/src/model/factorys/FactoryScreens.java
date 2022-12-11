@@ -24,6 +24,8 @@ import controller.ControllerFuncionarioClienteMenu;
 import controller.ControllerFuncionarioMenuPrincipal;
 import controller.ControllerFuncionarioProdutoMenu;
 import controller.ControllerFuncionarioVendaMenu;
+import controller.ControllerInfoVenda;
+import controller.ControllerLancaVenda;
 import controller.ControllerLogin;
 import model.entities.Cliente;
 import model.entities.Fornecedor;
@@ -53,6 +55,8 @@ import view.FuncionarioClienteMenu;
 import view.FuncionarioMenuPrincipal;
 import view.FuncionarioProdutoMenu;
 import view.FuncionarioVendaMenu;
+import view.InfoVenda;
+import view.LancaVendaInfo;
 import view.TelaLogin;
 
 public class FactoryScreens {
@@ -212,6 +216,19 @@ public class FactoryScreens {
 		ctrl.setModel(venda);
 		ctrl.setView(tela);
 		container.dispose();
+	}
+	
+	public void chamaAdminVendaInfo(ControllerInfoVenda ctrl) {
+		InfoVenda tela = new InfoVenda(ctrl);
+		Venda venda = new Venda();
+		ctrl.setModel(venda);
+		ctrl.setView(tela);
+	}
+	
+	public void chamaTelaVenda(ControllerLancaVenda ctrl, Venda model) {
+		LancaVendaInfo tela = new LancaVendaInfo(ctrl);
+		ctrl.setModel(model);
+		ctrl.setView(tela);
 	}
 	
 	/*-----------------------------------*/

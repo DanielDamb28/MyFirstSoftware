@@ -21,6 +21,7 @@ import model.exceptions.SetorNotNull;
 import model.exceptions.TamanhoNotNull;
 import model.exceptions.TelefoneNotNull;
 import model.exceptions.UnidadeNotNull;
+import model.factorys.FactoryException;
 
 public class Produto{
 	
@@ -62,64 +63,96 @@ public class Produto{
 		return modelo;
 	}
 
-	public void setModelo(String modelo) {
-		this.modelo = modelo;
+	public void setModelo(String modelo) throws ModeloNotNull {
+		if(!modelo.isEmpty()) {
+			this.modelo = modelo;
+		}else {
+			FactoryException.callModeloNotNUll();
+		}
 	}
 
 	public String getCategoria() {
 		return categoria;
 	}
 
-	public void setCategoria(String categoria) {
-		this.categoria = categoria;
+	public void setCategoria(String categoria) throws CategoriaNotNull {
+		if(!categoria.isEmpty()) {
+			this.categoria = categoria;
+		}else {
+			FactoryException.callCategoriaNotNUll();
+		}
 	}
 
 	public String getMarca() {
 		return marca;
 	}
 
-	public void setMarca(String marca) {
-		this.marca = marca;
+	public void setMarca(String marca) throws MarcaNotNull {
+		if(!marca.isEmpty()) {
+			this.marca = marca;
+		}else {
+			FactoryException.callMarcaNotNUll();
+		}
 	}
 
 	public String getSetor() {
 		return setor;
 	}
 
-	public void setSetor(String setor) {
-		this.setor = setor;
+	public void setSetor(String setor) throws SetorNotNull {
+		if(!setor.isEmpty()) {
+			this.setor = setor;
+		}else {
+			FactoryException.callSetorNotNUll();
+		}
 	}
 
 	public String getCor() {
 		return cor;
 	}
 
-	public void setCor(String cor) {
-		this.cor = cor;
+	public void setCor(String cor) throws CorNotNull {
+		if(!cor.isEmpty()) {
+			this.cor = cor;
+		}else {
+			FactoryException.callCorNotNUll();
+		}
 	}
 
 	public String getTamanho() {
 		return tamanho;
 	}
 
-	public void setTamanho(String tamanho) {
-		this.tamanho = tamanho;
+	public void setTamanho(String tamanho) throws TamanhoNotNull {
+		if(!tamanho.isEmpty()) {
+			this.tamanho = tamanho;
+		}else {
+			FactoryException.callTamanhoNotNUll();
+		}
 	}
 
 	public Float getPreco() {
 		return preco;
 	}
 
-	public void setPreco(Float preco) {
-		this.preco = preco;
+	public void setPreco(Float preco) throws PrecoNotNull {
+		if(!preco.toString().isEmpty()) {
+			this.preco = preco;
+		}else {
+			FactoryException.callPrecoNotNUll();
+		}
 	}
 
 	public Integer getUnidadesEstoque() {
 		return unidadesEstoque;
 	}
 
-	public void setUnidadesEstoque(Integer unidadesEstoque) {
-		this.unidadesEstoque = unidadesEstoque;
+	public void setUnidadesEstoque(Integer unidadesEstoque) throws UnidadeNotNull {
+		if(!unidadesEstoque.toString().isEmpty()) {
+			this.unidadesEstoque = unidadesEstoque;
+		}else {
+			FactoryException.callUnidadeNotNUll();
+		}
 	}
 
 	public int getId() {
@@ -277,7 +310,7 @@ public class Produto{
 		}
 	}
 	
-	public String procuraDados(int id){
+	public String procuraDados(int id) throws ModeloNotNull, CategoriaNotNull, MarcaNotNull, CorNotNull, SetorNotNull, TamanhoNotNull, PrecoNotNull, UnidadeNotNull{
 		int result = 0;
 		String resposta = null;
 		Produto produto = null;
@@ -341,7 +374,7 @@ public class Produto{
 	}
 	
 	
-	public List<Produto> retornaProdutos(){
+	public List<Produto> retornaProdutos() throws ModeloNotNull, CategoriaNotNull, MarcaNotNull, SetorNotNull, CorNotNull, TamanhoNotNull, PrecoNotNull, UnidadeNotNull{
 		List<Produto> fornecedores = new ArrayList<Produto>();
 		conexao = new Conexao();
 		
@@ -353,7 +386,7 @@ public class Produto{
 	}
 	
 	
-	private List<Produto> getAllProdutos(){
+	private List<Produto> getAllProdutos() throws ModeloNotNull, CategoriaNotNull, MarcaNotNull, SetorNotNull, CorNotNull, TamanhoNotNull, PrecoNotNull, UnidadeNotNull{
 		Connection con = conexao.getConexao();
 		String comandoInsereFornecedorNoBancoDeDados = "SELECT * FROM produto;";
 		ResultSet rs = null;

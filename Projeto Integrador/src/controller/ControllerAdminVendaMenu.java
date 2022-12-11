@@ -26,9 +26,10 @@ public class ControllerAdminVendaMenu implements ActionListener{
 		FactoryScreens chamaTela = new FactoryScreens();
 		
 		ControllerAdminMenuPrincipal controlMenu = new ControllerAdminMenuPrincipal();
+		ControllerInfoVenda controlInfo = new ControllerInfoVenda();
 		
 		if(evt.getSource() == view.getBtnLancarVenda()) {
-			
+			chamaTela.chamaAdminVendaInfo(controlInfo);
 		}
 		if(evt.getSource() == view.getBtnAcessarHistorico()) {
 			

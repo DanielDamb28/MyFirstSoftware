@@ -154,9 +154,61 @@ public class LancaVendaInfo extends JFrame {
         scroll.setBounds(20, 130, 745, 300);
     }
 	
-	public static void main(String args[]) {
-		ControllerLancaVenda controller = new ControllerLancaVenda();
-		
-		new LancaVendaInfo(controller);
+	public JTextField getTxtId() {
+		return txtId;
 	}
+
+	public void setTxtId(JTextField txtId) {
+		this.txtId = txtId;
+	}
+
+	public JTextField getTxtUnidades() {
+		return txtUnidades;
+	}
+
+	public void setTxtUnidades(JTextField txtUnidades) {
+		this.txtUnidades = txtUnidades;
+	}
+
+	public JTextField getTxtModelo() {
+		return txtModelo;
+	}
+
+	public void setTxtModelo(JTextField txtModelo) {
+		this.txtModelo = txtModelo;
+	}
+
+	public JButton getBtnPesquisar() {
+		return btnPesquisar;
+	}
+
+	public void setBtnPesquisar(JButton btnPesquisar) {
+		this.btnPesquisar = btnPesquisar;
+	}
+
+	public JButton getBtnAdicionar() {
+		return btnAdicionar;
+	}
+
+	public void setBtnAdicionar(JButton btnAdicionar) {
+		this.btnAdicionar = btnAdicionar;
+	}
+
+	public JButton getBtnFazerVenda() {
+		return btnFazerVenda;
+	}
+
+	public void setBtnFazerVenda(JButton btnFazerVenda) {
+		this.btnFazerVenda = btnFazerVenda;
+	}
+
+	public JFrame getContainer() {
+		return container;
+	}
+
+	public void setContainer(JFrame container) {
+		this.container = container;
+	}
+	
+	
 }
