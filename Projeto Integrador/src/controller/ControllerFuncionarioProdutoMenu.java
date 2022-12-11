@@ -27,6 +27,7 @@ public class ControllerFuncionarioProdutoMenu implements ActionListener{
 		ControllerAdminProdutoCadastro controlCadastro = new ControllerAdminProdutoCadastro();
 		ControllerAdminProdutoExcluir controlExcluir = new ControllerAdminProdutoExcluir();
 		ControllerAdminProdutoFiltrar controlFiltrar = new ControllerAdminProdutoFiltrar();
+		ControllerAdicionaProdutoAoEstoque controlEstoque = new ControllerAdicionaProdutoAoEstoque();
 		
 		FactoryScreens chamaTela = new FactoryScreens();
 		
@@ -44,6 +45,9 @@ public class ControllerFuncionarioProdutoMenu implements ActionListener{
         	chamaTela.chamaAdminProdutoFiltrar(controlFiltrar, view);
         }
         
+        if(evt.getSource() == view.getBtnUpdate()) {
+        	chamaTela.chamaAdminAdicionaProdutoAoEstoque(controlEstoque);
+        }
         
         if (evt.getSource() == view.getBtnVoltar()) {
         	chamaTela.chamaFuncionarioTelaMenu(control , view.getContainer());

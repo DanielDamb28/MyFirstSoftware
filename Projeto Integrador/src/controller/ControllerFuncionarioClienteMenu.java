@@ -5,7 +5,6 @@ import java.awt.event.ActionListener;
 
 import model.entities.Cliente;
 import model.factorys.FactoryScreens;
-import view.AdminClienteMenu;
 import view.FuncionarioClienteMenu;
 
 public class ControllerFuncionarioClienteMenu implements ActionListener{
@@ -22,7 +21,7 @@ public class ControllerFuncionarioClienteMenu implements ActionListener{
 	}
 
 	public void actionPerformed(ActionEvent evt) {
-		ControllerAdminMenuPrincipal controlMenu = new ControllerAdminMenuPrincipal();
+		ControllerFuncionarioMenuPrincipal controlMenu = new ControllerFuncionarioMenuPrincipal();
 		ControllerAdminClienteFiltrar controlFiltrar = new ControllerAdminClienteFiltrar();
 		ControllerAdminClienteCadastro controlCadastro = new ControllerAdminClienteCadastro();
 		ControllerAdminClienteExcluir controlExcluir = new ControllerAdminClienteExcluir();
@@ -33,7 +32,7 @@ public class ControllerFuncionarioClienteMenu implements ActionListener{
 			chamaTela.chamaAdminClienteFiltrar(controlFiltrar, viewClienteMenu);
 		}
 		if(evt.getSource() == viewClienteMenu.getBtnVoltar()) {
-			chamaTela.chamaAdminMenuPrincipal(controlMenu, viewClienteMenu.getContainer());
+			chamaTela.chamaFuncionarioTelaMenu(controlMenu, viewClienteMenu.getContainer());
 		}
 		if(evt.getSource() == viewClienteMenu.getBtnAdd()) {
 			chamaTela.chamaAdminClienteCadastro(controlCadastro);

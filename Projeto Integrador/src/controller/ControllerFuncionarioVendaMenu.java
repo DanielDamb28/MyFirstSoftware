@@ -27,12 +27,13 @@ public class ControllerFuncionarioVendaMenu implements ActionListener{
 		FactoryScreens chamaTela = new FactoryScreens();
 		
 		ControllerFuncionarioMenuPrincipal controlMenu = new ControllerFuncionarioMenuPrincipal();
+		ControllerInfoVenda controlInfo = new ControllerInfoVenda();
 		
 		if(evt.getSource() == view.getBtnLancarVenda()) {
-			
+			chamaTela.chamaAdminVendaInfo(controlInfo);
 		}
 		if(evt.getSource() == view.getBtnAcessarHistorico()) {
-			
+			chamaTela.chamaHistoricoDeVendas();
 		}
 		if(evt.getSource() == view.getBtnVoltarMenu()) {
 			chamaTela.chamaFuncionarioTelaMenu(controlMenu, view.getContainer());

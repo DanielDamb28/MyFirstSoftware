@@ -50,7 +50,7 @@ public class HistoricoVendas {
 
 	public List<HistoricoVendas> getAllHistorico(){
 		Connection con = conexao.getConexao();
-		String comandoInsereFornecedorNoBancoDeDados = "select vd.pk_id, vd.preco_total, vd.fk_cliente_cpf_cnpj, vd.fk_usuario_id, vd.data, iv.numero_de_produtos from itens_vendidos as iv inner join produto as pd on iv.fk_produto_id = pd.pk_id inner join venda as vd on iv.fk_venda_id = vd.pk_id group by vd.pk_id, iv.numero_de_produtos;";
+		String comandoInsereFornecedorNoBancoDeDados = "select vd.pk_id, vd.preco_total, vd.fk_cliente_cpf_cnpj, vd.fk_usuario_id, vd.data, sum(numero_de_produtos) as numero_de_produtos from itens_vendidos as iv inner join produto as pd on iv.fk_produto_id = pd.pk_id inner join venda as vd on iv.fk_venda_id = vd.pk_id group by vd.pk_id, iv.numero_de_produtos;";
 		ResultSet rs = null;
 		
 		ArrayList<HistoricoVendas> vendas = new ArrayList<HistoricoVendas>();
