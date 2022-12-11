@@ -56,7 +56,6 @@ public class ControllerAdminProdutoCadastro implements ActionListener{
 			cor = view.getTxtCor().getText();
 			tamanho = view.getTxtTamanho().getText();
 			preco = Float.parseFloat(view.getTxtPreco().getText());
-			System.out.println(preco);
 			unidadesEstoque = Integer.parseInt(view.getTxtUnidades().getText());
 			fornecedorCnpj = (String) view.getCnpjs().getSelectedItem();
 			
@@ -64,43 +63,7 @@ public class ControllerAdminProdutoCadastro implements ActionListener{
 			
 			try {
 				product = new Produto(modelo, categoria, marca, setor, cor, tamanho, preco, unidadesEstoque, fornecedorCnpj);
-			/*} catch(Exception e) {
-				e.printStackTrace();*/
-			} catch (ModeloNotNull e) {
-				view.getMensagem().setForeground(Color.red);
-				view.getMensagem().setText(e.getMessage());
-				e.printStackTrace();
-			} catch (CategoriaNotNull e) {
-				view.getMensagem().setForeground(Color.red);
-				view.getMensagem().setText(e.getMessage());
-				e.printStackTrace();
-			} catch (MarcaNotNull e) {
-				view.getMensagem().setForeground(Color.red);
-				view.getMensagem().setText(e.getMessage());
-				e.printStackTrace();
-			} catch (SetorNotNull e) {
-				view.getMensagem().setForeground(Color.red);
-				view.getMensagem().setText(e.getMessage());
-				e.printStackTrace(); 
-			} catch (CorNotNull e) {
-				view.getMensagem().setForeground(Color.red);
-				view.getMensagem().setText(e.getMessage());
-				e.printStackTrace();
-			} catch (TamanhoNotNull e) {
-				view.getMensagem().setForeground(Color.red);
-				view.getMensagem().setText(e.getMessage());
-				e.printStackTrace();
-			} catch (PrecoNotNull e) {
-				view.getMensagem().setForeground(Color.red);
-				view.getMensagem().setText(e.getMessage());
-				e.printStackTrace();
-			} catch (UnidadeNotNull e) {
-				view.getMensagem().setForeground(Color.red);
-				view.getMensagem().setText(e.getMessage());
-				e.printStackTrace();
-			} catch (FornecedorNotNull e) {
-				view.getMensagem().setForeground(Color.red);
-				view.getMensagem().setText(e.getMessage());
+			} catch(Exception e) {
 				e.printStackTrace();
 			}
 				

@@ -111,7 +111,13 @@ public class ControllerLancaVenda implements ActionListener{
 				itens = new ItensVendidos(p.getId(), model.getId(), p.getUnidadesEstoque(), p.getPreco());
 				
 				itens.adicionaVendaNoBancoDeDados(itens);
-				
+				try {
+					p.setUnidadesEstoque(p.getUnidadesEstoque() - (2*p.getUnidadesEstoque()));
+				} catch (UnidadeNotNull e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				model.updateProduto(p.getId(), p.getUnidadesEstoque());
 				
 			}
 		}

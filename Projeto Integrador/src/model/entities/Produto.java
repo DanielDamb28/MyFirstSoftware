@@ -160,13 +160,13 @@ public class Produto{
 	}
 	
 	private void novoId() {
-		ItemsSerializados item = new ItemsSerializados();
+		ProdutoSerializado item = new ProdutoSerializado();
 		this.id = ids;
 		ids = ids + 1;
 		Serializar s = new Serializar();
 		item.setIdProduto(ids);
 		try {
-			s.serializar("./id.obj", item);
+			s.serializar("./id1.obj", item);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

@@ -31,7 +31,7 @@ public class ControllerInfoVenda implements ActionListener{
 		FactoryScreens chamaTela = new FactoryScreens();
 		
 		if(e.getSource() == view.getBtnRegistrarVenda()) {
-			if(!view.getTxtCpfCliente().getText().isEmpty() && !view.getTxtTipoDeVenda().getText().isEmpty()) {
+			if(!view.getTxtTipoDeVenda().getText().isEmpty()) {
 				LocalDate cadastro = null;
 				
 				Instant dataCadastro = Instant.now();
@@ -41,6 +41,9 @@ public class ControllerInfoVenda implements ActionListener{
 				float preco = 0;
 				String cpfCliente = "";
 				String tipoVenda = "";
+				
+				cpfCliente = (String) view.getCbCpfCliente().getSelectedItem();
+				tipoVenda = view.getTxtTipoDeVenda().getText();
 				
 				Venda venda = null;
 				

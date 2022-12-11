@@ -69,14 +69,14 @@ public class Venda {
 		DateTimeFormatter fmt = DateTimeFormatter.ofPattern("dd-MM-yyyy");
 		
 		Connection con = conexao.getConexao();
-		String comandoInsereClienteNoBancoDeDados = "INSERT INTO venda(pk_id, data, tipo_de_venda, fk_cliente_cpf_cnpj, fk_usuario, preco_total)"
+		String comandoInsereClienteNoBancoDeDados = "INSERT INTO venda(pk_id, data, tipo_de_venda, fk_cliente_cpf_cnpj, fk_usuario_id, preco_total)"
 				+ " VALUES (?, ?, ?, ? , ?, ?);";
 		
 		try {
 			PreparedStatement stmInsereClienteNoBancoDeDados = con.prepareStatement(comandoInsereClienteNoBancoDeDados);
 			
 			stmInsereClienteNoBancoDeDados.setInt(1, venda.getId());
-			stmInsereClienteNoBancoDeDados.setDate(5, Date.valueOf(venda.getData()));
+			stmInsereClienteNoBancoDeDados.setDate(2, Date.valueOf(venda.getData()));
 			stmInsereClienteNoBancoDeDados.setString(3, venda.getTipoVenda());
 			stmInsereClienteNoBancoDeDados.setString(4, venda.getCliente());
 			stmInsereClienteNoBancoDeDados.setString(5, venda.getUsuario().getId());
@@ -224,6 +224,54 @@ public class Venda {
 		return produtos;
 		
 	}
+	
+	public String updateProduto(int id, int unidades) {
+		int result = 0;
+		String resposta = null;
+		
+		conexao = new Conexao();
+		
+		Connection con = conexao.getConexao();
+		String comandoInsereFornecedorNoBancoDeDados = "update produto set unidades_estoque = unidades_estoque + ? where pk_id = ?;";
+		
+		try {
+			PreparedStatement stmInsereFornecedorNoBancoDeDados = con.prepareStatement(comandoInsereFornecedorNoBancoDeDados);
+			
+			stmInsereFornecedorNoBancoDeDados.setInt(1, unidades);
+			stmInsereFornecedorNoBancoDeDados.setInt(2, id);
+			
+			System.out.println(stmInsereFornecedorNoBancoDeDados);
+			
+			int rs = stmInsereFornecedorNoBancoDeDados.executeUpdate();
+			result = 1;
+			
+			
+		}catch (SQLException e) {
+			e.printStackTrace();
+			result = 2;
+			resposta = "Erro ao procurar produto";
+
+		}finally{
+			if(con != null){
+				try {
+					con.setAutoCommit(true);
+					con.close();
+				} catch (SQLException e) {
+					result = 2;
+					resposta = "Erro ao encerrar conexao";
+					e.getStackTrace();
+				}
+			}
+		}
+		
+		if(result == 1) {
+			return "Produto atualizado com sucesso";
+		} else if(result == 0){
+			return "Id não encontrado";
+		} else {
+			return resposta;
+		}
+	}
 
 	public int getId() {
 		return id;
@@ -234,13 +282,13 @@ public class Venda {
 	}
 	
 	public void novoId() {
-		ItemsSerializados item = new ItemsSerializados();
+		VendaSerializado item = new VendaSerializado();
 		this.id = ids;
 		ids = ids + 1;
 		Serializar s = new Serializar();
 		item.setIdVenda(ids);
 		try {
-			s.serializar("./id.obj", item);
+			s.serializar("./id2.obj", item);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

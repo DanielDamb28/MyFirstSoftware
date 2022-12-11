@@ -365,4 +365,47 @@ public class Cliente {
 		return clientes;
 		
 	}
+	
+	public List<String> retornaCpfCnpj(){
+		List<String> clientes = new ArrayList<String>();
+		conexao = new Conexao();
+		
+		clientes = getAllCpfCnpjs();
+		
+		return clientes;
+		
+		
+	}
+	
+	private List<String> getAllCpfCnpjs(){
+		Connection con = conexao.getConexao();
+		String comandoInsereFornecedorNoBancoDeDados = "SELECT pk_cpf_cnpj FROM cliente;";
+		ResultSet rs = null;
+		
+		ArrayList<String> clientes = new ArrayList<String>();
+		
+		try {
+			PreparedStatement stmInsereFornecedorNoBancoDeDados = con.prepareStatement(comandoInsereFornecedorNoBancoDeDados);
+			
+			rs = stmInsereFornecedorNoBancoDeDados.executeQuery();
+			while(rs.next()) {
+				
+				clientes.add(rs.getString("pk_cpf_cnpj"));
+			}
+			
+		}catch (SQLException e) {
+			e.printStackTrace();
+		}finally{
+			if(con != null){
+				try {
+					con.setAutoCommit(true);
+					con.close();
+				} catch (SQLException e) {
+					e.getStackTrace();
+				}
+			}
+		}
+		return clientes;
+		
+	}
 }

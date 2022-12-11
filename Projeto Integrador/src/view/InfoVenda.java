@@ -2,9 +2,12 @@ package view;
 
 import java.awt.Color;
 import java.awt.Font;
+import java.util.List;
+import java.util.Vector;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
@@ -18,7 +21,7 @@ public class InfoVenda extends JFrame{
 	private JLabel lblFundoTela;
 	
 	private JLabel lCpfCliente;
-	private JTextField txtCpfCliente;
+	private JComboBox cbCpfCliente;
 	private JLabel lTipoDeVenda;
 	private JTextField txtTipoDeVenda;
 	
@@ -36,7 +39,6 @@ public class InfoVenda extends JFrame{
 		setImageBackground();
 		
 		lCpfCliente = setLabel("CPF do Cliente: ", 20, 150, 150, 30);
-		txtCpfCliente = setTextField(200, 150, 200, 30);
 		
 		lTipoDeVenda = setLabel("Tipo De Venda: ", 20, 250, 150, 30);
 		txtTipoDeVenda = setTextField(200, 250, 200, 30);
@@ -88,13 +90,15 @@ public class InfoVenda extends JFrame{
         container.add(btn);
         return btn;
     }
+	
+	
 
-	public JTextField getTxtCpfCliente() {
-		return txtCpfCliente;
+	public JComboBox getCbCpfCliente() {
+		return cbCpfCliente;
 	}
 
-	public void setTxtCpfCliente(JTextField txtCpfCliente) {
-		this.txtCpfCliente = txtCpfCliente;
+	public void setCbCpfCliente(JComboBox cbCpfCliente) {
+		this.cbCpfCliente = cbCpfCliente;
 	}
 
 	public JTextField getTxtTipoDeVenda() {
@@ -120,6 +124,18 @@ public class InfoVenda extends JFrame{
 	public void setContainer(JFrame container) {
 		this.container = container;
 	}
+	
+    public void setComboBox(List<String> list) {
+    	Vector<String> vect = new Vector();
+    	for(String a: list) {
+    		vect.add(a);
+    	}
+    	cbCpfCliente = new JComboBox<String>(vect);
+    	cbCpfCliente.setSelectedIndex(0);
+    	cbCpfCliente.addActionListener(controller);
+    	cbCpfCliente.setBounds(200, 150, 200,30);
+    	container.add(cbCpfCliente);
+    }
 	
 	
 }

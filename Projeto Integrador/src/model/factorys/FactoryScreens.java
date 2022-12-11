@@ -230,6 +230,8 @@ public class FactoryScreens {
 	public void chamaAdminVendaInfo(ControllerInfoVenda ctrl) {
 		InfoVenda tela = new InfoVenda(ctrl);
 		Venda venda = new Venda();
+		Cliente cliente = new Cliente();
+		tela.setComboBox(cliente.retornaCpfCnpj());
 		ctrl.setModel(venda);
 		ctrl.setView(tela);
 	}
