@@ -32,7 +32,7 @@ public class ControllerAdminVendaMenu implements ActionListener{
 			chamaTela.chamaAdminVendaInfo(controlInfo);
 		}
 		if(evt.getSource() == view.getBtnAcessarHistorico()) {
-			
+			chamaTela.chamaHistoricoDeVendas();
 		}
 		if(evt.getSource() == view.getBtnVoltarMenu()) {
 			chamaTela.chamaAdminMenuPrincipal(controlMenu, view.getContainer());

@@ -30,6 +30,7 @@ import controller.ControllerLancaVenda;
 import controller.ControllerLogin;
 import model.entities.Cliente;
 import model.entities.Fornecedor;
+import model.entities.HistoricoVendas;
 import model.entities.Login;
 import model.entities.Produto;
 import model.entities.Usuario;
@@ -57,6 +58,7 @@ import view.FuncionarioClienteMenu;
 import view.FuncionarioMenuPrincipal;
 import view.FuncionarioProdutoMenu;
 import view.FuncionarioVendaMenu;
+import view.HistoricoDeVendas;
 import view.InfoVenda;
 import view.LancaVendaInfo;
 import view.TelaLogin;
@@ -240,6 +242,12 @@ public class FactoryScreens {
 		LancaVendaInfo tela = new LancaVendaInfo(ctrl);
 		ctrl.setModel(model);
 		ctrl.setView(tela);
+	}
+	
+	public void chamaHistoricoDeVendas() {
+		HistoricoDeVendas tela = new HistoricoDeVendas();
+		HistoricoVendas venda = new HistoricoVendas();
+		tela.fillTableWithAllDataBaseInformation(venda.retornaHistorico());
 	}
 	
 	/*-----------------------------------*/
