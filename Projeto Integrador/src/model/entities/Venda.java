@@ -5,6 +5,17 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
+
+import model.exceptions.CategoriaNotNull;
+import model.exceptions.CorNotNull;
+import model.exceptions.MarcaNotNull;
+import model.exceptions.ModeloNotNull;
+import model.exceptions.PrecoNotNull;
+import model.exceptions.SetorNotNull;
+import model.exceptions.TamanhoNotNull;
+import model.exceptions.UnidadeNotNull;
 
 public class Venda {
 	
@@ -90,6 +101,61 @@ public class Venda {
 		} else {
 			throw new Exception();
 		}
+	}
+	
+	public List<Produto> retornaProdutos() throws ModeloNotNull, CategoriaNotNull, MarcaNotNull, SetorNotNull, CorNotNull, TamanhoNotNull, PrecoNotNull, UnidadeNotNull{
+		List<Produto> fornecedores = new ArrayList<Produto>();
+		conexao = new Conexao();
+		
+		fornecedores = getAllProdutos();
+		
+		return fornecedores;
+		
+		
+	}
+	
+	
+	private List<Produto> getAllProdutos() throws ModeloNotNull, CategoriaNotNull, MarcaNotNull, SetorNotNull, CorNotNull, TamanhoNotNull, PrecoNotNull, UnidadeNotNull{
+		Connection con = conexao.getConexao();
+		String comandoInsereFornecedorNoBancoDeDados = "SELECT * FROM produto;";
+		ResultSet rs = null;
+		
+		ArrayList<Produto> produtos = new ArrayList<Produto>();
+		
+		try {
+			PreparedStatement stmInsereFornecedorNoBancoDeDados = con.prepareStatement(comandoInsereFornecedorNoBancoDeDados);
+			
+			rs = stmInsereFornecedorNoBancoDeDados.executeQuery();
+			while(rs.next()) {
+				Produto produto = new Produto();
+
+				produto.setId(rs.getInt("pk_id"));
+				produto.setModelo(rs.getString("modelo"));
+				produto.setCategoria(rs.getString("categoria"));
+				produto.setMarca(rs.getString("marca"));
+				produto.setSetor(rs.getString("setor"));
+				produto.setCor(rs.getString("cor"));
+				produto.setTamanho(rs.getString("tamanho"));
+				produto.setPreco(rs.getFloat("preco"));
+				produto.setUnidadesEstoque(rs.getInt("unidades_estoque"));
+				produto.setFornecedor("fornecedor_cnpj");
+				produtos.add(produto);
+			}
+			
+		}catch (SQLException e) {
+			e.printStackTrace();
+		}finally{
+			if(con != null){
+				try {
+					con.setAutoCommit(true);
+					con.close();
+				} catch (SQLException e) {
+					e.getStackTrace();
+				}
+			}
+		}
+		return produtos;
+		
 	}
 
 	public int getId() {

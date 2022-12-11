@@ -2,15 +2,26 @@ package controller;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.List;
 
 import javax.swing.JOptionPane;
 
 import model.entities.Produto;
 import model.entities.Venda;
+import model.exceptions.CategoriaNotNull;
+import model.exceptions.CorNotNull;
+import model.exceptions.MarcaNotNull;
+import model.exceptions.ModeloNotNull;
+import model.exceptions.PrecoNotNull;
+import model.exceptions.SetorNotNull;
+import model.exceptions.TamanhoNotNull;
+import model.exceptions.UnidadeNotNull;
 import view.LancaVendaInfo;
 
 public class ControllerLancaVenda implements ActionListener{
 
+	private List<Produto> produtos;
+	
 	private LancaVendaInfo view;
 	private Venda model;
 	private Produto produto;
@@ -43,6 +54,20 @@ public class ControllerLancaVenda implements ActionListener{
 			}
 			
 			view.getTxtModelo().setText(produto.getModelo());
+		}
+		
+		if(e.getSource() == view.getBtnAdicionar()) {
+			
+			produtos = null;
+			
+			try {
+				produtos = model.retornaProdutos();
+			} catch (ModeloNotNull | CategoriaNotNull | MarcaNotNull | SetorNotNull | CorNotNull | TamanhoNotNull
+					| PrecoNotNull | UnidadeNotNull e1) {
+				e1.printStackTrace();
+			}
+			
+			for(Produto p: )
 		}
 		
 	}

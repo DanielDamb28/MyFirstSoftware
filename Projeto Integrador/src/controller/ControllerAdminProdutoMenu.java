@@ -34,7 +34,7 @@ public class ControllerAdminProdutoMenu implements ActionListener{
         }
 
         if (evt.getSource() == view.getBtnUpdate()) {
-            JOptionPane.showMessageDialog(view.getContainer(), "Trocar tela para tela de edicao de produto");
+            System.out.println("aaaaaaaa");
         }
 
         if (evt.getSource() == view.getBtnDelete()) {

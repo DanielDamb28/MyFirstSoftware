@@ -210,6 +210,10 @@ public class FactoryScreens {
 		ctrl.setModel(product);
 	}
 	
+	public void chamaAdminAdicionaProdutoAoEstoque(ControllerAdicionaProdutoAoEstoque ctrl) {
+		
+	}
+	
 	public void chamaAdminVendaMenu(ControllerAdminVendaMenu ctrl,JFrame container) {
 		AdminVendaMenu tela = new AdminVendaMenu(ctrl);
 		Venda venda = new Venda();

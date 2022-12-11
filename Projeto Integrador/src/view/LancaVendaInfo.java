@@ -49,6 +49,8 @@ public class LancaVendaInfo extends JFrame {
 	public LancaVendaInfo(ControllerLancaVenda ctrl){
 		container = new JFrame();
     	
+		controller = ctrl;
+		
         setScreenDefaultSettings();
         setImageBackground();
         
