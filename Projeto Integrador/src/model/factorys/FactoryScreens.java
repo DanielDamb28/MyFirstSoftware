@@ -2,6 +2,7 @@ package model.factorys;
 
 import javax.swing.JFrame;
 
+import controller.ControllerAdicionaProdutoAoEstoque;
 import controller.ControllerAdminClienteCadastro;
 import controller.ControllerAdminClienteExcluir;
 import controller.ControllerAdminClienteFiltrar;
@@ -33,6 +34,7 @@ import model.entities.Login;
 import model.entities.Produto;
 import model.entities.Usuario;
 import model.entities.Venda;
+import view.AdminAdicionaProdutoNoEstoque;
 import view.AdminClienteCadastro;
 import view.AdminClienteExclusao;
 import view.AdminClienteFiltrar;
@@ -211,7 +213,10 @@ public class FactoryScreens {
 	}
 	
 	public void chamaAdminAdicionaProdutoAoEstoque(ControllerAdicionaProdutoAoEstoque ctrl) {
-		
+		AdminAdicionaProdutoNoEstoque tela = new AdminAdicionaProdutoNoEstoque(ctrl);
+		Produto produto = new Produto();
+		ctrl.setModel(produto);
+		ctrl.setViewCadastro(tela);
 	}
 	
 	public void chamaAdminVendaMenu(ControllerAdminVendaMenu ctrl,JFrame container) {

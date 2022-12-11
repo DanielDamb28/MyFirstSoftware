@@ -1,10 +1,12 @@
  package model.entities;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -40,6 +42,71 @@ public class Venda {
 		setTipoVenda(tipoVenda);
 		setCliente(cliente);
 		setUsuario();
+	}
+	
+	public String adicionaVendaNoBancoDeDados(Venda venda) {
+		
+		String result = null;
+		try {
+			conexao = new Conexao();
+			
+			System.out.println("Usuario da Conexao: " + conexao.getConexao().getMetaData().getUserName());
+			System.out.println("URL da Conexao: " + conexao.getConexao().getMetaData().getURL());
+			
+			result = enviaDados(venda); 
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return result;
+	}
+	
+	public String enviaDados(Venda venda) {
+		int result = 0;
+		String resposta = null;
+		
+		DateTimeFormatter fmt = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+		
+		Connection con = conexao.getConexao();
+		String comandoInsereClienteNoBancoDeDados = "INSERT INTO venda(pk_id, data, tipo_de_venda, fk_cliente_cpf_cnpj, fk_usuario, preco_total)"
+				+ " VALUES (?, ?, ?, ? , ?, ?);";
+		
+		try {
+			PreparedStatement stmInsereClienteNoBancoDeDados = con.prepareStatement(comandoInsereClienteNoBancoDeDados);
+			
+			stmInsereClienteNoBancoDeDados.setInt(1, venda.getId());
+			stmInsereClienteNoBancoDeDados.setDate(5, Date.valueOf(venda.getData()));
+			stmInsereClienteNoBancoDeDados.setString(3, venda.getTipoVenda());
+			stmInsereClienteNoBancoDeDados.setString(4, venda.getCliente());
+			stmInsereClienteNoBancoDeDados.setString(5, venda.getUsuario().getId());
+			stmInsereClienteNoBancoDeDados.setFloat(6, venda.getPrecoTotal());
+			
+			result = stmInsereClienteNoBancoDeDados.executeUpdate();
+			
+			
+		}catch (SQLException e) {
+			e.printStackTrace();
+			result = 0;
+			resposta = "Esse Id já está cadastrado";
+
+		}finally{
+			if(con != null){
+				try {
+					con.setAutoCommit(true);
+					con.close();
+				} catch (SQLException e) {
+					resposta = "Erro ao encerrar conexao";
+					e.getStackTrace();
+				}
+			}
+		}
+		
+		if(result == 1) {
+			return "Cadastro efetuado com sucesso";
+		} else {
+			return resposta;
+		}
 	}
 	
 	public Produto procuraDados(int id) throws Exception{

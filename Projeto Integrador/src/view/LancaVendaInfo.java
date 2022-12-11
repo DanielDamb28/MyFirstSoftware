@@ -4,6 +4,7 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
+import java.util.List;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -15,6 +16,7 @@ import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 
 import controller.ControllerLancaVenda;
+import model.entities.Produto;
 
 public class LancaVendaInfo extends JFrame {
 
@@ -40,6 +42,7 @@ public class LancaVendaInfo extends JFrame {
 	    }
 	};
 	
+	private JLabel lSimboloReal;
 	private JLabel lPrecoTotal;
 	private JButton btnFazerVenda;
 	
@@ -74,7 +77,10 @@ public class LancaVendaInfo extends JFrame {
         setTableLayout(scroll);
         container.add(scroll);
         
-        lPrecoTotal = setLabel("R$ 000.00", 30, 470, 300, 60);
+        lSimboloReal = setLabel("R$ ", 30, 470, 300, 60);
+        lSimboloReal.setFont(new Font("ARIAL", Font.PLAIN, 60));
+        
+        lPrecoTotal = setLabel("000.00", 120, 470, 300, 60);
         lPrecoTotal.setFont(new Font("ARIAL", Font.PLAIN, 60));
         
         btnFazerVenda = createButton("Fazer Venda", 550, 470, 200, 70);
@@ -155,6 +161,34 @@ public class LancaVendaInfo extends JFrame {
         add(scroll, BorderLayout.SOUTH);
         scroll.setBounds(20, 130, 745, 300);
     }
+    
+    public void fillTableWithAllDataBaseInformation(List<Produto> produtos) {
+    	try {
+    	    model.getDataVector().removeAllElements();
+    	    model.fireTableDataChanged();
+    	    revalidate();
+    	
+        	int id = 0;
+        	String modelo = "";
+        	String marca = "";
+        	String tamanho = "";
+        	float preco = 0;
+        	int unidades = 0;
+        	
+        	for(Produto p: produtos) {
+
+        		id = p.getId();
+        		modelo = p.getModelo();
+        		marca = p.getMarca();
+        		tamanho = p.getTamanho();
+        		preco = p.getPreco();
+        		unidades = p.getUnidadesEstoque();
+                model.addRow(new Object[]{id, modelo, marca, tamanho, preco, unidades});
+        	}
+        }catch(Exception e) {
+        	e.printStackTrace();
+        }
+    }
 	
 	public JTextField getTxtId() {
 		return txtId;
@@ -210,6 +244,14 @@ public class LancaVendaInfo extends JFrame {
 
 	public void setContainer(JFrame container) {
 		this.container = container;
+	}
+
+	public JLabel getlPrecoTotal() {
+		return lPrecoTotal;
+	}
+
+	public void setlPrecoTotal(JLabel lPrecoTotal) {
+		this.lPrecoTotal = lPrecoTotal;
 	}
 	
 	

@@ -373,6 +373,56 @@ public class Produto{
 		}
 	}
 	
+	public String updateProduto(int id, int unidades) {
+		int result = 0;
+		String resposta = null;
+		
+		conexao = new Conexao();
+		
+		Connection con = conexao.getConexao();
+		String comandoInsereFornecedorNoBancoDeDados = "update produto set unidades_estoque = unidades_estoque + ? where pk_id = ?;";
+		
+		try {
+			PreparedStatement stmInsereFornecedorNoBancoDeDados = con.prepareStatement(comandoInsereFornecedorNoBancoDeDados);
+			
+			stmInsereFornecedorNoBancoDeDados.setInt(1, unidades);
+			stmInsereFornecedorNoBancoDeDados.setInt(2, id);
+			
+			System.out.println(stmInsereFornecedorNoBancoDeDados);
+			
+			int rs = stmInsereFornecedorNoBancoDeDados.executeUpdate();
+			result = 1;
+			
+			
+		}catch (SQLException e) {
+			e.printStackTrace();
+			result = 2;
+			resposta = "Erro ao procurar produto";
+
+		}finally{
+			if(con != null){
+				try {
+					con.setAutoCommit(true);
+					con.close();
+				} catch (SQLException e) {
+					result = 2;
+					resposta = "Erro ao encerrar conexao";
+					e.getStackTrace();
+				}
+			}
+		}
+		
+		if(result == 1) {
+			return "Produto atualizado com sucesso";
+		} else if(result == 0){
+			return "Id não encontrado";
+		} else {
+			return resposta;
+		}
+	}
+	
+	
+	
 	
 	public List<Produto> retornaProdutos() throws ModeloNotNull, CategoriaNotNull, MarcaNotNull, SetorNotNull, CorNotNull, TamanhoNotNull, PrecoNotNull, UnidadeNotNull{
 		List<Produto> fornecedores = new ArrayList<Produto>();

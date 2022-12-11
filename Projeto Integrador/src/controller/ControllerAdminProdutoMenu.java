@@ -28,13 +28,14 @@ public class ControllerAdminProdutoMenu implements ActionListener{
 		ControllerAdminProdutoCadastro controlCadastro = new ControllerAdminProdutoCadastro();
 		ControllerAdminProdutoFiltrar controlFiltrar = new ControllerAdminProdutoFiltrar();
 		ControllerAdminProdutoExcluir controlExcluir = new ControllerAdminProdutoExcluir();
+		ControllerAdicionaProdutoAoEstoque controlAdicionar = new ControllerAdicionaProdutoAoEstoque();
 		
         if (evt.getSource() == view.getBtnAdd()) {
            chamaTela.chamaAdminProdutoCadastro(controlCadastro);
         }
 
         if (evt.getSource() == view.getBtnUpdate()) {
-            System.out.println("aaaaaaaa");
+            chamaTela.chamaAdminAdicionaProdutoAoEstoque(controlAdicionar);
         }
 
         if (evt.getSource() == view.getBtnDelete()) {
