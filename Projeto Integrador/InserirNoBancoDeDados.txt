@@ -1,0 +1,84 @@
+/* Modelo Logico: */
+
+CREATE TABLE cliente (
+    Data_cadastro DATE,
+    Nome VARCHAR(35),
+    Endereco VARCHAR(80),
+    pk_Cpf_Cnpj VARCHAR(14) PRIMARY KEY,
+    Data_nascimento DATE,
+    Telefone VARCHAR(14),
+    Cep CHAR(8),
+    Sexo CHAR
+);
+
+CREATE TABLE venda (
+    Data DATE,
+    pk_Id int PRIMARY KEY,
+    Preco_total FLOAT,
+    Tipo_de_venda VARCHAR(15),
+    fk_Cliente_Cpf_Cnpj VARCHAR(14),
+    fk_Usuario_Id VARCHAR(10)
+);
+
+CREATE TABLE produto (
+    Modelo VARCHAR(30),
+    Categoria VARCHAR(20),
+    Marca VARCHAR(30),
+    Setor VARCHAR(15),
+    Cor VARCHAR(10),
+    Tamanho CHAR(2),
+    Preco FLOAT,
+    Unidades_estoque INTEGER,
+    pk_Id int PRIMARY KEY,
+    fk_Fornecedor_Cnpj CHAR(14)
+);
+
+CREATE TABLE usuario (
+    pk_Id VARCHAR(10) PRIMARY KEY,
+    Senha VARCHAR(20),
+    Tipo_de_acesso VARCHAR(15)
+);
+
+CREATE TABLE itens_vendidos (
+    fk_produto_Id int,
+    fk_venda_Id int,
+    Numero_de_produtos INTEGER,
+    Preco_na_data FLOAT
+);
+
+CREATE TABLE fornecedor (
+    Nome VARCHAR(35),
+    Cep CHAR(8),
+    Endereco VARCHAR(35),
+    telefone VARCHAR(14),
+    email VARCHAR(50),
+    pk_Cnpj CHAR(14) PRIMARY KEY
+);
+ 
+ALTER TABLE venda ADD CONSTRAINT FK_venda_2
+    FOREIGN KEY (fk_Cliente_Cpf_Cnpj)
+    REFERENCES cliente (pk_Cpf_Cnpj)
+    ON DELETE CASCADE;
+ 
+ALTER TABLE venda ADD CONSTRAINT FK_venda_3
+    FOREIGN KEY (fk_Usuario_Id)
+    REFERENCES usuario (pk_Id)
+    ON DELETE CASCADE;
+ 
+ALTER TABLE produto ADD CONSTRAINT FK_produto_2
+    FOREIGN KEY (fk_Fornecedor_Cnpj)
+    REFERENCES fornecedor (pk_Cnpj)
+    ON DELELE CASCADE;
+ 
+ALTER TABLE itens_vendidos ADD CONSTRAINT FK_itens_vendidos_1
+    FOREIGN KEY (fk_venda_Id)
+    REFERENCES venda (pk_Id)
+    ON DELELE CASCADE;
+ 
+ALTER TABLE itens_vendidos ADD CONSTRAINT FK_itens_vendidos_2
+    FOREIGN KEY (fk_produto_Id)
+    REFERENCES produto (pk_Id)
+    ON DELELE CASCADE;
+
+INSERT INTO usuario (pk_id, senha, tipo_de_acesso) VALUES ('ADMIN', 'admin', 'gerente');
+INSERT INTO usuario (pk_id, senha, tipo_de_acesso) VALUES ('FUNC', 'func', 'usuario');
