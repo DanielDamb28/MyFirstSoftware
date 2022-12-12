@@ -21,11 +21,9 @@ public class TelaLogin extends JFrame{
 	private JTextField txtLogin;
 	private JLabel lblSenha, lblLogin, lblMensagem, lblTitulo;
 	private JButton btnEntrar;
-	private JCheckBox chkMostrarSenha;
+	//private JCheckBox chkMostrarSenha;
 	private ImageIcon imgFundoTela;
 	private ActionListener controller;
-
-	
 
     public TelaLogin(ControllerLogin ctrl) {
     	
@@ -38,8 +36,6 @@ public class TelaLogin extends JFrame{
     	setLoginTextField();
     	setPasswordTextField();
     	
-    	
-    	setShowPasswordCheckBox();
     	setWarningMessage();
     	
     	setMakeLoginButton();
@@ -83,12 +79,6 @@ public class TelaLogin extends JFrame{
         pswSenha.setBounds(335, 500, 370,50);
     }
     
-    private void setShowPasswordCheckBox() {
-    	 chkMostrarSenha = new JCheckBox("Exibir senha");
-         chkMostrarSenha.setBounds(600,570,100,40);
-         chkMostrarSenha.addActionListener(controller);
-    }
-    
     private void setWarningMessage() {
     	lblMensagem = new JLabel("");
         lblMensagem.setBounds(400,570,300,40);
@@ -96,7 +86,7 @@ public class TelaLogin extends JFrame{
     
     private void setMakeLoginButton() {
         btnEntrar = new JButton("Entrar");
-        btnEntrar.setBounds(275,570,100,40);
+        btnEntrar.setBounds(335, 570, 370,50);
         btnEntrar.addActionListener(controller);
 
     }
@@ -107,7 +97,7 @@ public class TelaLogin extends JFrame{
     	container.add(lblSenha);
     	container.add(pswSenha);
     	container.add(btnEntrar);
-    	container.add(chkMostrarSenha);
+    	//container.add(chkMostrarSenha);
     	container.add(lblMensagem);
     }
     
@@ -159,13 +149,13 @@ public class TelaLogin extends JFrame{
 		this.controller = controller;
 	}
 
-	public JCheckBox getChkMostrarSenha() {
+	/*public JCheckBox getChkMostrarSenha() {
 		return chkMostrarSenha;
 	}
 
 	public void setChkMostrarSenha(JCheckBox chkMostrarSenha) {
 		this.chkMostrarSenha = chkMostrarSenha;
-	}
+	}*/
     
     
 }

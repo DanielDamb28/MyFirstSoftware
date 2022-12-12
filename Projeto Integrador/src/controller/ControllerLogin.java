@@ -53,13 +53,6 @@ public class ControllerLogin implements ActionListener{
     			else if(usuario.getTipoAcesso().equals("usuario")) {
     				chamaTela.chamaFuncionarioTelaMenu(controlFuncionario, view.receiveContainer());
     			}
-    		}
-			if(evt.getSource() == view.getChkMostrarSenha()) {
-	            if(view.getChkMostrarSenha().isSelected()) {
-	                view.getPswSenha().setEchoChar((char)0);
-	            } else {
-	            	view.getPswSenha().setEchoChar('*');
-	            }
 	        }
         }
 	}
